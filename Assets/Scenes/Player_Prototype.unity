@@ -1048,6 +1048,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1237586253 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -4372587343206045713, guid: 81bb9eea30387e442899949a80011e55, type: 3}
+  m_PrefabInstance: {fileID: 1957528048}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1339638532
 GameObject:
   m_ObjectHideFlags: 0
@@ -2079,6 +2084,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  hand: {fileID: 1237586253}
   spring: {fileID: 528894340}
 --- !u!120 &1819557755
 LineRenderer:

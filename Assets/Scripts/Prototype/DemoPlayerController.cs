@@ -15,6 +15,8 @@ public class DemoPlayerController : MonoBehaviour
 
     public LayerMask groundLayer;
 
+    public Transform hand;
+
     private Vector3 _moveDirection;
     private Vector2 _lookVector;
     
@@ -58,7 +60,7 @@ public class DemoPlayerController : MonoBehaviour
 
         if (_ropeAction)
         {
-            _lineRenderer.SetPosition(0, transform.position);
+            _lineRenderer.SetPosition(0, hand.position);
             _lineRenderer.SetPosition(1, spring.transform.position);
         }
     }

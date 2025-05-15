@@ -332,7 +332,7 @@ SpringJoint:
   m_AutoConfigureConnectedAnchor: 0
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   m_Spring: 25
-  m_Damper: 1
+  m_Damper: 100
   m_MinDistance: 8
   m_MaxDistance: 16
   m_Tolerance: 0.025
@@ -615,7 +615,7 @@ SpringJoint:
   m_AutoConfigureConnectedAnchor: 0
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   m_Spring: 25
-  m_Damper: 1
+  m_Damper: 100
   m_MinDistance: 8
   m_MaxDistance: 16
   m_Tolerance: 0.025
@@ -782,7 +782,7 @@ SpringJoint:
   m_AutoConfigureConnectedAnchor: 0
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   m_Spring: 25
-  m_Damper: 1
+  m_Damper: 100
   m_MinDistance: 8
   m_MaxDistance: 16
   m_Tolerance: 0.025
@@ -1164,7 +1164,7 @@ SpringJoint:
   m_AutoConfigureConnectedAnchor: 0
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   m_Spring: 25
-  m_Damper: 1
+  m_Damper: 100
   m_MinDistance: 8
   m_MaxDistance: 16
   m_Tolerance: 0.025
@@ -2551,7 +2551,7 @@ SpringJoint:
   m_AutoConfigureConnectedAnchor: 0
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   m_Spring: 25
-  m_Damper: 1
+  m_Damper: 100
   m_MinDistance: 8
   m_MaxDistance: 16
   m_Tolerance: 0.025
@@ -2823,7 +2823,7 @@ SpringJoint:
   m_AutoConfigureConnectedAnchor: 0
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   m_Spring: 25
-  m_Damper: 1
+  m_Damper: 100
   m_MinDistance: 8
   m_MaxDistance: 16
   m_Tolerance: 0.025
@@ -3945,6 +3945,10 @@ PrefabInstance:
       value: WirePoint
       objectReference: {fileID: 0}
     - target: {fileID: 8262108167520379717, guid: caac0be52ccaeed4b9e997eda0a79fad, type: 3}
+      propertyPath: m_Damper
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8262108167520379717, guid: caac0be52ccaeed4b9e997eda0a79fad, type: 3}
       propertyPath: m_Spring
       value: 25
       objectReference: {fileID: 0}
@@ -4112,12 +4116,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1711654818859024742, guid: de45e08a8ce644b4880409d3e817acfc, type: 3}
       propertyPath: wireAccel
-      value: 30
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1711654818859024742, guid: de45e08a8ce644b4880409d3e817acfc, type: 3}
       propertyPath: respawnPos
       value: 
       objectReference: {fileID: 1289540091}
+    - target: {fileID: 1711654818859024742, guid: de45e08a8ce644b4880409d3e817acfc, type: 3}
+      propertyPath: airMaxSpeed
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 1711654818859024742, guid: de45e08a8ce644b4880409d3e817acfc, type: 3}
       propertyPath: cameraObject
       value: 

@@ -75,6 +75,8 @@ public class PlayerBehavior : MonoBehaviour
     
     public Transform respawnPos;
 
+    public float distanceToPoint;
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -102,6 +104,9 @@ public class PlayerBehavior : MonoBehaviour
         GroundCheck();
         StunCheck();
         
+        if (_currentWirePoint != null)
+            Debug.Log(Vector3.Distance(_currentWirePoint.position, transform.position));
+        
         if (!_isWiring)
         {
             ScanWirePoints();
@@ -111,6 +116,19 @@ public class PlayerBehavior : MonoBehaviour
         {
             RenderWire();
             MoveOnWire();
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (_isWiring)
+        {
+            var vecToPoint = _currentWirePoint.position - transform.position;
+            _rigidbody.linearVelocity = Vector3.ProjectOnPlane(_rigidbody.linearVelocity, vecToPoint);
+            
+            var dist = Vector3.Distance(_currentWirePoint.position, transform.position);
+            
+            _rigidbody.MovePosition(transform.position + vecToPoint.normalized * (dist-distanceToPoint));
         }
     }
 
@@ -148,7 +166,7 @@ public class PlayerBehavior : MonoBehaviour
         Vector3 velWithoutY = _rigidbody.linearVelocity;
         velWithoutY.y = 0;
 
-        float groundFriction = _currentGroundOn != null ? _currentGroundOn.friction : 1f;
+        float groundFriction = _currentGroundOn != null ? _currentGroundOn.friction : 0.1f;
         float airCof = _isGrounded ? 1 :
              (_rigidbody.linearVelocity.magnitude > maxSpeed
                 ? (_rigidbody.linearVelocity.magnitude > airMaxSpeed ? 1 : airDeaccel)
@@ -272,6 +290,8 @@ public class PlayerBehavior : MonoBehaviour
         sprjt.connectedBody = _rigidbody;
         sprjt.minDistance = minDistance / minDistanceConst;
         sprjt.maxDistance = minDistance / maxDistanceConst;
+
+        distanceToPoint = minDistance;
     }
     
     private void StopWiring()

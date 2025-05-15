@@ -116,8 +116,11 @@ public class PlayerBehavior : MonoBehaviour
     {
         if (Physics.Raycast(feetTransform.position, -Vector3.up, out RaycastHit hit, groundCheckDistance, groundLayer))
         {
+            if (!_isGrounded)
+                _jumpCount = 0;
+            
             _isGrounded = true;
-            _jumpCount = 0;
+            
             _currentGroundOn = hit.collider.GetComponent<GroundFriction>();
         }
         else

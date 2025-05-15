@@ -34,6 +34,7 @@ public class PlayerBehavior : MonoBehaviour
     [Header("Wire-related members")]
     [SerializeField] private float wirePointDetectRadius;
     [SerializeField] private float minDistanceConst, maxDistanceConst, wireSwingForce;
+    [SerializeField] private float wireAccel;
     # endregion
     
     /********************************************************************************/
@@ -109,6 +110,7 @@ public class PlayerBehavior : MonoBehaviour
         else
         {
             RenderWire();
+            MoveOnWire();
         }
     }
 
@@ -163,6 +165,23 @@ public class PlayerBehavior : MonoBehaviour
         {
             _rigidbody.AddForce(-velWithoutY * (airCof * dynamicDeaccel * Time.deltaTime));
         }
+    }
+
+    private void MoveOnWire()
+    {
+        var input = _inputProcessor.MoveInput.normalized;
+        
+        if (_isStun) 
+            input = Vector2.zero;
+    
+        Vector3 direction = new Vector3(input.x, 0, input.y);
+        direction = Quaternion.AngleAxis(cameraObject.transform.rotation.eulerAngles.y, Vector3.up) * direction;
+        
+        var vecToPoint = _currentWirePoint.position - transform.position;
+        var projectedDir = Vector3.Project(direction, vecToPoint);
+        var finalDir = direction - projectedDir;
+        
+        _rigidbody.linearVelocity += finalDir.normalized * (wireAccel * Time.deltaTime);
     }
 
     private void StunCheck()
@@ -239,15 +258,6 @@ public class PlayerBehavior : MonoBehaviour
 
         if (_isStun) return;
         if (point == null) return;
-        
-        // 연결된 와이어를 통해 스윙하도록 힘을 준다.
-        _rigidbody.linearVelocity = Vector3.zero;
-        
-        var vec0 = transform.position - point.transform.position;
-        var vec1 = Vector3.Cross(vec0, Vector3.up);
-        var vec2 = Vector3.Cross(vec0, vec1);
-        
-        _rigidbody.AddForce(vec2.normalized * wireSwingForce, ForceMode.Impulse);
 
         // 와이어 액션 상태로 바꾼다.
         _currentWirePoint = point.transform;

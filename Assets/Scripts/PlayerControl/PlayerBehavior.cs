@@ -74,6 +74,8 @@ public class PlayerBehavior : MonoBehaviour
     
     public Transform respawnPos;
 
+    public bool asta;
+    
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -89,6 +91,7 @@ public class PlayerBehavior : MonoBehaviour
         _inputProcessor.jumpEvent.AddListener(Jump);
         _inputProcessor.shotEvent.AddListener(TryConnectWire);
         _inputProcessor.releaseEvent.AddListener(StopWiring);
+        _inputProcessor.swingEvent.AddListener(WireSwing);
 
         _lineRenderer.enabled = false;
         
@@ -112,6 +115,10 @@ public class PlayerBehavior : MonoBehaviour
         }
     }
 
+    
+    /*
+     * 잠재적인 버그... : 만약 천장이 막혀있는 곳에서 점프를 한다면... _jumpCount 가 초기화가 되지 않을 가능성 있음
+     */
     private void GroundCheck()
     {
         if (Physics.Raycast(feetTransform.position, -Vector3.up, out RaycastHit hit, groundCheckDistance, groundLayer))
@@ -239,15 +246,6 @@ public class PlayerBehavior : MonoBehaviour
 
         if (_isStun) return;
         if (point == null) return;
-        
-        // 연결된 와이어를 통해 스윙하도록 힘을 준다.
-        _rigidbody.linearVelocity = Vector3.zero;
-        
-        var vec0 = transform.position - point.transform.position;
-        var vec1 = Vector3.Cross(vec0, Vector3.up);
-        var vec2 = Vector3.Cross(vec0, vec1);
-        
-        _rigidbody.AddForce(vec2.normalized * wireSwingForce, ForceMode.Impulse);
 
         // 와이어 액션 상태로 바꾼다.
         _currentWirePoint = point.transform;
@@ -273,6 +271,20 @@ public class PlayerBehavior : MonoBehaviour
         _currentWirePoint = null;
         _lineRenderer.enabled = false;
         _isWiring = false;
+    }
+
+    // 연결된 와이어를 통해 스윙하도록 힘을 준다.
+    private void WireSwing()
+    {
+        if (!_isWiring) return;
+        
+        if (asta) _rigidbody.linearVelocity = Vector3.zero;
+        
+        var vec0 = transform.position - _currentWirePoint.transform.position;
+        var vec1 = Vector3.Cross(vec0, Vector3.up);
+        var vec2 = Vector3.Cross(vec0, vec1);
+        
+        _rigidbody.AddForce(vec2.normalized * wireSwingForce, ForceMode.Impulse);
     }
 
     // 현재 _availableWirePoints 배열에서 와이어 연결 가능한 포인트가 있는지 체크

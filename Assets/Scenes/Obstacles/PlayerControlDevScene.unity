@@ -4422,9 +4422,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1765106666}
     - target: {fileID: 11723855194572039, guid: 0e26bef887e514b0d8426148bcfd2555, type: 3}
+      propertyPath: throwForce
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11723855194572039, guid: 0e26bef887e514b0d8426148bcfd2555, type: 3}
       propertyPath: throwPoint
       value: 
       objectReference: {fileID: 957655955}
+    - target: {fileID: 11723855194572039, guid: 0e26bef887e514b0d8426148bcfd2555, type: 3}
+      propertyPath: rotationSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5073540991428069311, guid: 0e26bef887e514b0d8426148bcfd2555, type: 3}
       propertyPath: m_Name
       value: ThrowingMonsterToPlayer

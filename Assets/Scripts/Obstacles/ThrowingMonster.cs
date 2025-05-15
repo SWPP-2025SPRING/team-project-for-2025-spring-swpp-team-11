@@ -2,13 +2,16 @@ using UnityEngine;
 
 public class ThrowingMonster : MonoBehaviour
 {
+    [Header("References")]
     public GameObject obstaclePrefab;
     public Transform throwPoint;
     public Transform player;
-    public float interval = 3f;
-    public float rotationSpeed = 2f;
-    public float throwForce = 10f;
-    public float penalty = 5f;
+
+    [Header("Throw Settings")]
+    public float interval = 3f;              // Time between throws
+    public float rotationSpeed = 2f;         // Monster turns toward player
+    public float flightTime = 1.5f;          // Time for projectile to reach target
+    public float penalty = 5f;               // Penalty applied to player
 
     private float timer = 0f;
 
@@ -27,7 +30,7 @@ public class ThrowingMonster : MonoBehaviour
     void RotateTowardsPlayer()
     {
         Vector3 direction = player.position - transform.position;
-        direction.y = 0f; // y축 고정
+        direction.y = 0f; // Only rotate on Y-axis
         Quaternion targetRotation = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
@@ -37,7 +40,28 @@ public class ThrowingMonster : MonoBehaviour
         GameObject obj = Instantiate(obstaclePrefab, throwPoint.position, Quaternion.identity);
         Rigidbody rb = obj.GetComponent<Rigidbody>();
 
-        Vector3 direction = (player.position - throwPoint.position).normalized;
-        rb.AddForce(direction * throwForce + Vector3.up * 3f, ForceMode.Impulse); // 포물선 경로
+        Vector3 velocity = CalculateVelocityToHitTarget(throwPoint.position, player.position, flightTime);
+
+        rb.useGravity = true;
+        rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
+        rb.linearVelocity = velocity;
+    }
+
+    Vector3 CalculateVelocityToHitTarget(Vector3 origin, Vector3 target, float time)
+    {
+        Vector3 toTarget = target - origin;
+        Vector3 toTargetXZ = new Vector3(toTarget.x, 0f, toTarget.z);
+
+        float y = toTarget.y;
+        float xz = toTargetXZ.magnitude;
+        float gravity = Mathf.Abs(Physics.gravity.y);
+
+        float vY = y / time + 0.5f * gravity * time;
+        float vXZ = xz / time;
+
+        Vector3 result = toTargetXZ.normalized * vXZ;
+        result.y = vY;
+
+        return result;
     }
 }

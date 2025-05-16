@@ -87,7 +87,8 @@ public class PlayerBehavior : MonoBehaviour
         _lineRenderer = GetComponent<LineRenderer>();
 
         _inputProcessor.jumpEvent.AddListener(Jump);
-        _inputProcessor.shotEvent.AddListener(ToggleWireMode);
+        _inputProcessor.shotEvent.AddListener(TryConnectWire);
+        _inputProcessor.releaseEvent.AddListener(StopWiring);
 
         _lineRenderer.enabled = false;
         
@@ -115,8 +116,11 @@ public class PlayerBehavior : MonoBehaviour
     {
         if (Physics.Raycast(feetTransform.position, -Vector3.up, out RaycastHit hit, groundCheckDistance, groundLayer))
         {
+            if (!_isGrounded)
+                _jumpCount = 0;
+            
             _isGrounded = true;
-            _jumpCount = 0;
+            
             _currentGroundOn = hit.collider.GetComponent<GroundFriction>();
         }
         else
@@ -227,7 +231,10 @@ public class PlayerBehavior : MonoBehaviour
         }
     }
     private void TryConnectWire()
-    { 
+    {
+        if (_isWiring)
+            return;
+        
         var point = GetAvailableWirePoint();
 
         if (_isStun) return;
@@ -255,6 +262,17 @@ public class PlayerBehavior : MonoBehaviour
         sprjt.connectedBody = _rigidbody;
         sprjt.minDistance = minDistance / minDistanceConst;
         sprjt.maxDistance = minDistance / maxDistanceConst;
+    }
+    
+    private void StopWiring()
+    {
+        if (!_isWiring)
+            return;
+        _currentWirePoint.GetComponent<SpringJoint>().connectedBody = null;
+
+        _currentWirePoint = null;
+        _lineRenderer.enabled = false;
+        _isWiring = false;
     }
 
     // 현재 _availableWirePoints 배열에서 와이어 연결 가능한 포인트가 있는지 체크
@@ -309,15 +327,7 @@ public class PlayerBehavior : MonoBehaviour
         _lineRenderer.SetPosition(0, transform.position);
         _lineRenderer.SetPosition(1, _currentWirePoint.position);
     }
-
-    private void StopWiring()
-    {
-        _currentWirePoint.GetComponent<SpringJoint>().connectedBody = null;
-
-        _currentWirePoint = null;
-        _lineRenderer.enabled = false;
-        _isWiring = false;
-    }
+    
 
     private void OnTriggerEnter(Collider other)
     {

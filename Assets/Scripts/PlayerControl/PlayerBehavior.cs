@@ -196,8 +196,10 @@ public class PlayerBehavior : MonoBehaviour
         direction = Quaternion.AngleAxis(cameraObject.transform.rotation.eulerAngles.y, Vector3.up) * direction;
         
         var vecToPoint = _currentWirePoint.position - transform.position;
-        var projectedDir = Vector3.Project(direction, vecToPoint);
-        var finalDir = direction - projectedDir;
+        var right = Vector3.Cross(Vector3.up, direction);
+        var finalDir = Vector3.Cross(vecToPoint, right);
+        if (Vector3.Dot(direction, finalDir) < 0)
+            finalDir = -finalDir;
         
         _rigidbody.linearVelocity += finalDir.normalized * (wireAccel * Time.deltaTime);
     }

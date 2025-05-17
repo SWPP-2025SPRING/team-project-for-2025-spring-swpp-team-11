@@ -7,6 +7,7 @@ public class PlayerInputProcessor : MonoBehaviour
 {
     public UnityEvent jumpEvent;
     public UnityEvent shotEvent;
+    public UnityEvent releaseEvent;
     public Vector2 MoveInput { get; private set; }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -22,7 +23,9 @@ public class PlayerInputProcessor : MonoBehaviour
     
     public void OnShot(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Started) 
+        if (context.phase == InputActionPhase.Started)
             shotEvent.Invoke();
+        if (context.phase == InputActionPhase.Canceled)
+            releaseEvent.Invoke();
     }
 }

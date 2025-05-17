@@ -116,6 +116,7 @@ public class PlayerBehavior : MonoBehaviour
         {
             RenderWire();
             MoveOnWire();
+            OnWiringRotate();
         }
     }
 
@@ -301,10 +302,20 @@ public class PlayerBehavior : MonoBehaviour
         if (!_isWiring)
             return;
         _currentWirePoint.GetComponent<SpringJoint>().connectedBody = null;
+        
+        transform.rotation = Quaternion.identity;
 
         _currentWirePoint = null;
         _lineRenderer.enabled = false;
         _isWiring = false;
+    }
+
+    private void OnWiringRotate()
+    {
+        var vecToPoint = _currentWirePoint.position - transform.position;
+        var right = Vector3.Cross(Vector3.up, vecToPoint);
+        var forward = Vector3.Cross(vecToPoint, right);
+        transform.rotation = Quaternion.LookRotation(forward, Vector3.up);
     }
 
     // 현재 _availableWirePoints 배열에서 와이어 연결 가능한 포인트가 있는지 체크

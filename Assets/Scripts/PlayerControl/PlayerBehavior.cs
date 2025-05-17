@@ -334,7 +334,13 @@ public class PlayerBehavior : MonoBehaviour
             }
         }
 
-        if (Camera.main.WorldToScreenPoint(point.transform.position).z < 0)
+        var viewportPonint = Camera.main.WorldToScreenPoint(point.transform.position);
+        if (viewportPonint.z < 0 ||
+            viewportPonint.x < 0 ||
+            viewportPonint.y < 0 ||
+            viewportPonint.x > Screen.width ||
+            viewportPonint.y > Screen.height
+            )
             return null;
 
         return point;

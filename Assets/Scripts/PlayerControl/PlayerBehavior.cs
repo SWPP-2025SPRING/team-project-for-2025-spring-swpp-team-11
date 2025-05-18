@@ -34,6 +34,7 @@ public class PlayerBehavior : MonoBehaviour
     [Header("Wire-related members")]
     [SerializeField] private float wirePointDetectRadius;
     [SerializeField] private float minDistanceConst, maxDistanceConst, wireSwingForce;
+    [SerializeField] private float wireAccel;
     # endregion
     
     /********************************************************************************/
@@ -72,6 +73,8 @@ public class PlayerBehavior : MonoBehaviour
     
     public Transform respawnPos;
 
+    public float distanceToPoint;
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -85,7 +88,8 @@ public class PlayerBehavior : MonoBehaviour
         _lineRenderer = GetComponent<LineRenderer>();
 
         _inputProcessor.jumpEvent.AddListener(Jump);
-        _inputProcessor.shotEvent.AddListener(ToggleWireMode);
+        _inputProcessor.shotEvent.AddListener(TryConnectWire);
+        _inputProcessor.releaseEvent.AddListener(StopWiring);
 
         _lineRenderer.enabled = false;
         
@@ -98,6 +102,9 @@ public class PlayerBehavior : MonoBehaviour
         GroundCheck();
         StunCheck();
         
+        if (_currentWirePoint != null)
+            Debug.Log(Vector3.Distance(_currentWirePoint.position, transform.position));
+        
         if (!_isWiring)
         {
             ScanWirePoints();
@@ -106,6 +113,21 @@ public class PlayerBehavior : MonoBehaviour
         else
         {
             RenderWire();
+            MoveOnWire();
+            OnWiringRotate();
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (_isWiring)
+        {
+            var vecToPoint = _currentWirePoint.position - transform.position;
+            _rigidbody.linearVelocity = Vector3.ProjectOnPlane(_rigidbody.linearVelocity, vecToPoint);
+            
+            var dist = Vector3.Distance(_currentWirePoint.position, transform.position);
+            
+            _rigidbody.MovePosition(transform.position + vecToPoint.normalized * (dist-distanceToPoint));
         }
     }
 
@@ -113,8 +135,11 @@ public class PlayerBehavior : MonoBehaviour
     {
         if (Physics.Raycast(feetTransform.position, -Vector3.up, out RaycastHit hit, groundCheckDistance, groundLayer))
         {
+            if (!_isGrounded)
+                _jumpCount = 0;
+            
             _isGrounded = true;
-            _jumpCount = 0;
+            
             _currentGroundOn = hit.collider.GetComponent<GroundFriction>();
         }
         else
@@ -140,7 +165,7 @@ public class PlayerBehavior : MonoBehaviour
         Vector3 velWithoutY = _rigidbody.linearVelocity;
         velWithoutY.y = 0;
 
-        float groundFriction = _currentGroundOn != null ? _currentGroundOn.friction : 1f;
+        float groundFriction = _currentGroundOn != null ? _currentGroundOn.friction : 0.1f;
         float airCof = _isGrounded ? 1 :
              (_rigidbody.linearVelocity.magnitude > maxSpeed
                 ? (_rigidbody.linearVelocity.magnitude > airMaxSpeed ? 1 : airDeaccel)
@@ -157,6 +182,25 @@ public class PlayerBehavior : MonoBehaviour
         {
             _rigidbody.AddForce(-velWithoutY * (airCof * dynamicDeaccel * Time.deltaTime));
         }
+    }
+
+    private void MoveOnWire()
+    {
+        var input = _inputProcessor.MoveInput.normalized;
+        
+        if (_isStun) 
+            input = Vector2.zero;
+    
+        Vector3 direction = new Vector3(input.x, 0, input.y);
+        direction = Quaternion.AngleAxis(cameraObject.transform.rotation.eulerAngles.y, Vector3.up) * direction;
+        
+        var vecToPoint = _currentWirePoint.position - transform.position;
+        var right = Vector3.Cross(Vector3.up, direction);
+        var finalDir = Vector3.Cross(vecToPoint, right);
+        if (Vector3.Dot(direction, finalDir) < 0)
+            finalDir = -finalDir;
+        
+        _rigidbody.linearVelocity += finalDir.normalized * (wireAccel * Time.deltaTime);
     }
 
     private void StunCheck()
@@ -225,20 +269,14 @@ public class PlayerBehavior : MonoBehaviour
         }
     }
     private void TryConnectWire()
-    { 
+    {
+        if (_isWiring)
+            return;
+        
         var point = GetAvailableWirePoint();
 
         if (_isStun) return;
         if (point == null) return;
-        
-        // 연결된 와이어를 통해 스윙하도록 힘을 준다.
-        _rigidbody.linearVelocity = Vector3.zero;
-        
-        var vec0 = transform.position - point.transform.position;
-        var vec1 = Vector3.Cross(vec0, Vector3.up);
-        var vec2 = Vector3.Cross(vec0, vec1);
-        
-        _rigidbody.AddForce(vec2.normalized * wireSwingForce, ForceMode.Impulse);
 
         // 와이어 액션 상태로 바꾼다.
         _currentWirePoint = point.transform;
@@ -253,6 +291,29 @@ public class PlayerBehavior : MonoBehaviour
         sprjt.connectedBody = _rigidbody;
         sprjt.minDistance = minDistance / minDistanceConst;
         sprjt.maxDistance = minDistance / maxDistanceConst;
+
+        distanceToPoint = minDistance;
+    }
+    
+    private void StopWiring()
+    {
+        if (!_isWiring)
+            return;
+        _currentWirePoint.GetComponent<SpringJoint>().connectedBody = null;
+        
+        transform.rotation = Quaternion.identity;
+
+        _currentWirePoint = null;
+        _lineRenderer.enabled = false;
+        _isWiring = false;
+    }
+
+    private void OnWiringRotate()
+    {
+        var vecToPoint = _currentWirePoint.position - transform.position;
+        var right = Vector3.Cross(Vector3.up, vecToPoint);
+        var forward = Vector3.Cross(vecToPoint, right);
+        transform.rotation = Quaternion.LookRotation(forward, Vector3.up);
     }
 
     // 현재 _availableWirePoints 배열에서 와이어 연결 가능한 포인트가 있는지 체크
@@ -282,7 +343,13 @@ public class PlayerBehavior : MonoBehaviour
             }
         }
 
-        if (Camera.main.WorldToScreenPoint(point.transform.position).z < 0)
+        var viewportPonint = Camera.main.WorldToScreenPoint(point.transform.position);
+        if (viewportPonint.z < 0 ||
+            viewportPonint.x < 0 ||
+            viewportPonint.y < 0 ||
+            viewportPonint.x > Screen.width ||
+            viewportPonint.y > Screen.height
+            )
             return null;
 
         return point;
@@ -307,15 +374,7 @@ public class PlayerBehavior : MonoBehaviour
         _lineRenderer.SetPosition(0, transform.position);
         _lineRenderer.SetPosition(1, _currentWirePoint.position);
     }
-
-    private void StopWiring()
-    {
-        _currentWirePoint.GetComponent<SpringJoint>().connectedBody = null;
-
-        _currentWirePoint = null;
-        _lineRenderer.enabled = false;
-        _isWiring = false;
-    }
+    
 
     private void OnTriggerEnter(Collider other)
     {

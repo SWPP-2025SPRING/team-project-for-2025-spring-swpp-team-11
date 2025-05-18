@@ -2,126 +2,110 @@ using UnityEngine;
 
 public class BouncingRock : MonoBehaviour
 {
+    [Header("Detection Settings")]
     public Transform player;
-    public float rad = 5f;
-    public float maxHeight = 5f;
-    public float minHeight = 0f;
-    public float speed = 2f;
+    public float detectionRadius = 5f;
+    public float detectionHeightOffset = 0.5f;
+
+    [Header("Motion Settings")]
     public float interval = 1f;
     public float penalty = 5f;
 
-    private enum State { Idle, Dropping, WaitingAtBottom, Rising, WaitingAtTop, PlayerHit }
+    [Header("References")]
+    public Rigidbody rb;
+    public FallingObstacleSpawner spawner;
+
+    private enum State { Idle, Dropping, WaitingAtBottom, Rising, WaitingAtTop }
     private State currentState = State.Idle;
 
     private float waitTimer = 0f;
-    private Vector3 originalPosition;
-    private bool playerInRange = false;
+    private Vector3 startPosition;
     private bool hasHitPlayer = false;
 
-    void Start()
+    private void Start()
     {
-        originalPosition = transform.position;
-        SetPositionY(maxHeight);
+        if (rb == null) rb = GetComponent<Rigidbody>();
+        startPosition = transform.position;
+
+        rb.useGravity = false;
+        rb.isKinematic = true;
     }
 
-    void Update()
+    private void Update()
     {
-        float distance = Vector3.Distance(player.position, transform.position);
-
-        playerInRange = distance <= rad;
-
-        if (!playerInRange && currentState != State.Idle)
-        {
-            currentState = State.Rising;
-            hasHitPlayer = false;
-        }
-
         switch (currentState)
         {
             case State.Idle:
-                if (playerInRange)
-                {
-                    currentState = State.Dropping;
-                }
-                break;
-
-            case State.Dropping:
-                MoveTowardsY(minHeight);
-                if (IsAtHeight(minHeight))
-                {
-                    currentState = State.WaitingAtBottom;
-                    waitTimer = 0f;
-                }
+                if (IsPlayerDirectlyBelow())
+                    StartDrop();
                 break;
 
             case State.WaitingAtBottom:
                 waitTimer += Time.deltaTime;
                 if (waitTimer >= interval)
-                {
-                    currentState = State.Rising;
-                }
-                break;
-
-            case State.Rising:
-                MoveTowardsY(maxHeight);
-                if (IsAtHeight(maxHeight))
-                {
-                    currentState = playerInRange ? State.WaitingAtTop : State.Idle;
-                    waitTimer = 0f;
-                }
+                    StartRising();
                 break;
 
             case State.WaitingAtTop:
                 waitTimer += Time.deltaTime;
                 if (waitTimer >= interval)
-                {
-                    currentState = State.Dropping;
-                }
-                break;
-
-            case State.PlayerHit:
-                MoveTowardsY(player.position.y + 2f); // hover slightly above player
-                if (IsAtHeight(player.position.y + 2f))
-                {
-                    waitTimer += Time.deltaTime;
-                    if (waitTimer >= interval)
-                    {
-                        currentState = State.Rising;
-                        waitTimer = 0f;
-                    }
-                }
+                    currentState = State.Idle;
                 break;
         }
     }
 
-    private void MoveTowardsY(float targetY)
+    private bool IsPlayerDirectlyBelow()
     {
-        Vector3 pos = transform.position;
-        pos.y = Mathf.MoveTowards(pos.y, targetY, speed * Time.deltaTime);
-        transform.position = pos;
+        Vector3 toPlayer = player.position - transform.position;
+        Vector2 flatOffset = new Vector2(toPlayer.x, toPlayer.z);
+
+        bool inRadius = flatOffset.magnitude <= detectionRadius;
+        bool isUnder = toPlayer.y < -detectionHeightOffset;
+
+        return inRadius && isUnder;
     }
 
-    private bool IsAtHeight(float y)
+    private void StartDrop()
     {
-        return Mathf.Abs(transform.position.y - y) < 0.05f;
+        rb.isKinematic = false;
+        rb.useGravity = true;
+        currentState = State.Dropping;
+        hasHitPlayer = false;
     }
 
-    private void SetPositionY(float y)
+    private void StartRising()
     {
-        Vector3 pos = transform.position;
-        pos.y = y;
-        transform.position = pos;
+        rb.isKinematic = true;
+        rb.useGravity = false;
+        rb.linearVelocity = Vector3.zero;
+
+        transform.position = startPosition;
+        currentState = State.WaitingAtTop;
+        waitTimer = 0f;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (currentState == State.Dropping && collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            currentState = State.WaitingAtBottom;
+            waitTimer = 0f;
+        }
+
         if (!hasHitPlayer && collision.gameObject.CompareTag("Player"))
         {
-            // Apply penalty logic here (e.g., increase timer)
-            Debug.Log("Player hit! Apply penalty time: " + penalty + " seconds");
-            currentState = State.PlayerHit;
-            waitTimer = 0f;
             hasHitPlayer = true;
+
+            Debug.Log($"Player hit! +{penalty} seconds penalty");
+
+            PlayerBehavior p = collision.gameObject.GetComponent<PlayerBehavior>();
+            if (p != null)
+                p.GetHit(Vector3.up * 5f, penalty);
+
+            if (spawner != null)
+                spawner.TriggerRespawn(interval);
+
+            Destroy(gameObject);
         }
     }
 }

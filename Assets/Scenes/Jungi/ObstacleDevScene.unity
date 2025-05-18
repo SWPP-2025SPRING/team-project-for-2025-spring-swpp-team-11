@@ -4254,6 +4254,10 @@ PrefabInstance:
       propertyPath: '_avilableWirePoints.Array.data[1]'
       value: 
       objectReference: {fileID: 1848386086}
+    - target: {fileID: 4964686006628004911, guid: de45e08a8ce644b4880409d3e817acfc, type: 3}
+      propertyPath: m_Actions
+      value: 
+      objectReference: {fileID: -944628639613478452, guid: 289c1b55c9541489481df5cc06664110, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

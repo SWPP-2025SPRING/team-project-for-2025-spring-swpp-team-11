@@ -47,7 +47,7 @@ MonoBehaviour:
   upwardObstaclePrefab: {fileID: 5562119246820317810, guid: 1cfbc9b935abe40bbad71458706412da, type: 3}
   spawnPoint: {fileID: 8751601922525976289}
   player: {fileID: 0}
-  detectionRadius: 3
-  detectionHeightOffset: 0.5
+  detectionRadius: 5
+  detectionHeightOffset: 5
   interval: 1
   penalty: 5

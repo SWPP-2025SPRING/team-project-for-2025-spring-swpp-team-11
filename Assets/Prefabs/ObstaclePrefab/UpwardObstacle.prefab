@@ -167,9 +167,9 @@ MonoBehaviour:
   player: {fileID: 0}
   detectionRadius: 3
   detectionHeightOffset: 0.5
-  riseHeight: 3
-  riseSpeed: 5
+  launchForce: 100
   interval: 1
-  spawner: {fileID: 0}
   penalty: 5
+  rb: {fileID: 0}
+  spawner: {fileID: 0}
   playerTag: Player

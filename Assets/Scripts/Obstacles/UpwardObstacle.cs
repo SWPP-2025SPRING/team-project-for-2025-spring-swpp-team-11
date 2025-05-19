@@ -7,29 +7,27 @@ public class UpwardObstacle : MonoBehaviour
     public float detectionRadius = 3f;
     public float detectionHeightOffset = 0.5f;
 
-    [Header("Motion Settings")]
-    public float riseHeight = 3f;
-    public float riseSpeed = 5f;
+    [Header("Launch Settings")]
+    public float launchForce = 10f;
     public float interval = 1f;
-
-    public UpwardObstacleSpawner spawner;
-
-    [Header("Impact Settings")]
     public float penalty = 5f;
+
+    [Header("References")]
+    public Rigidbody rb;
+    public UpwardObstacleSpawner spawner;
     public string playerTag = "Player";
 
-    private enum State { Idle, Rising, AtTop, Falling }
+    private enum State { Idle, Launched, WaitingToRespawn }
     private State currentState = State.Idle;
 
-    private float waitTimer = 0f;
-    private Vector3 startPosition;
-    private Vector3 targetPosition;
     private bool hasHitPlayer = false;
-    
+    private float timer = 0f;
+
     private void Start()
     {
-        startPosition = transform.position;
-        targetPosition = startPosition + Vector3.up * riseHeight;
+        if (rb == null) rb = GetComponent<Rigidbody>();
+        rb.useGravity = false;
+        rb.isKinematic = true;
     }
 
     private void Update()
@@ -39,36 +37,37 @@ public class UpwardObstacle : MonoBehaviour
             case State.Idle:
                 if (IsPlayerDirectlyAbove())
                 {
-                    currentState = State.Rising;
-                    hasHitPlayer = false;
+                    Launch();
                 }
                 break;
 
-            case State.Rising:
-                transform.position = Vector3.MoveTowards(transform.position, targetPosition, riseSpeed * Time.deltaTime);
-                if (Vector3.Distance(transform.position, targetPosition) < 0.05f)
+            case State.Launched:
+                if (rb.velocity.y < 0f && transform.position.y <= spawner.spawnPoint.position.y + 0.05f)
                 {
-                    currentState = State.AtTop;
-                    waitTimer = 0f;
+                    rb.velocity = Vector3.zero;
+                    rb.isKinematic = true;
+                    rb.useGravity = false;
+
+                    if (spawner != null)
+                        spawner.TriggerRespawn(interval);
+
+                    Destroy(gameObject);
                 }
                 break;
 
-            case State.AtTop:
-                waitTimer += Time.deltaTime;
-                if (waitTimer >= interval)
-                {
-                    currentState = State.Falling;
-                }
-                break;
 
-            case State.Falling:
-                transform.position = Vector3.MoveTowards(transform.position, startPosition, riseSpeed * Time.deltaTime);
-                if (Vector3.Distance(transform.position, startPosition) < 0.05f)
-                {
-                    currentState = State.Idle;
-                }
-                break;
         }
+    }
+
+    private void Launch()
+    {
+        currentState = State.Launched;
+        hasHitPlayer = false;
+
+        rb.isKinematic = false;
+        rb.useGravity = true;
+        rb.velocity = Vector3.zero; // Reset before force
+        rb.AddForce(Vector3.up * launchForce, ForceMode.Impulse);
     }
 
     private bool IsPlayerDirectlyAbove()
@@ -87,13 +86,17 @@ public class UpwardObstacle : MonoBehaviour
         if (!hasHitPlayer && collision.gameObject.CompareTag(playerTag))
         {
             hasHitPlayer = true;
-            Debug.Log($"Player hit by upward obstacle! +{penalty} seconds penalty");
+
+            Debug.Log($"Player hit by lava plume! +{penalty} seconds penalty");
 
             PlayerBehavior pb = collision.gameObject.GetComponent<PlayerBehavior>();
             if (pb != null)
             {
                 pb.GetHit(Vector3.up * 5f, penalty);
             }
+
+            if (spawner != null)
+                spawner.TriggerRespawn(interval);
 
             Destroy(gameObject);
         }

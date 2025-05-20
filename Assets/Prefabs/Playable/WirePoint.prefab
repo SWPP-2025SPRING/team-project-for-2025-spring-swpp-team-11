@@ -151,8 +151,8 @@ SpringJoint:
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 0
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
-  m_Spring: 18
-  m_Damper: 1
+  m_Spring: 25
+  m_Damper: 100
   m_MinDistance: 8
   m_MaxDistance: 16
   m_Tolerance: 0.025

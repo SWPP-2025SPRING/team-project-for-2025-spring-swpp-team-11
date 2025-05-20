@@ -54,6 +54,7 @@ public class PlayerBehavior : MonoBehaviour
     private Rigidbody _rigidbody;
     private PlayerInputProcessor _inputProcessor;
     private LineRenderer _lineRenderer;
+    private Animator _animator;
 
     # endregion
     
@@ -86,6 +87,7 @@ public class PlayerBehavior : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
         _inputProcessor = GetComponent<PlayerInputProcessor>();
         _lineRenderer = GetComponent<LineRenderer>();
+        _animator = GetComponentInChildren<Animator>();
 
         _inputProcessor.jumpEvent.AddListener(Jump);
         _inputProcessor.shotEvent.AddListener(TryConnectWire);
@@ -116,6 +118,8 @@ public class PlayerBehavior : MonoBehaviour
             MoveOnWire();
             OnWiringRotate();
         }
+
+        AnimationUpdate();
     }
 
     private void FixedUpdate()
@@ -229,6 +233,9 @@ public class PlayerBehavior : MonoBehaviour
             
             _rigidbody.linearVelocity -= _rigidbody.linearVelocity.y * Vector3.up;
             _rigidbody.AddForce(Vector3.up * (_jumpCount == 0 ? jumpForce : doubleJumpForce), ForceMode.Impulse);
+            
+            if (_jumpCount != 0) 
+                _animator.SetTrigger("DoubleJump");
         }
     }
 
@@ -270,7 +277,7 @@ public class PlayerBehavior : MonoBehaviour
     }
     private void TryConnectWire()
     {
-        if (_isWiring)
+        if (_isWiring || _isGrounded)
             return;
         
         var point = GetAvailableWirePoint();
@@ -311,9 +318,8 @@ public class PlayerBehavior : MonoBehaviour
     private void OnWiringRotate()
     {
         var vecToPoint = _currentWirePoint.position - transform.position;
-        var right = Vector3.Cross(Vector3.up, vecToPoint);
-        var forward = Vector3.Cross(vecToPoint, right);
-        transform.rotation = Quaternion.LookRotation(forward, Vector3.up);
+
+        transform.rotation = Quaternion.LookRotation(vecToPoint, Vector3.up);
     }
 
     // 현재 _availableWirePoints 배열에서 와이어 연결 가능한 포인트가 있는지 체크
@@ -373,6 +379,17 @@ public class PlayerBehavior : MonoBehaviour
     {
         _lineRenderer.SetPosition(0, transform.position);
         _lineRenderer.SetPosition(1, _currentWirePoint.position);
+    }
+
+    private void AnimationUpdate()
+    {
+        if (!_isWiring)
+            transform.rotation = Quaternion.AngleAxis(cameraObject.transform.rotation.eulerAngles.y, Vector3.up);
+        
+        _animator.SetFloat("Speed_f", _rigidbody.linearVelocity.magnitude);
+        _animator.SetFloat("Speed_y", _rigidbody.linearVelocity.y);
+        _animator.SetBool("IsGrounded", _isGrounded);
+        _animator.SetBool("Wire_b", _isWiring);
     }
     
 

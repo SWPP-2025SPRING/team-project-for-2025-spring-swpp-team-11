@@ -92,9 +92,6 @@ public class PlayerBehavior : MonoBehaviour
         _inputProcessor.releaseEvent.AddListener(StopWiring);
 
         _lineRenderer.enabled = false;
-        
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
     
     private void Update()

@@ -253,31 +253,6 @@ public class PlayerBehavior : MonoBehaviour
         }
     }
 
-    private void ScanWirePoints()
-    {
-        foreach (var i in _avilableWirePoints)
-        {
-            if (i != null)
-                i.gameObject.GetComponent<MeshRenderer>().materials[0].color = Color.white;
-        }
-        
-        int hit = Physics.OverlapSphereNonAlloc(transform.position, wirePointDetectRadius, _avilableWirePoints,
-            LayerMask.GetMask("WirePoint"));
-
-        if (hit == 0)
-        {
-            _avilableWirePoints = new Collider[10];
-        }
-        else
-        {
-            foreach (var i in _avilableWirePoints)
-            {
-                if (i != null)
-                    i.gameObject.GetComponent<MeshRenderer>().materials[0].color = Color.yellow;
-            }
-        }
-    }
-
     private void ToggleWireMode()
     {
         if (_isWiring)
@@ -336,6 +311,27 @@ public class PlayerBehavior : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(vecToPoint, Vector3.up);
     }
 
+    private void ScanWirePoints()
+    {
+        foreach (var i in _avilableWirePoints)
+        {
+            if (i != null)
+                i.gameObject.GetComponent<MeshRenderer>().materials[0].color = Color.white;
+        }
+        
+        int hit = Physics.OverlapSphereNonAlloc(transform.position, wirePointDetectRadius, _avilableWirePoints,
+            LayerMask.GetMask("WirePoint"));
+
+        if (hit == 0)
+        {
+            _avilableWirePoints = new Collider[10];
+        }
+
+
+        var point = GetAvailableWirePoint();
+        if (point != null) point.gameObject.GetComponent<MeshRenderer>().materials[0].color = Color.yellow;
+    }
+    
     // 현재 _availableWirePoints 배열에서 와이어 연결 가능한 포인트가 있는지 체크
     // 연결 가능한 포인트가 없다면 null 반환
     private Collider GetAvailableWirePoint()
@@ -346,6 +342,9 @@ public class PlayerBehavior : MonoBehaviour
         float minDistance = Vector3.Distance(_avilableWirePoints[0].transform.position, transform.position);
         float tmpDistance = 0;
         
+        // 일단 화면 z 좌표가 앞에 있는 것 중 가장 가까운 것을 골라보자
+        // 모두 z 좌표가 화면 뒤에 있다면 랜덤한 포인트
+        // null 은 일단 안 나옴
         for (int i = 0; i < _avilableWirePoints.Length; i++)
         {
             if (_avilableWirePoints[i] == null) continue;
@@ -363,6 +362,13 @@ public class PlayerBehavior : MonoBehaviour
             }
         }
 
+        var vecToPoint = point.transform.position - transform.position;
+        var dotValue = Vector3.Dot(vecToPoint, transform.forward);
+
+        // 내적 값이 음수, 다시 말해 진행 방향 뒤에 있다면 null
+        if (dotValue < 0) return null;
+        
+        // 화면 밖에 있다면... return null
         var viewportPonint = Camera.main.WorldToScreenPoint(point.transform.position);
         if (viewportPonint.z < 0 ||
             viewportPonint.x < 0 ||
@@ -371,7 +377,7 @@ public class PlayerBehavior : MonoBehaviour
             viewportPonint.y > Screen.height
             )
             return null;
-
+        
         return point;
     }
 
@@ -399,7 +405,7 @@ public class PlayerBehavior : MonoBehaviour
 
     private void AnimationUpdate()
     {
-        if (!_isWiring)
+        if (!_isWiring && !IsStunNow())
             transform.rotation = Quaternion.AngleAxis(cameraObject.transform.rotation.eulerAngles.y, Vector3.up);
         
         _animator.SetFloat("Speed_f", _rigidbody.linearVelocity.magnitude);

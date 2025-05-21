@@ -1586,6 +1586,7 @@ GameObject:
   - component: {fileID: 602592182}
   - component: {fileID: 602592181}
   - component: {fileID: 602592180}
+  - component: {fileID: 602592184}
   m_Layer: 3
   m_Name: Plane (7)
   m_TagString: Untagged
@@ -1696,6 +1697,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 602592178}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &602592184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 602592178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84514da7ed6054e8e962ccd5914310e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waypoints: []
+  speed: 2
+  interval: 2
 --- !u!1 &691640459
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,20 +2,23 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class InGameUI : UIWindow
+//it will be changed to UIWindow
+public class InGameUI : MonoBehaviour
 {
     public TextMeshProUGUI timeText;
     public GameObject pauseUI;
 
+    private PlayerInputProcessor _inputProcessor;
+
     private float _elapsedTime;
     private bool _paused;
 
-    protected override void Start()
+    protected void Start()
     {
-        base.Start();
-
         _elapsedTime = 0;
         _paused = false;
+        _inputProcessor = FindFirstObjectByType<PlayerInputProcessor>();
+        _inputProcessor.escapeEvent.AddListener(OnEscape);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -38,6 +41,7 @@ public class InGameUI : UIWindow
 
     private void OnEscape()
     {
+        if (_paused) return;
         _paused = true;
         pauseUI.SetActive(true);
         Time.timeScale = 0f;
@@ -59,4 +63,6 @@ public class InGameUI : UIWindow
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
+
+    public bool GetPaused() { return _paused; }
 }

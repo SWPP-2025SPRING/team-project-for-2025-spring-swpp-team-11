@@ -70,6 +70,8 @@ public class PlayerBehavior : MonoBehaviour
     
     private bool _isStun;
     private float _stunTimeElapsed;
+
+    private InGameUI _inGameUI;
     
     public Transform respawnPos;
 
@@ -86,6 +88,7 @@ public class PlayerBehavior : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
         _inputProcessor = GetComponent<PlayerInputProcessor>();
         _lineRenderer = GetComponent<LineRenderer>();
+        _inGameUI = FindFirstObjectByType<InGameUI>();
 
         _inputProcessor.jumpEvent.AddListener(Jump);
         _inputProcessor.shotEvent.AddListener(TryConnectWire);
@@ -218,7 +221,7 @@ public class PlayerBehavior : MonoBehaviour
     
     private void Jump()
     {
-        if (_isStun) return;
+        if (_isStun || _inGameUI.GetPaused()) return;
         
         if (_isGrounded || _jumpCount < jumpCount)
         {
@@ -267,7 +270,7 @@ public class PlayerBehavior : MonoBehaviour
     }
     private void TryConnectWire()
     {
-        if (_isWiring)
+        if (_isWiring || _inGameUI.GetPaused())
             return;
         
         var point = GetAvailableWirePoint();
@@ -294,7 +297,7 @@ public class PlayerBehavior : MonoBehaviour
     
     private void StopWiring()
     {
-        if (!_isWiring)
+        if (!_isWiring || _inGameUI.GetPaused())
             return;
         _currentWirePoint.GetComponent<SpringJoint>().connectedBody = null;
         

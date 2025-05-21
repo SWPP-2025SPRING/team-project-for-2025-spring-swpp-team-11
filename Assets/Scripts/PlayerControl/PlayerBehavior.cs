@@ -160,7 +160,7 @@ public class PlayerBehavior : MonoBehaviour
     {
         var input = _inputProcessor.MoveInput.normalized;
         
-        if (_isStun) 
+        if (IsStunNow()) 
             input = Vector2.zero;
     
         Vector3 direction = new Vector3(input.x, 0, input.y);
@@ -177,7 +177,7 @@ public class PlayerBehavior : MonoBehaviour
                 ? (_rigidbody.linearVelocity.magnitude > airMaxSpeed ? 1 : airDeaccel)
                 : 1f);
 
-        if (_isStun)
+        if (IsStunNow())
             airCof = airDeaccel / 2f;
 
         if (input.magnitude < 0.1f)
@@ -194,7 +194,7 @@ public class PlayerBehavior : MonoBehaviour
     {
         var input = _inputProcessor.MoveInput.normalized;
         
-        if (_isStun) 
+        if (IsStunNow()) 
             input = Vector2.zero;
     
         Vector3 direction = new Vector3(input.x, 0, input.y);
@@ -222,12 +222,24 @@ public class PlayerBehavior : MonoBehaviour
         if (_stunTimeElapsed <= 0)
         {
             _isStun = false;
+            _animator.SetTrigger("RecoverTrig");
         }
+    }
+
+    private bool IsStunNow()
+    {
+        if (_isStun) return true;
+        if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Recover"))
+        {
+            return true;
+        }
+
+        return false;
     }
     
     private void Jump()
     {
-        if (_isStun) return;
+        if (IsStunNow()) return;
         
         if (_isGrounded || _jumpCount < jumpCount)
         {
@@ -284,7 +296,7 @@ public class PlayerBehavior : MonoBehaviour
         
         var point = GetAvailableWirePoint();
 
-        if (_isStun) return;
+        if (IsStunNow()) return;
         if (point == null) return;
 
         // 와이어 액션 상태로 바꾼다.
@@ -375,6 +387,8 @@ public class PlayerBehavior : MonoBehaviour
 
         _rigidbody.linearVelocity = Vector3.zero;
         _rigidbody.AddForce(knockback, ForceMode.Impulse);
+        
+        _animator.SetTrigger("HitTrig");
     }
 
     private void RenderWire()

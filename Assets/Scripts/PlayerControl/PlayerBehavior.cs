@@ -117,6 +117,8 @@ public class PlayerBehavior : MonoBehaviour
             RenderWire();
             MoveOnWire();
             OnWiringRotate();
+            
+            if (_isGrounded) StopWiring();
         }
 
         AnimationUpdate();
@@ -229,13 +231,13 @@ public class PlayerBehavior : MonoBehaviour
         
         if (_isGrounded || _jumpCount < jumpCount)
         {
+            if (_jumpCount != 0) 
+                _animator.SetTrigger("DoubleJump");
+            
             _jumpCount++;
             
             _rigidbody.linearVelocity -= _rigidbody.linearVelocity.y * Vector3.up;
             _rigidbody.AddForce(Vector3.up * (_jumpCount == 0 ? jumpForce : doubleJumpForce), ForceMode.Impulse);
-            
-            if (_jumpCount != 0) 
-                _animator.SetTrigger("DoubleJump");
         }
     }
 

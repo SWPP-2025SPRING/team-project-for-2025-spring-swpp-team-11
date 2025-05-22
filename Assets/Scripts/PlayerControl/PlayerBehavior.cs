@@ -229,7 +229,8 @@ public class PlayerBehavior : MonoBehaviour
     private bool IsStunNow()
     {
         if (_isStun) return true;
-        if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Recover"))
+        if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Recover") ||
+            _animator.GetCurrentAnimatorStateInfo(0).IsName("Hit"))
         {
             return true;
         }

@@ -42,9 +42,9 @@ public class UpwardObstacle : MonoBehaviour
                 break;
 
             case State.Launched:
-                if (rb.velocity.y < 0f && transform.position.y <= spawner.spawnPoint.position.y + 0.05f)
+                if (rb.linearVelocity.y < 0f && transform.position.y <= spawner.spawnPoint.position.y + 0.05f)
                 {
-                    rb.velocity = Vector3.zero;
+                    rb.linearVelocity = Vector3.zero;
                     rb.isKinematic = true;
                     rb.useGravity = false;
 
@@ -66,7 +66,7 @@ public class UpwardObstacle : MonoBehaviour
 
         rb.isKinematic = false;
         rb.useGravity = true;
-        rb.velocity = Vector3.zero; // Reset before force
+        rb.linearVelocity = Vector3.zero; // Reset before force
         rb.AddForce(Vector3.up * launchForce, ForceMode.Impulse);
     }
 

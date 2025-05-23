@@ -19,6 +19,16 @@ public class LeaderBoardManager : MonoBehaviour
             _leaderboard[i - 1] = LeaderBoardContent.FromJson(record);
         }
     }
+    
+    public string GetSingleName(int stage, int i)
+    {
+        return _leaderboard[stage - 1].GetSingleName(i - 1);
+    }
+
+    public float GetSingleTime(int stage,int i)
+    {
+        return _leaderboard[stage - 1].GetSingleTime(i - 1);
+    }
 
     public string GetNameStr(int stage)
     {

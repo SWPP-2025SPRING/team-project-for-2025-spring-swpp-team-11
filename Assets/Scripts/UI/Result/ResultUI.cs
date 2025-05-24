@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class ResultUI : UIWindow
 {
@@ -10,6 +11,7 @@ public class ResultUI : UIWindow
     public TextMeshProUGUI gradeText;
     public CanvasGroup gradeCG;
     public CanvasGroup rankingCG;
+    public Button restartButton;
 
     public int stage = 1;
     public string myName = "UNKNOWN";
@@ -33,10 +35,18 @@ public class ResultUI : UIWindow
     [SerializeField] private float rankingAnimationUnit = 100f;
     [SerializeField] private float rankingAfter = 1f;
 
+    [SerializeField] private float buttonDuration = 1f;
+
     private bool _timerAnimationFlag = false;
     private float _timerTimeElapsed = 0f;
     private LeaderBoardManager _leaderBoardManager;
     public List<RankingUIEntry> rankEntries;
+
+    public void Restart()
+    {
+        Debug.Log("RESTART");
+        //TODO - go to ingame scene
+    }
 
     private string TimeToStr(float timeInSeconds)
     {
@@ -59,6 +69,9 @@ public class ResultUI : UIWindow
             rankEntries[i].Initialize(name, time);
         }
         rankEntries[0].Initialize("-  " + myName, record);
+
+        //decomment this to submit the record
+        //_leaderBoardManager.AddRecord(stage, myName, record);
 
         StartCoroutine(Animate());
     }
@@ -115,6 +128,13 @@ public class ResultUI : UIWindow
         }
     }
 
+    private void BeginButtonAnimation()
+    {
+        restartButton.transform.localScale = Vector3.zero;
+        restartButton.gameObject.SetActive(true);
+        restartButton.transform.DOScale(Vector3.one, buttonDuration).SetEase(Ease.OutBack);
+    }
+
     private IEnumerator Animate()
     {
         yield return new WaitForSeconds(animationDuration + animationAfter);
@@ -129,6 +149,9 @@ public class ResultUI : UIWindow
         yield return new WaitForSeconds(showRankDuration + showRankAfter);
 
         BeginRankAnimation();
+        yield return new WaitForSeconds(rankingDuration + rankingAfter);
+
+        BeginButtonAnimation();
     }
 
     // Update is called once per frame

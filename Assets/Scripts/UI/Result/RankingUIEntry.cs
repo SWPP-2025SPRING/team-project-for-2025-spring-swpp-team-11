@@ -11,6 +11,7 @@ public class RankingUIEntry : MonoBehaviour
 
     private string TimeToStr(float timeInSeconds)
     {
+        if (timeInSeconds >= 6000) return "--:--.---";
         int minutes = (int)(timeInSeconds / 60);
         int seconds = (int)(timeInSeconds % 60);
         int milliseconds = (int)((timeInSeconds - (minutes * 60 + seconds)) * 1000);

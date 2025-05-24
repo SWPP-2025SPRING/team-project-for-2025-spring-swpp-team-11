@@ -46,6 +46,22 @@ public class LeaderBoardContent
         return str;
     }
 
+    public string GetSingleName(int i)
+    {
+        if (i < entries.Count)
+            return entries[i].name;
+        else
+            return "--------";
+    }
+
+    public float GetSingleTime(int i)
+    {
+        if (i < entries.Count)
+            return entries[i].timeInSeconds;
+        else
+            return float.PositiveInfinity;
+    }
+
     public void AddRecord(string name, float time, int maxLen)
     {
         int i = entries.Count;

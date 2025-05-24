@@ -3,15 +3,10 @@ using UnityEngine;
 
 public class DataManager : MonoBehaviour
 {
-    private LeaderBoardContent[] _leaderboard;
+    public LeaderBoardManager LeaderBoardManager { get; private set; }
 
-    public LeaderBoardContent[] GetLeaderboard()
+    private void Start()
     {
-        return _leaderboard;
-    }
-
-    public void SetLeaderboard(LeaderBoardContent[] leaderboard)
-    {
-        _leaderboard = leaderboard;
+        LeaderBoardManager = GetComponentInChildren<LeaderBoardManager>();
     }
 }

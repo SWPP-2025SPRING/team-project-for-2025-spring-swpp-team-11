@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class MapSelectUI : UIWindow
 {
     public List<MapImage> mapImages;
-    public GameObject gameStartUI;
 
     public TextMeshProUGUI mapTitle;
     public TextMeshProUGUI leaderBoardName;
@@ -16,7 +15,6 @@ public class MapSelectUI : UIWindow
     public TMP_InputField timeInput;
 
     private int _currentSelectedStage = 1;
-    private bool _isWaiting = false;
     private LeaderBoardManager _leaderBoardManager;
     
     protected override void Start()
@@ -41,22 +39,11 @@ public class MapSelectUI : UIWindow
         int newStage = (_currentSelectedStage + direction);
         if (newStage < 1) newStage += mapImages.Count;
         if (newStage > mapImages.Count) newStage -= mapImages.Count;
-        mapImages[_currentSelectedStage].BeginMove(0, -direction);
-        mapImages[newStage].BeginMove(direction, 0);
-        _isWaiting = false;
-        gameStartUI.SetActive(false);
+        mapImages[_currentSelectedStage - 1].BeginMove(0, -direction);
+        mapImages[_currentSelectedStage - 1].HideStartUI();
+        mapImages[newStage - 1].BeginMove(direction, 0);
         _currentSelectedStage = newStage;
         ApplyUIUpdate();
-    }
-
-    public void OnMapImageClick()
-    {
-        if (!_isWaiting)
-        {
-            _isWaiting = true;
-            mapTitle.SetText("Stage " + _currentSelectedStage);
-            gameStartUI.SetActive(true);
-        }
     }
 
     public void StartGame()
@@ -68,13 +55,13 @@ public class MapSelectUI : UIWindow
 
     private void OnEnterDown()
     {
-        if (!_isWaiting)
+        if (mapImages[_currentSelectedStage - 1].canStart)
         {
-            OnMapImageClick();
+            StartGame();
         }
         else
         {
-            StartGame();
+            mapImages[_currentSelectedStage - 1].ShowStartUI();
         }
     }
 

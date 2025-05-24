@@ -5317,6 +5317,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: CameraBrain
       objectReference: {fileID: 0}
+    - target: {fileID: 6014539461665025413, guid: 5eabe09ed8b4cfd48bde38fd765143ee, type: 3}
+      propertyPath: m_ClearFlags
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6014539461665025413, guid: 5eabe09ed8b4cfd48bde38fd765143ee, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.43494982
+      objectReference: {fileID: 0}
+    - target: {fileID: 6014539461665025413, guid: 5eabe09ed8b4cfd48bde38fd765143ee, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.4745098
+      objectReference: {fileID: 0}
+    - target: {fileID: 6014539461665025413, guid: 5eabe09ed8b4cfd48bde38fd765143ee, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.19215688
+      objectReference: {fileID: 0}
     - target: {fileID: 7742846083119110146, guid: 5eabe09ed8b4cfd48bde38fd765143ee, type: 3}
       propertyPath: m_LocalPosition.x
       value: 18.1

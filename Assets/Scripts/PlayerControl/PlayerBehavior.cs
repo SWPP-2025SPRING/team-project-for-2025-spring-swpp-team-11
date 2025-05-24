@@ -71,6 +71,9 @@ public class PlayerBehavior : MonoBehaviour
     
     private bool _isStun;
     private float _stunTimeElapsed;
+
+    private Vector2 _inputOnRelease;
+    private bool _isJustReleased;
     
     public Transform respawnPos;
 
@@ -113,6 +116,7 @@ public class PlayerBehavior : MonoBehaviour
         
         if (!_isWiring)
         {
+            DetectInputChange();
             ScanWirePoints();
             Move();
         }
@@ -157,20 +161,29 @@ public class PlayerBehavior : MonoBehaviour
         }
     }
 
+    private void DetectInputChange()
+    {
+        var input = _inputProcessor.MoveInput.normalized;
+
+        if (input != _inputOnRelease)
+            _isJustReleased = false;
+    }
+
     private void Move()
     {
         var input = _inputProcessor.MoveInput.normalized;
         
         if (_isStun) 
             input = Vector2.zero;
-    
         
         // 인풋의 카메라 시점 방향 결정
         Vector3 direction = new Vector3(input.x, 0, input.y);
         direction = Quaternion.AngleAxis(cameraObject.transform.rotation.eulerAngles.y, Vector3.up) * direction;
     
         // 인풋을 이용하여 가속
-        _rigidbody.linearVelocity += direction * (acceleration * Time.deltaTime);
+        // 방금 릴리즈 했다면 가속 X -> 인풋이 바뀌기 전까지는 조작 X
+        if (!_isJustReleased)
+            _rigidbody.linearVelocity += direction * (acceleration * Time.deltaTime);
         
         Vector3 velWithoutY = _rigidbody.linearVelocity;
         velWithoutY.y = 0;
@@ -187,6 +200,7 @@ public class PlayerBehavior : MonoBehaviour
              (_rigidbody.linearVelocity.magnitude > maxSpeed
                 ? (_rigidbody.linearVelocity.magnitude > airMaxSpeed ? 1 : airDeaccel)
                 : 1f);
+        airCof = _isJustReleased ? 0 : airCof;
 
         if (_isStun)
             airCof = airDeaccel / 2f;
@@ -324,6 +338,9 @@ public class PlayerBehavior : MonoBehaviour
         _currentWirePoint = null;
         _lineRenderer.enabled = false;
         _isWiring = false;
+
+        _isJustReleased = true;
+        _inputOnRelease = _inputProcessor.MoveInput.normalized;
     }
 
     private void OnWiringRotate()

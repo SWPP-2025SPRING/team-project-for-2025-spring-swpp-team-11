@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class MapSelectUI : UIWindow
 {
-    public List<Sprite> mapImages;
-    public GameObject mapImageObj;
+    public List<MapImage> mapImages;
     public GameObject gameStartUI;
 
     public TextMeshProUGUI mapTitle;
@@ -33,18 +32,20 @@ public class MapSelectUI : UIWindow
 
     private void ApplyUIUpdate()
     {
-        mapImageObj.GetComponent<Image>().sprite = mapImages[_currentSelectedStage - 1];
         leaderBoardName.SetText(_leaderBoardManager.GetNameStr(_currentSelectedStage));
         leaderBoardTime.SetText(_leaderBoardManager.GetTimeStr(_currentSelectedStage));
     }
 
     public void UpdateSelectedStage(int direction)
     {
-        _currentSelectedStage = (_currentSelectedStage + direction);
-        if (_currentSelectedStage < 1) _currentSelectedStage += mapImages.Count;
-        if (_currentSelectedStage > mapImages.Count) _currentSelectedStage -= mapImages.Count;
+        int newStage = (_currentSelectedStage + direction);
+        if (newStage < 1) newStage += mapImages.Count;
+        if (newStage > mapImages.Count) newStage -= mapImages.Count;
+        mapImages[_currentSelectedStage].BeginMove(0, -direction);
+        mapImages[newStage].BeginMove(direction, 0);
         _isWaiting = false;
         gameStartUI.SetActive(false);
+        _currentSelectedStage = newStage;
         ApplyUIUpdate();
     }
 

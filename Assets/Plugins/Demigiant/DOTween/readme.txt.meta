@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2e2c6224d345d9249acfa6e8ef40bb2d
+guid: fccfc62abf2eb0a4db614853430894fd
 TextScriptImporter:
   userData: 
 AssetOrigin:
@@ -7,5 +7,5 @@ AssetOrigin:
   productId: 27676
   packageName: DOTween (HOTween v2)
   packageVersion: 1.2.765
-  assetPath: Assets/Plugins/Demigiant/DOTween/Editor/DOTweenEditor.XML
+  assetPath: Assets/Plugins/Demigiant/DOTween/readme.txt
   uploadId: 642066

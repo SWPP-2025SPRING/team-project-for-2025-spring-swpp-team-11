@@ -1,23 +1,23 @@
+// PathObstacle.cs
 using UnityEngine;
 
-[RequireComponent(typeof(Collider))]
+[RequireComponent(typeof(Collider), typeof(Rigidbody))]
 public class PathObstacle : MonoBehaviour
 {
-    public float riseSpeed = 10f;        
-    private float groundY;
+    [Header("Hit Settings")]
+    public float knockbackForce = 5f;
+    public float stunDuration   = 1.5f;
 
-    void Start()
+    void Awake()
     {
-        groundY = 0f;
+        var rb = GetComponent<Rigidbody>();
+        rb.isKinematic = true;
     }
 
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        Vector3 target = new Vector3(transform.position.x, groundY, transform.position.z);
-        if (transform.position.y < groundY)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, target, riseSpeed * Time.deltaTime);
-        }
-    }
+        if (!other.CompareTag("Player")) return;
 
+        Destroy(gameObject);
+    }
 }

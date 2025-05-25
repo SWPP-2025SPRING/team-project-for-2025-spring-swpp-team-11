@@ -1200,7 +1200,13 @@ MonoBehaviour:
   timeText: {fileID: 288394705}
   gradeText: {fileID: 651832294}
   gradeCG: {fileID: 651832296}
+  rankingRect: {fileID: 1994936825}
   rankingCG: {fileID: 1994936826}
+  rankEntries:
+  - {fileID: 1795288184}
+  - {fileID: 751649975}
+  - {fileID: 656916927}
+  - {fileID: 606569909}
   restartButton: {fileID: 277528218}
   stage: 1
   myName: you
@@ -1213,17 +1219,12 @@ MonoBehaviour:
   gradeInitialScale: 2
   gradeAfter: 0.5
   showRankDuration: 1
-  rankingInitPos: {x: 100, y: 0, z: 0}
+  rankingInitPos: {x: 100, y: 0}
   showRankAfter: 1
   rankingDuration: 1
   rankingAnimationUnit: 100
   rankingAfter: 0.5
   buttonDuration: 1
-  rankEntries:
-  - {fileID: 1795288184}
-  - {fileID: 751649975}
-  - {fileID: 656916927}
-  - {fileID: 606569909}
 --- !u!1 &1590007233
 GameObject:
   m_ObjectHideFlags: 0

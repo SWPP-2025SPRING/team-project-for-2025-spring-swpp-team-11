@@ -10,7 +10,9 @@ public class ResultUI : UIWindow
     public TextMeshProUGUI timeText;
     public TextMeshProUGUI gradeText;
     public CanvasGroup gradeCG;
+    public RectTransform rankingRect;
     public CanvasGroup rankingCG;
+    public List<RankingUIEntry> rankEntries;
     public Button restartButton;
 
     public int stage = 1;
@@ -28,7 +30,7 @@ public class ResultUI : UIWindow
     [SerializeField] private float gradeAfter = .5f;
 
     [SerializeField] private float showRankDuration = 1f;
-    [SerializeField] private Vector3 rankingInitPos = new Vector3(100, 0, 0);
+    [SerializeField] private Vector2 rankingInitPos = new Vector3(100, 0);
     [SerializeField] private float showRankAfter = 1f;
 
     [SerializeField] private float rankingDuration = 1f;
@@ -40,7 +42,6 @@ public class ResultUI : UIWindow
     private bool _timerAnimationFlag = false;
     private float _timerTimeElapsed = 0f;
     private LeaderBoardManager _leaderBoardManager;
-    public List<RankingUIEntry> rankEntries;
 
     public void Restart()
     {
@@ -94,10 +95,10 @@ public class ResultUI : UIWindow
     private void BeginShowRankAnimation()
     {
         rankingCG.gameObject.SetActive(true);
-        Vector3 pos0 = rankingCG.transform.position;
-        rankingCG.transform.position += rankingInitPos;
+        Vector2 pos = rankingRect.anchoredPosition;
+        rankingRect.anchoredPosition += rankingInitPos;
         rankingCG.alpha = 0;
-        rankingCG.transform.DOMove(pos0, showRankDuration);
+        rankingRect.DOAnchorPos(pos, showRankDuration);
         rankingCG.DOFade(1, showRankDuration);
     }
 
@@ -112,7 +113,8 @@ public class ResultUI : UIWindow
         if (i <= _leaderBoardManager.length)
         {
             rankEntries[0].SetName(i + "  " + myName);
-            rankEntries[0].transform.DOMoveY(rankEntries[0].transform.position.y + rankingAnimationUnit * (_leaderBoardManager.length - i + 2), rankingDuration);
+            RectTransform rect = rankEntries[0].GetComponent<RectTransform>();
+            rect.DOAnchorPosY(rect.anchoredPosition.y + rankingAnimationUnit * (_leaderBoardManager.length - i + 2), rankingDuration);
         }
         for(int j = i; j <= _leaderBoardManager.length; j++)
         {
@@ -123,7 +125,8 @@ public class ResultUI : UIWindow
             else
             {
                 rankEntries[j].SetRank(j + 1);
-                rankEntries[j].transform.DOMoveY(rankEntries[j].transform.position.y - rankingAnimationUnit, rankingDuration);
+                RectTransform rect = rankEntries[j].GetComponent<RectTransform>();
+                rect.DOAnchorPosY(rect.anchoredPosition.y - rankingAnimationUnit, rankingDuration);
             }
         }
     }

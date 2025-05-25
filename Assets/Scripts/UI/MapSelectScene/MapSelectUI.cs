@@ -20,7 +20,7 @@ public class MapSelectUI : UIWindow
     protected override void Start()
     {
         base.Start();
-        _leaderBoardManager = FindAnyObjectByType<LeaderBoardManager>();
+        _leaderBoardManager = GameManager.Instance.DataManager.LeaderBoardManager;
         
         onEnterDown.AddListener(OnEnterDown);
         onHorizontalDown.AddListener(OnHorizontalDown);

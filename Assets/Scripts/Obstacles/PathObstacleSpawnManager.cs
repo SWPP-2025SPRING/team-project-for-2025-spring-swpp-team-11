@@ -9,10 +9,10 @@ public class PathObstacleSpawnManager : MonoBehaviour
     public Transform player;
 
     [Space]
-    public float interval = 1f;    // 생성 간격
-    public float disZ = 2f;        // 전진 간격
+    public float interval = 0.2f;    // 생성 간격
+    public float disZ = 1.5f;        // 전진 간격
     public float disX = 5f;        // 기둥 (좌우) 간격
-    public float lateralStep = 1f; // 한 스텝당 좌우 이동 거리
+    public float lateralStep = 0.5f; // 한 스텝당 좌우 이동 거리
     public int zigCount = 5;       // 한쪽으로 연속 생성 개수
     public float speed = 10f;      // 상승 속도
 
@@ -21,36 +21,62 @@ public class PathObstacleSpawnManager : MonoBehaviour
     private Vector3 perpDir;
     private Vector3 currentBasePos;
 
+    private Vector3 lastPlayerPos;
+    public float lateralThreshold = 3f; // 스폰 시작 조건
+
     void Start()
     {
         pathDir        = (transform.position - startPosition.position).normalized;
         perpDir        = Vector3.Cross(pathDir, Vector3.up).normalized;
         currentBasePos = startPosition.position;
+        lastPlayerPos = player.position;
     }
 
     void Update()
     {
-        float playerDistSqr = (startPosition.position - player.position).sqrMagnitude;
-        float totalDistSqr  = (startPosition.position - transform.position).sqrMagnitude;
-        // 스포너를 향한 벡터 (수평면)
-        Vector3 toSpawner = transform.position - player.position;
-        toSpawner.y = 0;
+        // 1) start→spawner 방향
+        Vector3 playerPathVec = (transform.position - startPosition.position);
+        Vector3 playerPathDir = playerPathVec.normalized;
+        float pathLenSqr = playerPathVec.sqrMagnitude;
+        
+        if (pathLenSqr < Mathf.Epsilon) return;
 
-        // player가 spawner 바라보는지
-        bool isFacingSpawner = Vector3.Dot(player.forward, toSpawner.normalized) > 0f;
+        // 2) 파라미터 t 계산: 0=start, 1=spawner
+        Vector3 AP = player.position - startPosition.position;
+        float t = Vector3.Dot(AP, playerPathVec) / pathLenSqr;
 
-        // 스폰 시작 : 거리 & spawner 바라보는지
-        if (spawnRoutine == null && playerDistSqr < totalDistSqr && isFacingSpawner)
-            spawnRoutine = StartCoroutine(SpawnLoop());
-        // 스폰 종료
-        else if (spawnRoutine != null && playerDistSqr >= totalDistSqr)
+        // 3) 실제 이동 방향 (프레임간 위치 변화)
+        Vector3 moveDir = player.position - lastPlayerPos;
+        moveDir.y = 0;
+        bool isMovingToward = moveDir.sqrMagnitude > 0f 
+            && Vector3.Dot(moveDir.normalized, playerPathDir) > 0f;
+
+        // 4) 좌우 간격 확인
+        float lateralOffset = player.position.x - startPosition.position.x;
+        bool withinLateral = Mathf.Abs(lateralOffset) <= lateralThreshold;
+
+        // 5) 스폰 시작/종료 판정
+        if (spawnRoutine == null)
         {
-            StopCoroutine(spawnRoutine);
-            spawnRoutine = null;
-            ClearRemainingObstacles();
-            currentBasePos = startPosition.position;
+            // t∈(0,1) 구간에 있고, spawner 방향으로 이동 중일 때만 시작
+            if (t > 0f && t < 1f && isMovingToward && withinLateral)
+                spawnRoutine = StartCoroutine(SpawnLoop());
         }
+        else
+        {
+            // t 벗어나거나 반대 방향 이동 시 즉시 종료
+            if (!(t > 0f && t < 1f))
+            {
+                StopCoroutine(spawnRoutine);
+                spawnRoutine = null;
+                ClearRemainingObstacles();
+                currentBasePos = startPosition.position;
+            }
+        }
+        lastPlayerPos = player.position;
     }
+
+
 
     private IEnumerator SpawnLoop()
     {

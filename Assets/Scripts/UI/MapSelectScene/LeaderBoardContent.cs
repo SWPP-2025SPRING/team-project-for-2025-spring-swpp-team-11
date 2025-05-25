@@ -16,8 +16,8 @@ public class LeaderBoardContent
         int i = 0;
         foreach (LeaderBoardEntry entry in entries)
         {
+            str += entry.GetName() + "\n";
             i++;
-            str += i + "  " + entry.GetName() + "\n";
             if (i == maxLen) break;
         }
         while (i < maxLen)

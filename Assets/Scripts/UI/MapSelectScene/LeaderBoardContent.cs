@@ -16,8 +16,8 @@ public class LeaderBoardContent
         int i = 0;
         foreach (LeaderBoardEntry entry in entries)
         {
+            str += entry.GetName() + "\n";
             i++;
-            str += i + "  " + entry.GetName() + "\n";
             if (i == maxLen) break;
         }
         while (i < maxLen)
@@ -44,6 +44,22 @@ public class LeaderBoardContent
             i++;
         }
         return str;
+    }
+
+    public string GetSingleName(int i)
+    {
+        if (i < entries.Count)
+            return entries[i].name;
+        else
+            return "--------";
+    }
+
+    public float GetSingleTime(int i)
+    {
+        if (i < entries.Count)
+            return entries[i].timeInSeconds;
+        else
+            return float.PositiveInfinity;
     }
 
     public void AddRecord(string name, float time, int maxLen)

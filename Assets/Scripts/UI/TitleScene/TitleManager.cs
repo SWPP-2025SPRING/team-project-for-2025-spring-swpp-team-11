@@ -1,77 +1,57 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class TitleManager : UIWindow
 {
-    public List<ThemeButton> menuButtons;
+    public List<Button> menuButtons;
     private int _currentIndex = 0;
 
-    /* ---------- Unity lifecycle ---------- */
     protected override void Start()
     {
         base.Start();
-
-        SelectButton(_currentIndex);
-
-        onEnterDown.AddListener(OnEnter);
+        
+        onEnterDown.AddListener(OnEnterDown);
         onVerticalDown.AddListener(OnVerticalDown);
+        
+        HighlightButton(_currentIndex);
     }
-
-    private void OnVerticalDown(int v)
+    
+    private void OnEnterDown()
     {
-        _currentIndex = (_currentIndex - v + menuButtons.Count) % menuButtons.Count;
-        SelectButton(_currentIndex);
+        menuButtons[_currentIndex].onClick.Invoke();
     }
-
-    private void OnEnter()
+    
+    private void OnVerticalDown(int direction)
     {
-        menuButtons[_currentIndex].button.onClick.Invoke();
+        _currentIndex = (_currentIndex - direction + menuButtons.Count) % menuButtons.Count;
+        HighlightButton(_currentIndex);
     }
 
-    /* ---------- 공용 선택 로직 ---------- */
-    private void SelectButton(int index)
-    {
-        // Unity 내장 Selectable 시스템 활용 → 마우스·키보드 색상 통일
-        menuButtons[index].Select();
-        UpdateColors(index);
-    }
-
-    private void UpdateColors(int selected)
+    private void HighlightButton(int index)
     {
         for (int i = 0; i < menuButtons.Count; i++)
         {
-            if (i == selected) menuButtons[i].Select();
-            else menuButtons[i].Unselect();
+            ColorBlock colors = menuButtons[i].colors;
+            colors.normalColor = (i == index) ? Color.green : Color.white;
+            menuButtons[i].colors = colors;
         }
     }
 
-    /* ---------- EventTrigger에서 호출 ---------- */
-    // **Point Enter** 에 연결
-    public void OnPointerEnter(BaseEventData data)
+    // 버튼 클릭 시 실행
+    public void StartGame()
     {
-        var ped = data as PointerEventData;
-        if (ped == null) return;
-
-        // Text, Image 같은 자식 오브젝트에서도 Button을 찾도록
-        var btn = ped.pointerEnter?.GetComponentInParent<ThemeButton>();
-        if (btn == null) return;
-
-        _currentIndex = menuButtons.IndexOf(btn);
-        SelectButton(_currentIndex);   // 색상 재계산
+        StartCoroutine(GameManager.Instance.SceneLoadManager.FadeAndLoadScene("GameScene")); // GameScene으로 이동
     }
 
-
-    // **Point Exit** (선택적) – 나가더라도 마지막으로 선택된 버튼 유지
-    public void OnPointerExit(BaseEventData data)
+    public void Option()
     {
-        UpdateColors(_currentIndex);
+        Debug.Log("Option 버튼 눌림");
     }
 
-    /* ---------- 버튼 클릭 콜백 ---------- */
-    public void StartGame() => StartCoroutine(FadeManager.Instance.FadeAndLoadScene("GameScene"));
-    public void Option() => Debug.Log("Option 버튼 눌림");
-    public void ExitGame() => Application.Quit();
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }

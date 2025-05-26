@@ -108,7 +108,6 @@ public class PlayerBehavior : MonoBehaviour
     {
         Vector3 xzVelocity = _rigidbody.linearVelocity;
         xzVelocity.y = 0;
-        text.text = xzVelocity.magnitude + "KM/H";
         GroundCheck();
         StunCheck();
         

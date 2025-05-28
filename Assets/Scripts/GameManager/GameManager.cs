@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public UIManager UIManager { get; private set; }
     public DataManager DataManager { get; private set; }
     public SceneLoadManager SceneLoadManager { get; private set; }
+    public InputManager InputManager { get; private set; }
     
     private void Awake()
     {
@@ -20,12 +21,10 @@ public class GameManager : MonoBehaviour
         Instance = this;
         
         DontDestroyOnLoad(gameObject);
-    }
-
-    private void Start()
-    {
+        
         UIManager = GetComponentInChildren<UIManager>();
         DataManager = GetComponentInChildren<DataManager>();
         SceneLoadManager = GetComponentInChildren<SceneLoadManager>();
+        InputManager = GetComponentInChildren<InputManager>();
     }
 }

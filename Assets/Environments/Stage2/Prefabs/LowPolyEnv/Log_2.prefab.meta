@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 900982da9861f4c8bbf133cfb2ec1df1
+timeCreated: 1504785530
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 99479
+  packageName: LowPoly Environment Pack
+  packageVersion: 1.0
+  assetPath: Assets/LowPoly Environment Pack/Prefabs/Log_2.prefab
+  uploadId: 200756

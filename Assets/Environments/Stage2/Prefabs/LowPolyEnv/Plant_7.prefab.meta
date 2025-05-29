@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 33f0ddd2f91f54af39c3b0b183955f83
+timeCreated: 1504785541
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 99479
+  packageName: LowPoly Environment Pack
+  packageVersion: 1.0
+  assetPath: Assets/LowPoly Environment Pack/Prefabs/Plant_7.prefab
+  uploadId: 200756

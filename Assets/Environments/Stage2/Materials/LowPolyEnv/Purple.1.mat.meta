@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 5ea7cf04a9f854f46998cf022e3690eb
+timeCreated: 1504768179
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 99479
+  packageName: LowPoly Environment Pack
+  packageVersion: 1.0
+  assetPath: Assets/LowPoly Environment Pack/FBX/Materials/Purple.1.mat
+  uploadId: 200756

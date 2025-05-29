@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: a4a5773789d8e4c5d8c0fa9f3a2aedb7
+timeCreated: 1504785046
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 99479
+  packageName: LowPoly Environment Pack
+  packageVersion: 1.0
+  assetPath: Assets/LowPoly Environment Pack/Demo/Skybox.mat
+  uploadId: 200756

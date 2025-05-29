@@ -21,6 +21,12 @@ public class UIManager : MonoBehaviour, IUIWindowSubject
         _horizontalVisitor = new UIWindowHorizontalVisitor();
         _verticalVisitor = new UIWindowVerticalVisitor();
 
+        var inputManager = GameManager.Instance.InputManager;
+        
+        inputManager.onEnterEvent.AddListener(OnEnter);
+        inputManager.onHorizontalEvent.AddListener(OnHorizontal);
+        inputManager.onVerticalEvent.AddListener(OnVertical);
+
         _currentVisitor = _enterVisitor;
     }
     

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -72,11 +73,15 @@ public class PlayerBehavior : MonoBehaviour
     private bool _isStun;
     private float _stunTimeElapsed;
 
+    private Vector2 _inputOnRelease;
+    private bool _isJustReleased;
     private InGameUI _inGameUI;
     
     public Transform respawnPos;
 
     public float distanceToPoint;
+
+    public TMP_Text text;
 
     private void OnDrawGizmos()
     {
@@ -101,6 +106,8 @@ public class PlayerBehavior : MonoBehaviour
     
     private void Update()
     {
+        Vector3 xzVelocity = _rigidbody.linearVelocity;
+        xzVelocity.y = 0;
         GroundCheck();
         StunCheck();
         
@@ -109,6 +116,7 @@ public class PlayerBehavior : MonoBehaviour
         
         if (!_isWiring)
         {
+            DetectInputChange();
             ScanWirePoints();
             Move();
         }
@@ -126,6 +134,7 @@ public class PlayerBehavior : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // 와이어 액션 동안 와이어의 길이를 유지해줌
         if (_isWiring)
         {
             var vecToPoint = _currentWirePoint.position - transform.position;
@@ -156,33 +165,54 @@ public class PlayerBehavior : MonoBehaviour
         }
     }
 
+    private void DetectInputChange()
+    {
+        var input = _inputProcessor.MoveInput.normalized;
+
+        if (input != _inputOnRelease)
+            _isJustReleased = false;
+    }
+
     private void Move()
     {
         var input = _inputProcessor.MoveInput.normalized;
         
         if (IsStunNow()) 
             input = Vector2.zero;
-    
+        
+        // 인풋의 카메라 시점 방향 결정
         Vector3 direction = new Vector3(input.x, 0, input.y);
         direction = Quaternion.AngleAxis(cameraObject.transform.rotation.eulerAngles.y, Vector3.up) * direction;
     
-        _rigidbody.linearVelocity += direction * (acceleration * Time.deltaTime);
+        // 인풋을 이용하여 가속
+        // 방금 릴리즈 했다면 가속 X -> 인풋이 바뀌기 전까지는 조작 X
+        if (!_isJustReleased)
+            _rigidbody.linearVelocity += direction * (acceleration * Time.deltaTime);
         
         Vector3 velWithoutY = _rigidbody.linearVelocity;
         velWithoutY.y = 0;
 
+        // 현재 밟고 있는 지형의 friction 구하기
         float groundFriction = _currentGroundOn != null ? _currentGroundOn.friction : 0.1f;
+        
+        // 공중에서의 감속 계수 결정
+        // 땅에 있을 때는 1로 하여 곱했을 때 아무 효과 없도록 함
+        // 공중에 있을 때는, 기존 maxSpeed 보다 느린 경우는 땅과 동일하게 감속이 되도록 함
+        //                 maxSpeed 보다 빠르고 airMaxSpeed 보다 느린 경우 감속을 더 적게 함
+        //                 airMaxSpeed 보다 빠른 경우 1로 결정하여 땅과 동일하게 감속이 되도록 함 
         float airCof = _isGrounded ? 1 :
              (_rigidbody.linearVelocity.magnitude > maxSpeed
                 ? (_rigidbody.linearVelocity.magnitude > airMaxSpeed ? 1 : airDeaccel)
                 : 1f);
+        airCof = _isJustReleased ? 0 : airCof;
 
         if (IsStunNow())
             airCof = airDeaccel / 2f;
 
         if (input.magnitude < 0.1f)
         {
-            _rigidbody.AddForce(-velWithoutY * (airCof * groundFriction * deaccel * Time.deltaTime));
+            if (_isGrounded) 
+                _rigidbody.AddForce(-velWithoutY * (airCof * groundFriction * deaccel * Time.deltaTime));
         }
         else
         {
@@ -303,6 +333,9 @@ public class PlayerBehavior : MonoBehaviour
         _currentWirePoint = null;
         _lineRenderer.enabled = false;
         _isWiring = false;
+
+        _isJustReleased = true;
+        _inputOnRelease = _inputProcessor.MoveInput.normalized;
     }
 
     private void OnWiringRotate()

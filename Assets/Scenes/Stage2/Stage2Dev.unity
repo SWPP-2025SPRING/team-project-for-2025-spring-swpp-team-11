@@ -3779,6 +3779,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GustZone (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3416757201543578097, guid: c65ebc2571420432da6b22d961c107c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5419280323604774532, guid: c65ebc2571420432da6b22d961c107c4, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -9059,6 +9063,10 @@ PrefabInstance:
     - target: {fileID: 3416757201543578097, guid: c65ebc2571420432da6b22d961c107c4, type: 3}
       propertyPath: m_Name
       value: GustZone (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416757201543578097, guid: c65ebc2571420432da6b22d961c107c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5419280323604774532, guid: c65ebc2571420432da6b22d961c107c4, type: 3}
       propertyPath: m_Enabled

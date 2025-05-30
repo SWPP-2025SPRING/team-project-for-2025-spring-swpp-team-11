@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 52131fbd9ada04a39932485d82549339
+guid: 67c48cb25591dce42a0f4e2115bbe3a0
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -35,7 +35,7 @@ ModelImporter:
       takeName: metarig|_Nothing
       internalID: -8954720267462151218
       firstFrame: 0
-      lastFrame: 48
+      lastFrame: 50
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -60,11 +60,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: metarig|Damage_Fall_End
-      takeName: metarig|Damage_Fall_End
-      internalID: 4807028046387407079
+      name: metarig|Damage_Fall
+      takeName: metarig|Damage_Fall
+      internalID: -2690311978740966793
       firstFrame: 0
-      lastFrame: 48
+      lastFrame: 49
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -89,67 +89,9 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: metarig|Damage_Fall_Start
-      takeName: metarig|Damage_Fall_Start
-      internalID: -7285931961318390592
-      firstFrame: 0
-      lastFrame: 48
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: metarig|Damage_Hit_End
-      takeName: metarig|Damage_Hit_End
-      internalID: -9032701984138456700
-      firstFrame: 0
-      lastFrame: 48
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: metarig|Damage_Hit_Start
-      takeName: metarig|Damage_Hit_Start
-      internalID: -8301888919655452588
+      name: metarig|Damage_Hit
+      takeName: metarig|Damage_Hit
+      internalID: -5806923380947045896
       firstFrame: 0
       lastFrame: 48
       wrapMode: 0
@@ -362,7 +304,7 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
-      loopBlend: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -412,7 +354,7 @@ ModelImporter:
       takeName: metarig|Waiting
       internalID: 4887175960857993097
       firstFrame: 0
-      lastFrame: 48
+      lastFrame: 58
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -470,7 +412,36 @@ ModelImporter:
       takeName: metarig|Wire
       internalID: 8014506554772943330
       firstFrame: 0
-      lastFrame: 48
+      lastFrame: 50
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: metarig|zAction
+      takeName: metarig|zAction
+      internalID: -6008293660585684778
+      firstFrame: 0
+      lastFrame: 49
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

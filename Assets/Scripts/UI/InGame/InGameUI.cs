@@ -13,12 +13,16 @@ public class InGameUI : MonoBehaviour
     private float _elapsedTime;
     private bool _paused;
 
+    private StageManager _stageManager;
+
     protected void Start()
     {
         _elapsedTime = 0;
         _paused = false;
         _inputProcessor = FindFirstObjectByType<PlayerInputProcessor>();
         _inputProcessor.escapeEvent.AddListener(OnEscape);
+        
+        _stageManager = FindFirstObjectByType<StageManager>();
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -32,16 +36,26 @@ public class InGameUI : MonoBehaviour
         timeText.SetText(string.Format("{0:00}:{1:00}.{2:000}", minutes, seconds, milliseconds));
     }
 
+    public void SetPause(bool paused)
+    {
+        _paused = paused;
+    }
+
 
     protected void Update()
     {
-        _elapsedTime += Time.deltaTime;
+        if (_stageManager.currentStageState == StageState.Started)
+            _elapsedTime += Time.deltaTime;
         UpdateTimeText();
     }
 
     private void OnEscape()
     {
-        if (_paused) return;
+        if (_paused)
+        {
+            ResumeGame();
+            return;
+        }
         _paused = true;
         pauseUI.SetActive(true);
         Time.timeScale = 0f;

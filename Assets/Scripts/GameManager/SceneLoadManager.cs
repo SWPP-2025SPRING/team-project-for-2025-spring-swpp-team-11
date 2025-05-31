@@ -47,4 +47,9 @@ public class SceneLoadManager : MonoBehaviour
 
         StartCoroutine(FadeIn());
     }
+
+    public void FadeLoadScene(string sceneName)
+    {
+        StartCoroutine(FadeAndLoadScene(sceneName));
+    }
 }

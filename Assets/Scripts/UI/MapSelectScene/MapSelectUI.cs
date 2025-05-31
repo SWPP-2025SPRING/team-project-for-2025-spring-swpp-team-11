@@ -18,6 +18,8 @@ public class MapSelectUI : UIWindow
     private int _currentSelectedStage = 1;
 
     private LeaderBoardManager _leaderBoardManager;
+
+    [SerializeField] private string[] playSceneNames;
     
     protected override void Start()
     {
@@ -62,6 +64,7 @@ public class MapSelectUI : UIWindow
     public void StartGame()
     {
         Debug.Log("Stage " + _currentSelectedStage + " start");
+        GameManager.Instance.SceneLoadManager.FadeLoadScene(playSceneNames[_currentSelectedStage - 1]);
         //TODO - start game
         //SceneManager.LoadScene(...)
     }

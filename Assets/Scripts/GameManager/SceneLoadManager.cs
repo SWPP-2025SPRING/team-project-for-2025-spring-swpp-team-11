@@ -9,7 +9,7 @@ public class SceneLoadManager : MonoBehaviour
     public Image fadeImage;
     public float fadeSpeed = 1.5f;
     
-    private IEnumerator FadeOut()
+    public IEnumerator FadeOut()
     {
         float alpha = 0;
         fadeImage.color = new Color(0, 0, 0, 0);
@@ -23,7 +23,7 @@ public class SceneLoadManager : MonoBehaviour
         
     }
 
-    private IEnumerator FadeIn()
+    public IEnumerator FadeIn()
     {
         float alpha = 1;
         fadeImage.color = new Color(0, 0, 0, 1);
@@ -34,7 +34,6 @@ public class SceneLoadManager : MonoBehaviour
             fadeImage.color = new Color(0, 0, 0, alpha);
             yield return null;
         }
-        
     }
 
     public IEnumerator FadeAndLoadScene(string sceneName)
@@ -43,9 +42,13 @@ public class SceneLoadManager : MonoBehaviour
 
         // Load the new scene
         SceneManager.LoadScene(sceneName);
-        yield return null; // wait one frame for scene to load
-        
+        Debug.Log("ASDG");
 
-        yield return StartCoroutine(FadeIn());
+        StartCoroutine(FadeIn());
+    }
+
+    public void FadeLoadScene(string sceneName)
+    {
+        StartCoroutine(FadeAndLoadScene(sceneName));
     }
 }

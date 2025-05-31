@@ -350,6 +350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 350752a9b6e4482191e36a58b5ccabe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canControlPlayer: 1
   onMoveEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -359,9 +360,6 @@ MonoBehaviour:
   onShotEvent:
     m_PersistentCalls:
       m_Calls: []
-  onEscapeEvent:
-    m_PersistentCalls:
-      m_Calls: []
   onEnterEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -369,6 +367,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onVerticalEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onEscapeEvent:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &1755787664646627398
@@ -501,7 +502,19 @@ MonoBehaviour:
     m_ActionId: 32fa7db5-b0c5-4dae-b52f-a0c982eb4a0d
     m_ActionName: 'Player/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 9189155566913363255}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: OnEnter
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: e8c951b6-b40f-45a9-8088-8c66b8b66271
     m_ActionName: 'Player/Submit[/Keyboard/enter]'
   - m_PersistentCalls:
@@ -548,6 +561,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 97b810ac-8344-464f-ad0f-354f2cb79ddb
+    m_ActionName: 'Player/Vertical[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

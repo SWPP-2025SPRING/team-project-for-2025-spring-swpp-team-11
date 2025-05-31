@@ -1498,6 +1498,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 549673971793876984, guid: 724378c69a77c864fb6c40df333fcfba, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1755787664646627398, guid: 724378c69a77c864fb6c40df333fcfba, type: 3}
       propertyPath: m_ActionEvents.Array.size
       value: 24

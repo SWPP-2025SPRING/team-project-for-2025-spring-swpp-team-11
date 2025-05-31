@@ -43,9 +43,8 @@ public class SceneLoadManager : MonoBehaviour
 
         // Load the new scene
         SceneManager.LoadScene(sceneName);
-        yield return null; // wait one frame for scene to load
-        
+        Debug.Log("ASDG");
 
-        yield return StartCoroutine(FadeIn());
+        StartCoroutine(FadeIn());
     }
 }

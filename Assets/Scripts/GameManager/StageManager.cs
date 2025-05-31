@@ -68,6 +68,10 @@ public class StageManager : MonoBehaviour
    {
       GameManager.Instance.InputManager.canControlPlayer = false;
       
+      ingameUI.GetComponent<InGameUI>().RemoveOnEscapeCallBack();
+      Cursor.lockState = CursorLockMode.None;
+      Cursor.visible = true;
+      
       ingameUICanvas.SetActive(false);
       ingameUICanvas.SetActive(false);
       float timeRecord = ingameUI.GetComponent<InGameUI>().GetElapsedTime();

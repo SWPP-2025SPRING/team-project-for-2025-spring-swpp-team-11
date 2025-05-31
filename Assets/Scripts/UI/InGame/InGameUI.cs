@@ -42,7 +42,7 @@ public class InGameUI : MonoBehaviour
         _paused = paused;
     }
 
-    private void OnDisable()
+    public void RemoveOnEscapeCallBack()
     {
         _inputProcessor.escapeEvent.RemoveListener(OnEscape);
     }

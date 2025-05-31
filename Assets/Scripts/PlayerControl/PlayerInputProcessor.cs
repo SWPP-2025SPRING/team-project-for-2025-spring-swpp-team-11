@@ -11,6 +11,16 @@ public class PlayerInputProcessor : MonoBehaviour
     public UnityEvent escapeEvent;
     public Vector2 MoveInput { get; private set; }
 
+    private void Start()
+    {
+        var inputManager = GameManager.Instance.InputManager;
+        
+        inputManager.onMoveEvent.AddListener(OnMove);
+        inputManager.onJumpEvent.AddListener(OnJump);
+        inputManager.onShotEvent.AddListener(OnShot);
+        inputManager.onEscapeEvent.AddListener(OnEscape);
+    }
+
     public void OnMove(InputAction.CallbackContext context)
     {
         Debug.Log("MOVE");

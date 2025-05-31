@@ -83,7 +83,7 @@ MonoBehaviour:
   rankingAnimationUnit: 100
   rankingAfter: 0.5
   buttonDuration: 1
-  mapSelectSceneName: 
+  mapSelectSceneName: 1_StageSelectSceneAppliedOne
 --- !u!1 &2385982199626764088
 GameObject:
   m_ObjectHideFlags: 0
@@ -387,7 +387,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &408735813869013868
 RectTransform:
   m_ObjectHideFlags: 0
@@ -524,7 +524,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5077494244536374382
 RectTransform:
   m_ObjectHideFlags: 0
@@ -578,7 +578,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8067318837547451565
 RectTransform:
   m_ObjectHideFlags: 0
@@ -595,7 +595,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -480, y: 286}
+  m_AnchoredPosition: {x: -480, y: 208}
   m_SizeDelta: {x: 500, y: 97}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7396681748559220199
@@ -710,7 +710,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3707639551827593431
 RectTransform:
   m_ObjectHideFlags: 0
@@ -727,7 +727,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -480, y: 172}
+  m_AnchoredPosition: {x: -480, y: 93.99997}
   m_SizeDelta: {x: 500, y: 97}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8763420834693700298
@@ -814,7 +814,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8043026948660195976}
         m_TargetAssemblyTypeName: ResultUI, Assembly-CSharp
-        m_MethodName: Restart
+        m_MethodName: Exit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

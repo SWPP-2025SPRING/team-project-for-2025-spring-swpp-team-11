@@ -86,7 +86,7 @@ public class TitleManager : UIWindow
     }
 
     /* ---------- 버튼 클릭 콜백 ---------- */
-    public void StartGame() => StartCoroutine(GameManager.Instance.SceneLoadManager.FadeAndLoadScene("StageSelectSceneAppliedOne"));
+    public void StartGame() => StartCoroutine(GameManager.Instance.SceneLoadManager.FadeAndLoadScene("1_StageSelectSceneAppliedOne"));
     public void Option() => Debug.Log("Option 버튼 눌림");
     public void ExitGame() => Application.Quit();
 }

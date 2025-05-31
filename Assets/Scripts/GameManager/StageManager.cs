@@ -13,6 +13,8 @@ public enum StageState
 }
 public class StageManager : MonoBehaviour
 {
+   public int stageNumber;
+   
    [SerializeField] private InGameUI inGameUI;
    [FormerlySerializedAs("playableDirector")] [SerializeField] private PlayableDirector openingCutScene;
    [SerializeField] private PlayableDirector clearCutsceneDirector;
@@ -88,6 +90,5 @@ public class StageManager : MonoBehaviour
 
       yield return new WaitForSeconds(2f);
       StartCoroutine(result.Animate());
-      
    }
 }

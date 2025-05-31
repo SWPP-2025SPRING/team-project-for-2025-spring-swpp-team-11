@@ -167,7 +167,9 @@ public class ResultUI : UIWindow
         yield return new WaitForSeconds(showRankDuration + showRankAfter);
 
         BeginRankAnimation();
+        GameManager.Instance.DataManager.LeaderBoardManager.AddRecord(stage, "TMP(TOBEFIXED)", record);
         yield return new WaitForSeconds(rankingDuration + rankingAfter);
+        
 
         BeginButtonAnimation();
         yield return new WaitForSeconds(0.2f);

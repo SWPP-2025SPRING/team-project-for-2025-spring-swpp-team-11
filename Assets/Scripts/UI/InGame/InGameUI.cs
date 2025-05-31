@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -41,6 +42,11 @@ public class InGameUI : MonoBehaviour
         _paused = paused;
     }
 
+    private void OnDisable()
+    {
+        _inputProcessor.escapeEvent.RemoveListener(OnEscape);
+    }
+
 
     protected void Update()
     {
@@ -79,4 +85,5 @@ public class InGameUI : MonoBehaviour
     }
 
     public bool GetPaused() { return _paused; }
+    public float GetElapsedTime() { return _elapsedTime; }
 }

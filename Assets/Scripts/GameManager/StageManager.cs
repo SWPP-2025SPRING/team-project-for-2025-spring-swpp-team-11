@@ -1,7 +1,9 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Playables;
+using UnityEngine.Serialization;
 
 public enum StageState
 {
@@ -12,15 +14,21 @@ public enum StageState
 public class StageManager : MonoBehaviour
 {
    [SerializeField] private InGameUI inGameUI;
-   [SerializeField] private PlayableDirector playableDirector;
+   [FormerlySerializedAs("playableDirector")] [SerializeField] private PlayableDirector openingCutScene;
+   [SerializeField] private PlayableDirector clearCutsceneDirector;
 
    public StageState currentStageState = StageState.Ready;
+
+   public GameObject resultUICanvas;
+   public GameObject resultUI;
+   public GameObject ingameUICanvas;
+   public GameObject ingameUI;
 
    private void Start()
    {
       GameManager.Instance.InputManager.canControlPlayer = false;
       GameManager.Instance.InputManager.onEnterEvent.AddListener(OnSkip);
-      playableDirector.stopped += OnStartCutsceneFinished;
+      openingCutScene.stopped += OnStartCutsceneFinished;
    }
 
    private void OnStartCutsceneFinished(PlayableDirector pd)
@@ -28,12 +36,54 @@ public class StageManager : MonoBehaviour
       GameManager.Instance.InputManager.canControlPlayer = true;
       currentStageState = StageState.Started;
    }
+   
+   private void OnClearCutsceneFinished(PlayableDirector pd)
+   {
+      currentStageState = StageState.Started;
+   }
 
    private void OnSkip(InputAction.CallbackContext ctx)
    {
-      Debug.Log("ASD");
-      playableDirector.time = playableDirector.duration;
-      playableDirector.Evaluate();  
-      GameManager.Instance.InputManager.onEnterEvent.RemoveListener(OnSkip);
+      if (currentStageState == StageState.Ready)
+      {
+         openingCutScene.time = openingCutScene.duration;
+         openingCutScene.Evaluate();
+         GameManager.Instance.InputManager.onEnterEvent.RemoveListener(OnSkip);
+      }
+      
+      if (currentStageState == StageState.Finished)
+      {
+         clearCutsceneDirector.time = clearCutsceneDirector.duration;
+         clearCutsceneDirector.Evaluate();
+         GameManager.Instance.InputManager.onEnterEvent.RemoveListener(OnSkip);
+      }
+   }
+
+   public void Finish()
+   {
+      StartCoroutine(FinishCoroutine());
+   }
+
+   private IEnumerator FinishCoroutine()
+   {
+      GameManager.Instance.InputManager.canControlPlayer = false;
+      
+      ingameUICanvas.SetActive(false);
+      ingameUICanvas.SetActive(false);
+      float timeRecord = ingameUI.GetComponent<InGameUI>().GetElapsedTime();
+      resultUI.gameObject.SetActive(true);
+
+      var result = resultUI.GetComponent<ResultUI>();
+      result.record = timeRecord;
+      resultUICanvas.gameObject.SetActive(true);
+      
+      yield return StartCoroutine((GameManager.Instance.SceneLoadManager.FadeOut()));
+      
+      clearCutsceneDirector.Play();
+      StartCoroutine((GameManager.Instance.SceneLoadManager.FadeIn()));
+
+      yield return new WaitForSeconds(2f);
+      StartCoroutine(result.Animate());
+      
    }
 }

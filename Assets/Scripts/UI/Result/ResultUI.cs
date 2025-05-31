@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ResultUI : UIWindow
@@ -14,6 +15,7 @@ public class ResultUI : UIWindow
     public CanvasGroup rankingCG;
     public List<RankingUIEntry> rankEntries;
     public Button restartButton;
+    public Button exitButton;
 
     public int stage = 1;
     public string myName = "UNKNOWN";
@@ -43,10 +45,18 @@ public class ResultUI : UIWindow
     private float _timerTimeElapsed = 0f;
     private LeaderBoardManager _leaderBoardManager;
 
+    public string mapSelectSceneName;
+
     public void Restart()
     {
-        Debug.Log("RESTART");
-        //TODO - go to ingame scene
+        Time.timeScale = 1f;
+        GameManager.Instance.SceneLoadManager.FadeLoadScene(SceneManager.GetActiveScene().name);
+    }
+    
+    public void Exit()
+    {
+        Time.timeScale = 1f;
+        GameManager.Instance.SceneLoadManager.FadeLoadScene(mapSelectSceneName);
     }
 
     private string TimeToStr(float timeInSeconds)
@@ -73,8 +83,6 @@ public class ResultUI : UIWindow
 
         //decomment this to submit the record
         //_leaderBoardManager.AddRecord(stage, myName, record);
-
-        StartCoroutine(Animate());
     }
 
     private void BeginTimerAnimation()
@@ -137,8 +145,15 @@ public class ResultUI : UIWindow
         restartButton.gameObject.SetActive(true);
         restartButton.transform.DOScale(Vector3.one, buttonDuration).SetEase(Ease.OutBack);
     }
+    
+    private void BeginExitButtonAnimation()
+    {
+        exitButton.transform.localScale = Vector3.zero;
+        exitButton.gameObject.SetActive(true);
+        exitButton.transform.DOScale(Vector3.one, buttonDuration).SetEase(Ease.OutBack);
+    }
 
-    private IEnumerator Animate()
+    public IEnumerator Animate()
     {
         yield return new WaitForSeconds(animationDuration + animationAfter);
 
@@ -155,6 +170,8 @@ public class ResultUI : UIWindow
         yield return new WaitForSeconds(rankingDuration + rankingAfter);
 
         BeginButtonAnimation();
+        yield return new WaitForSeconds(0.2f);
+        BeginExitButtonAnimation();
     }
 
     // Update is called once per frame

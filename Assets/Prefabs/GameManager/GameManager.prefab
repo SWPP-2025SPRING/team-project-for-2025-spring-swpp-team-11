@@ -47,10 +47,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bgmSource: {fileID: 2095553350080962998}
+  bgmClipList:
+  - bgm: 2
+    clip: {fileID: 8300000, guid: d9e376b7830095d4abe0b96edd006de5, type: 3}
   sfxSource: {fileID: 3197586817078520127}
-  sfxClips:
+  sfxClipList:
   - sfx: 0
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 408abdbc86f652d4ba7e3cbdfd5b4f5f, type: 3}
+  - sfx: 1
+    clip: {fileID: 8300000, guid: 40dbd732a4d98634f906401a3f3bf273, type: 3}
+  - sfx: 2
+    clip: {fileID: 8300000, guid: b86e95f494ddcf34984299bfb16b2ca5, type: 3}
+  - sfx: 3
+    clip: {fileID: 8300000, guid: ddeaf9f5967bc0b4f88f97df86f10e10, type: 3}
+  - sfx: 4
+    clip: {fileID: 8300000, guid: f98a2c026e9404542ba1ef4e0f3f5a8b, type: 3}
+  - sfx: 6
+    clip: {fileID: 8300000, guid: 6832f4a094d006347a68295848a6d093, type: 3}
+  - sfx: 7
+    clip: {fileID: 8300000, guid: 8fdbcf77ed5df6d49b24320f619a3fb0, type: 3}
 --- !u!82 &2095553350080962998
 AudioSource:
   m_ObjectHideFlags: 0
@@ -64,9 +79,9 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

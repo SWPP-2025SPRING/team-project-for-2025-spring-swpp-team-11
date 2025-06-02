@@ -421,6 +421,7 @@ GameObject:
   - component: {fileID: 688636835}
   - component: {fileID: 688636838}
   - component: {fileID: 688636839}
+  - component: {fileID: 688636840}
   m_Layer: 5
   m_Name: OptionButton
   m_TagString: Untagged
@@ -588,6 +589,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basic: {fileID: 21300000, guid: df13b8b4367d8454baf2dd9d3e7eb0f9, type: 3}
   selected: {fileID: 21300000, guid: 79909b6ef4ae3448b93068aeb588b404, type: 3}
+--- !u!114 &688636840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 688636833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7608c6bd6a8c98641b7ff62992de20d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfx: 1
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1131,6 +1145,7 @@ GameObject:
   - component: {fileID: 1710539297}
   - component: {fileID: 1710539300}
   - component: {fileID: 1710539301}
+  - component: {fileID: 1710539302}
   m_Layer: 5
   m_Name: StartButton
   m_TagString: Untagged
@@ -1310,6 +1325,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basic: {fileID: 21300000, guid: 09439d4be201c46dd8a5370a6f5b72b5, type: 3}
   selected: {fileID: 21300000, guid: d6c1df0be2d1241afb2683b1ddd67fbb, type: 3}
+--- !u!114 &1710539302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1710539295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7608c6bd6a8c98641b7ff62992de20d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfx: 1
 --- !u!1 &1750252583
 GameObject:
   m_ObjectHideFlags: 0
@@ -1324,6 +1352,7 @@ GameObject:
   - component: {fileID: 1750252585}
   - component: {fileID: 1750252588}
   - component: {fileID: 1750252589}
+  - component: {fileID: 1750252590}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -1491,6 +1520,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basic: {fileID: 21300000, guid: ae083326232b34596b2a5a6ce4a9b3f8, type: 3}
   selected: {fileID: 21300000, guid: b118b518eec30482598f96b36160e753, type: 3}
+--- !u!114 &1750252590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1750252583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7608c6bd6a8c98641b7ff62992de20d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfx: 1
 --- !u!1 &1875729227
 GameObject:
   m_ObjectHideFlags: 0

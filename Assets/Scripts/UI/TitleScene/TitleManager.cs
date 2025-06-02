@@ -22,27 +22,22 @@ public class TitleManager : UIWindow
 
     private void OnVerticalDown(int v)
     {
-        _currentIndex = (_currentIndex - v + menuButtons.Count) % menuButtons.Count;
-        SelectButton(_currentIndex);
+        int newIndex = (_currentIndex - v + menuButtons.Count) % menuButtons.Count;
+        SelectButton(newIndex);
     }
 
     private void OnEnter()
     {
         menuButtons[_currentIndex].button.onClick.Invoke();
-
-
-
-
-
-
-
-
     }
 
     /* ---------- 공용 선택 로직 ---------- */
     private void SelectButton(int index)
     {
         // Unity 내장 Selectable 시스템 활용 → 마우스·키보드 색상 통일
+        if(_currentIndex != index)
+            GameManager.Instance.AudioManager.PlayOneShot(SFX.HOVER_BUTTON);
+        _currentIndex = index;
         menuButtons[index].Select();
         UpdateColors(index);
     }
@@ -53,13 +48,6 @@ public class TitleManager : UIWindow
         {
             if (i == selected) menuButtons[i].Select();
             else menuButtons[i].Unselect();
-
-
-
-
-
-
-
         }
     }
 
@@ -74,8 +62,8 @@ public class TitleManager : UIWindow
         var btn = ped.pointerEnter?.GetComponentInParent<ThemeButton>();
         if (btn == null) return;
 
-        _currentIndex = menuButtons.IndexOf(btn);
-        SelectButton(_currentIndex);   // 색상 재계산
+        int newIndex = menuButtons.IndexOf(btn);
+        SelectButton(newIndex);   // 색상 재계산
     }
 
 

@@ -50,12 +50,13 @@ public class SFXPair
 public class AudioManager : MonoBehaviour
 {
     public AudioSource bgmSource;
+    public float bgmCoef = 0.2f;
     public List<BGMPair> bgmClipList;
-    private Dictionary<BGM, AudioClip> _bgmClips;
+    private Dictionary<BGM, AudioClip> _bgmClips = new Dictionary<BGM, AudioClip>();
 
     public AudioSource sfxSource;
     public List<SFXPair> sfxClipList;
-    private Dictionary<SFX, AudioClip> _sfxClips;
+    private Dictionary<SFX, AudioClip> _sfxClips = new Dictionary<SFX, AudioClip>();
 
     void Start()
     {
@@ -76,7 +77,7 @@ public class AudioManager : MonoBehaviour
 
     public void SetBGMVolume(float volume)
     {
-        bgmSource.volume = volume;
+        bgmSource.volume = volume * bgmCoef;
     }
 
     public void StartBGM()
@@ -96,6 +97,8 @@ public class AudioManager : MonoBehaviour
 
     public void PlayOneShot(SFX sfx)
     {
-        sfxSource.PlayOneShot(_sfxClips.GetValueOrDefault(sfx));
+        AudioClip clip = _sfxClips.GetValueOrDefault(sfx);
+        Debug.Log(clip);
+        sfxSource.PlayOneShot(clip);
     }
 }

@@ -305,6 +305,8 @@ public class PlayerBehavior : MonoBehaviour
         if (IsStunNow()) return;
         if (point == null) return;
 
+        GameManager.Instance.AudioManager.PlayOneShot(SFX.WIRE_RELEASE);
+
         // 와이어 액션 상태로 바꾼다.
         _currentWirePoint = point.transform;
         _lineRenderer.enabled = true;
@@ -429,6 +431,8 @@ public class PlayerBehavior : MonoBehaviour
         _rigidbody.AddForce(knockback, ForceMode.Impulse);
         
         _animator.SetTrigger("HitTrig");
+
+        GameManager.Instance.AudioManager.PlayOneShot(SFX.HIT);
     }
 
     private void RenderWire()

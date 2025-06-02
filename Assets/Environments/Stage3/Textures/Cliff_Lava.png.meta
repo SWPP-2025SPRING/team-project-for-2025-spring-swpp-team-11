@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 631c1a6e38334d246a15c2f49d105a9d
+guid: f4d246cbe5bad974c8136078ad24f740
 timeCreated: 1476262248
 licenseType: Store
 TextureImporter:
@@ -79,5 +79,5 @@ AssetOrigin:
   productId: 67289
   packageName: Low Poly Cliff Pack
   packageVersion: 1.1
-  assetPath: Assets/BrokenVector/LowPolyCliffPack/Textures/Colorscheme Grey.png
+  assetPath: Assets/Environments/Stage2/Textures/Colorscheme Red.png
   uploadId: 252458

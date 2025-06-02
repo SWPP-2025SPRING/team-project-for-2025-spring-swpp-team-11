@@ -1,7 +1,14 @@
 fileFormatVersion: 2
-guid: f6f3733ff67a83445b60511a82b0a25f
+guid: 1531ce99648a9244b8f8cbe64b5f59ca
 PrefabImporter:
   externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 254461
+  packageName: Low poly rocks | Multiple variants
+  packageVersion: 1.0
+  assetPath: Assets/Environments/Stage3/Prefabs/Snowy/Rocks_Snowy_3.prefab
+  uploadId: 582966

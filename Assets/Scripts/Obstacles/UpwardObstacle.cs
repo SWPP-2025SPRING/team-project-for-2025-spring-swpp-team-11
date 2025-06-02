@@ -80,6 +80,18 @@ public class UpwardObstacle : MonoBehaviour
 
         return inRadius && isAbove;
     }
+    
+    // For Test
+    public bool IsPlayerDirectlyAbove(Vector3 playerPos, Vector3 thisPos)
+    {
+        Vector3 toPlayer = playerPos - thisPos;
+        Vector2 flatOffset = new Vector2(toPlayer.x, toPlayer.z);
+
+        bool inRadius = flatOffset.magnitude <= detectionRadius;
+        bool isAbove = toPlayer.y > detectionHeightOffset;
+
+        return inRadius && isAbove;
+    }
 
     private void OnCollisionEnter(Collision collision)
     {

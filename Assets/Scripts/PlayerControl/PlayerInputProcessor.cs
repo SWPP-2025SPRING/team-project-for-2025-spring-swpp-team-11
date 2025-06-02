@@ -23,7 +23,6 @@ public class PlayerInputProcessor : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        Debug.Log("MOVE");
         MoveInput = context.ReadValue<Vector2>();
     }
 

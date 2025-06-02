@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c8dc777820f9baa4c9889fe4d84793d2
+guid: 79380c6055c5ad949be69550a8606d27
 PrefabImporter:
   externalObjects: {}
   userData: 
@@ -10,5 +10,5 @@ AssetOrigin:
   productId: 254461
   packageName: Low poly rocks | Multiple variants
   packageVersion: 1.0
-  assetPath: Assets/Blinktool/Low poly rocks/Prefabs/Snowy/Rocks_Snowy_9.prefab
+  assetPath: Assets/Environments/Stage3/Prefabs/Snowy/Rocks_Snowy_9.prefab
   uploadId: 582966

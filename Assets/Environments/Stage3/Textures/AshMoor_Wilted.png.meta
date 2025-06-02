@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b85f585bb5830674593c628733f3f0d5
+guid: 7a8bc7ccabc082243a3517f8a39e7617
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -99,5 +99,5 @@ AssetOrigin:
   productId: 203646
   packageName: AshMoor - Lowpoly Environment by Unvik_3D
   packageVersion: 1.0.0
-  assetPath: Assets/Unvik_3D/AshMoor/Textures/Gradient_05.png
+  assetPath: Assets/Environments/Stage3/Textures/Gradient_05.png
   uploadId: 454436

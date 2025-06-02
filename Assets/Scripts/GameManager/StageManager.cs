@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Playables;
@@ -14,6 +15,8 @@ public enum StageState
 public class StageManager : MonoBehaviour
 {
    public int stageNumber;
+   
+   [SerializeField] private CinemachineInputAxisController cameraMoveInputAxisController;
    
    [SerializeField] private InGameUI inGameUI;
    [FormerlySerializedAs("playableDirector")] [SerializeField] private PlayableDirector openingCutScene;
@@ -31,11 +34,13 @@ public class StageManager : MonoBehaviour
       GameManager.Instance.InputManager.canControlPlayer = false;
       GameManager.Instance.InputManager.onEnterEvent.AddListener(OnSkip);
       openingCutScene.stopped += OnStartCutsceneFinished;
+      cameraMoveInputAxisController.enabled = false;
    }
 
    private void OnStartCutsceneFinished(PlayableDirector pd)
    {
       GameManager.Instance.InputManager.canControlPlayer = true;
+      cameraMoveInputAxisController.enabled = true;
       currentStageState = StageState.Started;
    }
    

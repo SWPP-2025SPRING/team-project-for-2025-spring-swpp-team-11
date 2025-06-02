@@ -64,6 +64,18 @@ public class BouncingRock : MonoBehaviour
 
         return inRadius && isUnder;
     }
+    
+    // For Test
+    public bool IsPlayerDirectlyBelow(Vector3 playerPos, Vector3 thisPos)
+    {
+        Vector3 toPlayer = playerPos - thisPos;
+        Vector2 flatOffset = new Vector2(toPlayer.x, toPlayer.z);
+
+        bool inRadius = flatOffset.magnitude <= detectionRadius;
+        bool isUnder = toPlayer.y < -detectionHeightOffset;
+
+        return inRadius && isUnder;
+    }
 
     private void StartDrop()
     {

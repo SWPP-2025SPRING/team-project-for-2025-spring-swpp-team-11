@@ -72,7 +72,7 @@ public class InGameUI : MonoBehaviour
     public void RestartGame()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        GameManager.Instance.SceneLoadManager.FadeLoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void ResumeGame()

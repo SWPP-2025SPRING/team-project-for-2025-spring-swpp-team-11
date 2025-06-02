@@ -8,7 +8,7 @@ public class SceneLoadManager : MonoBehaviour
 {
     public Image fadeImage;
     public float fadeSpeed = 1.5f;
-    
+
     public IEnumerator FadeOut()
     {
         float alpha = 0;
@@ -41,8 +41,20 @@ public class SceneLoadManager : MonoBehaviour
         yield return StartCoroutine(FadeOut());
 
         // Load the new scene
-        SceneManager.LoadScene(sceneName);
-        Debug.Log("ASDG");
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+        asyncLoad.allowSceneActivation = false;
+
+        while (asyncLoad.progress < 0.9f)
+        {
+            yield return null;
+        }
+        
+        asyncLoad.allowSceneActivation = true;
+        
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
 
         StartCoroutine(FadeIn());
     }

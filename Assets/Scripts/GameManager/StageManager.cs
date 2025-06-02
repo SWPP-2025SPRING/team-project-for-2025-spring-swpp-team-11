@@ -86,9 +86,8 @@ public class StageManager : MonoBehaviour
       yield return StartCoroutine((GameManager.Instance.SceneLoadManager.FadeOut()));
       
       clearCutsceneDirector.Play();
-      StartCoroutine((GameManager.Instance.SceneLoadManager.FadeIn()));
-
-      yield return new WaitForSeconds(2f);
+      StartCoroutine(GameManager.Instance.SceneLoadManager.FadeIn());
+      result.SetAnimationDuration((float) clearCutsceneDirector.duration);
       StartCoroutine(result.Animate());
    }
 }

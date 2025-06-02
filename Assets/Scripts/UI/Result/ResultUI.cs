@@ -68,6 +68,11 @@ public class ResultUI : UIWindow
         return string.Format("{0:00}:{1:00}.{2:000}", minutes, seconds, milliseconds);
     }
 
+    public void SetAnimationDuration(float duration)
+    {
+        animationDuration = duration;
+    }
+
     protected override void Start()
     {
         base.Start();

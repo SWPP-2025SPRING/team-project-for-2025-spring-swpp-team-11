@@ -249,7 +249,7 @@ public class PlayerBehavior : MonoBehaviour
 
         GetComponent<MeshRenderer>().materials[0].color = Color.red;
         _stunTimeElapsed -= Time.deltaTime;
-        if (_stunTimeElapsed <= 0)
+        if (_stunTimeElapsed <= 0 && _isGrounded)
         {
             _isStun = false;
             _animator.SetTrigger("RecoverTrig");

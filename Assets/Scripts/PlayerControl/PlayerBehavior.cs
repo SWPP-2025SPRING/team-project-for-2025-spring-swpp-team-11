@@ -112,7 +112,7 @@ public class PlayerBehavior : MonoBehaviour
         StunCheck();
         
         if (_currentWirePoint != null)
-            Debug.Log(Vector3.Distance(_currentWirePoint.position, transform.position));
+            RenderWire();
         
         if (!_isWiring)
         {
@@ -122,12 +122,12 @@ public class PlayerBehavior : MonoBehaviour
         }
         else
         {
-            RenderWire();
             MoveOnWire();
             OnWiringRotate();
             
             if (_isGrounded) StopWiring();
         }
+        
 
         AnimationUpdate();
     }
@@ -307,8 +307,8 @@ public class PlayerBehavior : MonoBehaviour
 
         // 와이어 액션 상태로 바꾼다.
         _currentWirePoint = point.transform;
-        _lineRenderer.enabled = true;
         _isWiring = true;
+        MakeActualLineConnection();
 
         // 와이어 포인트에 플레이어를 연결 시켜준다.
         var sprjt = _currentWirePoint.GetComponent<SpringJoint>();
@@ -338,6 +338,25 @@ public class PlayerBehavior : MonoBehaviour
         _inputOnRelease = _inputProcessor.MoveInput.normalized;
     }
 
+    private void MakeActualLineConnection()
+    {
+        _lineRenderer.startColor = Color.black;
+        _lineRenderer.endColor = Color.black;
+        _lineRenderer.enabled = true;
+    }
+
+    private void MakeVirtualLineConnection(Transform point)
+    {
+        if (point == null)
+        {
+            _lineRenderer.enabled = false;
+            return;
+        }
+        _lineRenderer.startColor = Color.grey;
+        _lineRenderer.endColor = Color.grey;
+        _lineRenderer.enabled = true;
+    }
+
     private void OnWiringRotate()
     {
         var vecToPoint = _currentWirePoint.position - transform.position;
@@ -363,7 +382,11 @@ public class PlayerBehavior : MonoBehaviour
 
 
         var point = GetAvailableWirePoint();
+        
         if (point != null) point.gameObject.GetComponent<MeshRenderer>().materials[0].color = Color.yellow;
+        var pointAsArg = point == null ? null : point.transform;
+        MakeVirtualLineConnection(pointAsArg);
+        _currentWirePoint = pointAsArg;
     }
     
     // 현재 _availableWirePoints 배열에서 와이어 연결 가능한 포인트가 있는지 체크

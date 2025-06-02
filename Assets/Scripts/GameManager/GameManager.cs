@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public DataManager DataManager { get; private set; }
     public SceneLoadManager SceneLoadManager { get; private set; }
     public InputManager InputManager { get; private set; }
+    public AudioManager AudioManager { get; private set; }
     
     private void Awake()
     {
@@ -26,5 +27,6 @@ public class GameManager : MonoBehaviour
         DataManager = GetComponentInChildren<DataManager>();
         SceneLoadManager = GetComponentInChildren<SceneLoadManager>();
         InputManager = GetComponentInChildren<InputManager>();
+        AudioManager = GetComponentInChildren<AudioManager>();
     }
 }

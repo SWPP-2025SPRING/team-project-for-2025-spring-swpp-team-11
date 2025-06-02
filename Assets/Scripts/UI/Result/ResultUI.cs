@@ -28,6 +28,7 @@ public class ResultUI : UIWindow
     [SerializeField] private float timerAfter = 1f;
 
     [SerializeField] private float gradeDuration = 1f;
+    [SerializeField] private float gradeAudioOffset = .2f;
     [SerializeField] private float gradeInitialScale = 2f;
     [SerializeField] private float gradeAfter = .5f;
 
@@ -94,6 +95,7 @@ public class ResultUI : UIWindow
     {
         _timerAnimationFlag = true;
         timeText.gameObject.SetActive(true);
+        GameManager.Instance.AudioManager.PlayOneShot(SFX.TIME_INCREASE);
     }
 
     private void BeginGradeAnimation()
@@ -166,7 +168,10 @@ public class ResultUI : UIWindow
         yield return new WaitForSeconds(timerDuration + timerAfter);
 
         BeginGradeAnimation();
-        yield return new WaitForSeconds(gradeDuration + gradeAfter);
+        yield return new WaitForSeconds(gradeDuration - gradeAudioOffset);
+
+        GameManager.Instance.AudioManager.PlayOneShot(SFX.GRADE_EXPLODE);
+        yield return new WaitForSeconds(gradeAfter + gradeAudioOffset);
 
         BeginShowRankAnimation();
         yield return new WaitForSeconds(showRankDuration + showRankAfter);

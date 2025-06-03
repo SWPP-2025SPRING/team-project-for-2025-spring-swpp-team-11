@@ -22,6 +22,23 @@ public class EditorLeaderBoardTest
     {
         LeaderBoardEntry entry = new LeaderBoardEntry("TMPNAME", timeInSeconds);
         Assert.AreEqual(expected, entry.GetTime());
+        Assert.AreEqual("TMPNAME", entry.GetName());
+        
+        // 빈 스트링
+        LeaderBoardEntry entry2 = new LeaderBoardEntry("", timeInSeconds);
+        Assert.AreEqual("", entry2.GetName());
+        
+        // null check?
+        LeaderBoardEntry entry3 = new LeaderBoardEntry(null, timeInSeconds);
+        Assert.AreEqual("", entry3.GetName());
+        
+        // 한글 스트링
+        LeaderBoardEntry entry4 = new LeaderBoardEntry("안녕하세요", timeInSeconds);
+        Assert.AreEqual("안녕하세요", entry4.GetName());
+        
+        // 긴 한글 스트링
+        LeaderBoardEntry entry5 = new LeaderBoardEntry("안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요", timeInSeconds);
+        Assert.AreEqual("안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요", entry5.GetName());
     }
 
     
@@ -37,16 +54,23 @@ public class EditorLeaderBoardTest
         });
 
         content.AddRecord("New", 15f, 10);
+        
+        Assert.AreEqual("A\nNew\nB\n", content.GetNameStr(3));
+        Assert.AreEqual("00:10.000\n00:15.000\n00:20.000\n00:30.000\n--:--.---\n", content.GetTimeStr(5));
 
         Assert.AreEqual("A", content.GetSingleName(0));
         Assert.AreEqual("New", content.GetSingleName(1));
         Assert.AreEqual("B", content.GetSingleName(2));
         Assert.AreEqual("C", content.GetSingleName(3));
         
-        Assert.AreEqual(10f, content.GetSingleTime(0));
-        Assert.AreEqual(15f, content.GetSingleTime(1));
-        Assert.AreEqual(20f, content.GetSingleTime(2));
-        Assert.AreEqual(30f, content.GetSingleTime(3));
+        content.AddRecord("New2", 1f, 3);
+        
+        Assert.AreEqual("New2", content.GetSingleName(0));
+        Assert.AreEqual("A", content.GetSingleName(1));
+        
+        Assert.AreEqual(1f, content.GetSingleTime(0));
+        Assert.AreEqual(10f, content.GetSingleTime(1));
+        Assert.AreEqual(15f, content.GetSingleTime(2));
         
         // Out of Bound 일 경우
         Assert.AreEqual("--------", content.GetSingleName(5));

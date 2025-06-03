@@ -14,6 +14,7 @@ public class LeaderBoardEntry
 
     public string GetName()
     {
+        if (name == null) return "";
         return name;
     }
 

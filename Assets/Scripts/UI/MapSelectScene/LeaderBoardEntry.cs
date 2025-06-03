@@ -1,4 +1,6 @@
-﻿[System.Serializable]
+﻿using UnityEngine;
+
+[System.Serializable]
 public class LeaderBoardEntry
 {
     public string name;
@@ -19,7 +21,7 @@ public class LeaderBoardEntry
     {
         int minutes = (int)(timeInSeconds / 60);
         int seconds = (int)(timeInSeconds % 60);
-        int milliseconds = (int)((timeInSeconds - (minutes * 60 + seconds)) * 1000);
+        int milliseconds = Mathf.RoundToInt((timeInSeconds - (minutes * 60 + seconds)) * 1000);
         return string.Format("{0:00}:{1:00}.{2:000}", minutes, seconds, milliseconds);
     }
 }

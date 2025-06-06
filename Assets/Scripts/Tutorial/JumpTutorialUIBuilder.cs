@@ -6,28 +6,38 @@ using UnityEngine.Video;
 public class JumpTutorialUIBuilder : ITutorialUIBuilder
 {
     private TutorialUIBase _tutorialUI;
-    private Transform _parentCanvas;
+    private Transform      _parentCanvas;
+    private GameObject _tutorialUIPrefab;
 
-    private VideoClip _jumpExampleVideoClip;   // VideoClip
-    private List<Sprite> _jumpKeySprites;      // Jump key
-
-    public JumpTutorialUIBuilder(
-        Transform parentCanvas,
-        VideoClip jumpExampleVideoClip,
-        List<Sprite> jumpKeySprites)
+    public JumpTutorialUIBuilder(Transform parentCanvas, GameObject tutorialUIPrefab)
     {
-        _parentCanvas = parentCanvas;
-        _jumpExampleVideoClip = jumpExampleVideoClip;
-        _jumpKeySprites = jumpKeySprites;
+        _parentCanvas     = parentCanvas;
+        _tutorialUIPrefab = tutorialUIPrefab;
     }
 
     public void PrepareTutorialUI(Transform parentCanvas)
     {
-        GameObject go = new GameObject("JumpTutorialUI_Builder");
-        go.transform.SetParent(parentCanvas, false);
+        if (_tutorialUIPrefab == null)
+        {
+            Debug.LogError("[JumpTutorialUIBuilder] TutorialUI.prefab 레퍼런스가 없습니다.");
+            return;
+        }
 
-        _tutorialUI = go.AddComponent<TutorialUIBase>();
-        _tutorialUI.Initialize(parentCanvas);
+        GameObject containerGO = GameObject.Instantiate(
+            _tutorialUIPrefab, 
+            parentCanvas, 
+            false
+        );
+        containerGO.name = "JumpTutorialUI_Instance";
+
+        // TutorialUIBase
+        _tutorialUI = containerGO.GetComponent<TutorialUIBase>();
+        if (_tutorialUI == null)
+        {
+            Debug.LogError("[JumpTutorialUIBuilder] TutorialUIBase 컴포넌트를 찾을 수 없습니다.");
+            return;
+        }
+
     }
 
     public void BuildExplanation(string message)
@@ -35,17 +45,15 @@ public class JumpTutorialUIBuilder : ITutorialUIBuilder
         _tutorialUI.SetExplanationText(message);
     }
 
-    public void BuildExampleVideo(VideoClip exampleClip)
+    public void BuildExampleVideo(VideoClip clip)
     {
-        _tutorialUI.SetExampleVideo(exampleClip);
+        _tutorialUI.SetExampleVideo(clip);
     }
 
     public void BuildKeyUI(List<Sprite> keySprites)
     {
         foreach (var keySprite in keySprites)
-        {
             _tutorialUI.AddKeyIcon(keySprite);
-        }
     }
 
     public void BuildNextButton(Action onClickCallback)

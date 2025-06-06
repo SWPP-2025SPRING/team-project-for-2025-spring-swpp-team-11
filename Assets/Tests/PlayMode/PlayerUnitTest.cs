@@ -38,6 +38,64 @@ public class PlayerUnitTest
         
         Assert.Greater(endVelocity.magnitude, startVelocity.magnitude);
         playerBehav.testInput = Vector2.zero;
+        
+        yield return new WaitForSeconds(1f);
+        
+        // player 점프 확인
+        playerBehav.Jump();
+        yield return new WaitForSeconds(0.1f);
+        var jumpVelocity1 = rigid.linearVelocity;
+        yield return new WaitForSeconds(0.3f);
+        var jumpVelocity2 = rigid.linearVelocity;
+        
+        var jumpPos1 = player.transform.position;
+        
+        Assert.Greater(jumpVelocity1.magnitude, jumpVelocity2.magnitude);
+        Assert.AreEqual(playerBehav._isGrounded, false);
+        
+        // player 더블 점프 확인
+        playerBehav.Jump();
+        yield return new WaitForSeconds(0.2f);
+        var jumpPos2 = player.transform.position;
+        
+        Assert.Greater(jumpPos2.y, jumpPos1.y);
+        
+
+        // player 트리플 점프 확인 (불가능해야함)
+        playerBehav.Jump();
+        yield return new WaitForSeconds(0.7f);
+        var jumpPos3 = player.transform.position;
+        
+        Assert.Greater(jumpPos2.y, jumpPos3.y);
+        yield return new WaitForSeconds(1f);
+        
+        // player 와이어 연결 확인 및 스윙
+        // 와이어 연결이 잘 되는가?
+        // 스윙할 때 키를 받아 반영하는가?
+        playerBehav.Jump();
+        yield return new WaitForSeconds(0.3f);
+        playerBehav.ToggleWireMode();
+        
+        playerBehav.testInput = Vector2.up + Vector2.left;
+        
+        yield return new WaitForSeconds(0.1f);
+        Assert.AreEqual(playerBehav._isWiring, true);
+        
+        var swingStartPos = player.transform.position;
+        
+        yield return new WaitForSeconds(0.2f);
+        
+        playerBehav.ToggleWireMode();
+        playerBehav.testInput = Vector2.zero;
+        
+        var swingEndPos = player.transform.position;
+        
+        yield return new WaitForSeconds(0.1f);
+        Assert.Greater(swingStartPos.x, swingEndPos.x);
+        
+        Assert.AreEqual(playerBehav._isWiring, false);
+
+        yield return new WaitForSeconds(0.5f);
     }
     
 }

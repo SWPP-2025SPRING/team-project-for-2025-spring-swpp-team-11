@@ -1,7 +1,3 @@
-
-
-
-
 using System;
 using System.Collections.Generic;
 using TMPro;
@@ -9,46 +5,46 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class PlayerBehavior : MonoBehaviour
+public class TestPlayerBehavior : MonoBehaviour
 {
     /********************************************************************************/
     [Header("Player Properties")]
     # region player properties
     
     [Header("Movement")]
-    [SerializeField] private float acceleration;
-    [SerializeField] private float deaccel;
-    [SerializeField] private float dynamicDeaccel;
+    [SerializeField] public float acceleration;
+    [SerializeField] public float deaccel;
+    [SerializeField] public float dynamicDeaccel;
     
     [Header("Jump & Air")]
-    [SerializeField] private float jumpForce;
-    [SerializeField] private float doubleJumpForce;
-    [SerializeField] private float airDeaccel;
-    [SerializeField] private int jumpCount;
+    [SerializeField] public float jumpForce;
+    [SerializeField] public float doubleJumpForce;
+    [SerializeField] public float airDeaccel;
+    [SerializeField] public int jumpCount;
 
     
     [Header("Speed Limits")]
-    [SerializeField] private float maxSpeed;
-    [SerializeField] private float airMaxSpeed;
+    [SerializeField] public float maxSpeed;
+    [SerializeField] public float airMaxSpeed;
 
     
     [Header("Ground Check")]
-    [SerializeField] private Transform feetTransform;
-    [SerializeField] private float groundCheckDistance;
+    [SerializeField] public Transform feetTransform;
+    [SerializeField] public float groundCheckDistance;
     
     [Header("Wire-related members")]
-    [SerializeField] private float wirePointDetectRadius;
-    [SerializeField] private float minDistanceConst, maxDistanceConst, wireSwingForce;
-    [SerializeField] private float wireAccel;
+    [SerializeField] public float wirePointDetectRadius;
+    [SerializeField] public float minDistanceConst, maxDistanceConst, wireSwingForce;
+    [SerializeField] public float wireAccel;
     # endregion
     
     /********************************************************************************/
     [Header("external Properties")]
     # region external properties
 
-    [SerializeField] private GameObject cameraObject;
-    [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private LayerMask wirePointLayer;
+    [SerializeField] public GameObject cameraObject;
+    [SerializeField] public LayerMask groundLayer;
+    [SerializeField] public LayerMask wirePointLayer;
     
     # endregion 
 
@@ -56,30 +52,32 @@ public class PlayerBehavior : MonoBehaviour
     [Header("Player Object Components")]
     # region Component_Refs
     
-    private Rigidbody _rigidbody;
-    private PlayerInputProcessor _inputProcessor;
-    private LineRenderer _lineRenderer;
-    private Animator _animator;
+    public Rigidbody _rigidbody;
+    public PlayerInputProcessor _inputProcessor;
+    public LineRenderer _lineRenderer;
+    public Animator _animator;
 
     # endregion
     
     /********************************************************************************/
-    private Vector3 _velocity;
-    private bool _isGrounded;
-    private int _jumpCount = 0;
+    public Vector3 _velocity;
+    public bool _isGrounded;
+    public int _jumpCount = 0;
 
-    private bool _isWiring = false;
-    private Collider[] _avilableWirePoints = new Collider[10];
-    private Transform _currentWirePoint;
+    public bool _isWiring = false;
+    public Collider[] _avilableWirePoints = new Collider[10];
+    public Transform _currentWirePoint;
 
-    private GroundFriction _currentGroundOn;
+    public GroundFriction _currentGroundOn;
     
-    private bool _isStun;
-    private float _stunTimeElapsed;
+    public bool _isStun;
+    public float _stunTimeElapsed;
 
-    private Vector2 _inputOnRelease;
-    private bool _isJustReleased;
-    private InGameUI _inGameUI;
+    public Vector2 _inputOnRelease;
+    public bool _isJustReleased;
+    public InGameUI _inGameUI;
+
+    public Vector2 testInput; 
     
     public Transform respawnPos;
 
@@ -87,13 +85,13 @@ public class PlayerBehavior : MonoBehaviour
 
     public TMP_Text text;
 
-    private void OnDrawGizmos()
+    public void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, wirePointDetectRadius);
     }
 
-    private void Start()
+    public void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
         _inputProcessor = GetComponent<PlayerInputProcessor>();
@@ -108,7 +106,7 @@ public class PlayerBehavior : MonoBehaviour
         _lineRenderer.enabled = false;
     }
     
-    private void Update()
+    public void Update()
     {
         Vector3 xzVelocity = _rigidbody.linearVelocity;
         xzVelocity.y = 0;
@@ -136,7 +134,7 @@ public class PlayerBehavior : MonoBehaviour
         AnimationUpdate();
     }
 
-    private void FixedUpdate()
+    public void FixedUpdate()
     {
         // 와이어 액션 동안 와이어의 길이를 유지해줌
         if (_isWiring)
@@ -150,7 +148,7 @@ public class PlayerBehavior : MonoBehaviour
         }
     }
 
-    private void GroundCheck()
+    public void GroundCheck()
     {
         if (Physics.Raycast(feetTransform.position, -Vector3.up, out RaycastHit hit, groundCheckDistance, groundLayer))
         {
@@ -169,17 +167,17 @@ public class PlayerBehavior : MonoBehaviour
         }
     }
 
-    private void DetectInputChange()
+    public void DetectInputChange()
     {
-        var input = _inputProcessor.MoveInput.normalized;
+        var input = testInput.normalized;
 
         if (input != _inputOnRelease)
             _isJustReleased = false;
     }
 
-    private void Move()
+    public void Move()
     {
-        var input = _inputProcessor.MoveInput.normalized;
+        var input = testInput.normalized;
         
         if (IsStunNow()) 
             input = Vector2.zero;
@@ -224,9 +222,9 @@ public class PlayerBehavior : MonoBehaviour
         }
     }
 
-    private void MoveOnWire()
+    public void MoveOnWire()
     {
-        var input = _inputProcessor.MoveInput.normalized;
+        var input = testInput.normalized;
         
         if (IsStunNow()) 
             input = Vector2.zero;
@@ -243,7 +241,7 @@ public class PlayerBehavior : MonoBehaviour
         _rigidbody.linearVelocity += finalDir.normalized * (wireAccel * Time.deltaTime);
     }
 
-    private void StunCheck()
+    public void StunCheck()
     {
         if (!_isStun)
         {
@@ -260,7 +258,7 @@ public class PlayerBehavior : MonoBehaviour
         }
     }
 
-    private bool IsStunNow()
+    public bool IsStunNow()
     {
         if (_isStun) return true;
         if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Recover") ||
@@ -272,7 +270,7 @@ public class PlayerBehavior : MonoBehaviour
         return false;
     }
     
-    private void Jump()
+    public void Jump()
     {
         if (IsStunNow() || _inGameUI.GetPaused()) return;
         
@@ -288,7 +286,7 @@ public class PlayerBehavior : MonoBehaviour
         }
     }
 
-    private void ToggleWireMode()
+    public void ToggleWireMode()
     {
         if (_isWiring)
         {
@@ -299,7 +297,7 @@ public class PlayerBehavior : MonoBehaviour
             TryConnectWire();
         }
     }
-    private void TryConnectWire()
+    public void TryConnectWire()
     {
         if (_isWiring || _isGrounded || _inGameUI.GetPaused())
             return;
@@ -328,7 +326,7 @@ public class PlayerBehavior : MonoBehaviour
         distanceToPoint = minDistance;
     }
     
-    private void StopWiring()
+    public void StopWiring()
     {
         if (!_isWiring || _inGameUI.GetPaused())
             return;
@@ -341,17 +339,17 @@ public class PlayerBehavior : MonoBehaviour
         _isWiring = false;
 
         _isJustReleased = true;
-        _inputOnRelease = _inputProcessor.MoveInput.normalized;
+        _inputOnRelease = testInput.normalized;
     }
 
-    private void OnWiringRotate()
+    public void OnWiringRotate()
     {
         var vecToPoint = _currentWirePoint.position - transform.position;
 
         transform.rotation = Quaternion.LookRotation(vecToPoint, Vector3.up);
     }
 
-    private void ScanWirePoints()
+    public void ScanWirePoints()
     {
         foreach (var i in _avilableWirePoints)
         {
@@ -374,7 +372,7 @@ public class PlayerBehavior : MonoBehaviour
     
     // 현재 _availableWirePoints 배열에서 와이어 연결 가능한 포인트가 있는지 체크
     // 연결 가능한 포인트가 없다면 null 반환
-    private Collider GetAvailableWirePoint()
+    public Collider GetAvailableWirePoint()
     {
         if (_avilableWirePoints[0] == null) return null;
         
@@ -439,13 +437,13 @@ public class PlayerBehavior : MonoBehaviour
         GameManager.Instance.AudioManager.PlayOneShot(SFX.HIT);
     }
 
-    private void RenderWire()
+    public void RenderWire()
     {
         _lineRenderer.SetPosition(0, transform.position);
         _lineRenderer.SetPosition(1, _currentWirePoint.position);
     }
 
-    private void AnimationUpdate()
+    public void AnimationUpdate()
     {
         if (!_isWiring && !IsStunNow())
             transform.rotation = Quaternion.AngleAxis(cameraObject.transform.rotation.eulerAngles.y, Vector3.up);
@@ -457,7 +455,7 @@ public class PlayerBehavior : MonoBehaviour
     }
     
 
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Respawn"))
         {

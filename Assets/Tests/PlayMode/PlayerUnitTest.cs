@@ -96,6 +96,35 @@ public class PlayerUnitTest
         Assert.AreEqual(playerBehav._isWiring, false);
 
         yield return new WaitForSeconds(0.5f);
+        
+        // player 카메라 뒤에 있는 와이어 연결 금지 확인
+        playerBehav.testInput = Vector2.up;
+        yield return new WaitForSeconds(1.3f);
+        
+        playerBehav.testInput = Vector2.zero;
+        yield return new WaitForSeconds(1f);
+        
+        playerBehav.Jump();
+        yield return new WaitForSeconds(0.3f);
+        playerBehav.ToggleWireMode();
+        yield return new WaitForSeconds(0.2f);
+        Assert.AreEqual(playerBehav._isWiring, false);
+        
+        // player 피격 및 기절 확인
+        playerBehav.GetHit(Vector3.up + Vector3.back, 5);
+        
+        yield return new WaitForSeconds(2f);
+        playerBehav.testInput = Vector2.up;
+        playerBehav.Jump();
+        var hitPos0 = player.transform.position;
+        var hitVel0 = rigid.linearVelocity;
+        yield return new WaitForSeconds(1f);
+        var hitPos1 = player.transform.position;
+        playerBehav.testInput = Vector2.zero;
+        var hitVel1 = rigid.linearVelocity;
+        
+        Assert.AreEqual(hitPos0.y, hitPos1.y);
+        Assert.Greater(hitVel0.magnitude, hitVel1.magnitude);
     }
     
 }

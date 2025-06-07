@@ -31,28 +31,6 @@ public abstract class TutorialUIDecoratorBase : MonoBehaviour
         }
 
         _innerUI.Show();
-
-        // Explanation Text
-        if(!string.IsNullOrEmpty(_explanationText))
-        {
-            _innerUI.SetExplanationText(_explanationText);
-        }
-
-        // Example Clip
-        if(_exampleClip != null)
-        {
-            _innerUI.SetExampleVideo(_exampleClip);
-        }
-
-        // Key Icons
-        // if (_keySprites != null)
-        // {
-        //     foreach (var key in _keySprites)
-        //     {
-        //         _innerUI.AddKeyIcon(key);
-        //     }
-        // }
-
         _innerUI.PlayVideo();
     }
 

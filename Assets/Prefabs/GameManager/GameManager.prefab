@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bgmSource: {fileID: 2095553350080962998}
+  bgmCoef: 0.2
   bgmClipList:
   - bgm: 2
     clip: {fileID: 8300000, guid: d9e376b7830095d4abe0b96edd006de5, type: 3}

@@ -692,7 +692,7 @@ MonoBehaviour:
   timeInput: {fileID: 25092357}
   playSceneNames:
   - 2_Stage1Scene
-  - 2_Stage1Scene
+  - 3_Stage2Scene
   - 2_Stage1Scene
 --- !u!4 &241854629
 Transform:

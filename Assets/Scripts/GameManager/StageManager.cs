@@ -29,6 +29,8 @@ public class StageManager : MonoBehaviour
     public GameObject ingameUICanvas;
     public GameObject ingameUI;
 
+    [SerializeField] private TutorialUIControl tutorialControl;
+
     private void Start()
     {
         GameManager.Instance.InputManager.canControlPlayer = false;
@@ -41,6 +43,10 @@ public class StageManager : MonoBehaviour
             GameManager.Instance.AudioManager.SetBGM(BGM.STAGE2);
         else if (stageNumber == 3)
             GameManager.Instance.AudioManager.SetBGM(BGM.STAGE3);
+
+        // Tutorial
+        if (tutorialControl != null)
+            tutorialControl.enabled = true;
     }
 
     private void OnStartCutsceneFinished(PlayableDirector pd)
@@ -49,6 +55,12 @@ public class StageManager : MonoBehaviour
         cameraMoveInputAxisController.enabled = true;
         currentStageState = StageState.Started;
         GameManager.Instance.AudioManager.StartBGM();
+
+        // Stage 1
+        if (stageNumber == 1 && tutorialControl != null)
+        {
+            tutorialControl.EnableTutorial();
+        }
     }
 
     private void OnClearCutsceneFinished(PlayableDirector pd)

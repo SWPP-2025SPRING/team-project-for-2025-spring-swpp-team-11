@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f137eb97ef2d9424ca0e6b83a3f83264, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upwardObstaclePrefab: {fileID: 5562119246820317810, guid: 1cfbc9b935abe40bbad71458706412da, type: 3}
+  upwardObstaclePrefab: {fileID: 260850713147726514, guid: 4cec4caa27f854abbbb0937f39118ddc, type: 3}
   spawnPoint: {fileID: 8751601922525976289}
   player: {fileID: 0}
   detectionRadius: 5

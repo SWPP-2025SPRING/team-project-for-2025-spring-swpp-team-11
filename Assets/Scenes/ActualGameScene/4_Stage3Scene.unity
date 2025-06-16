@@ -31101,6 +31101,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7630172356977399937, guid: 9b61b5841cb872a4f8f5928a5b582e0c, type: 3}
+      propertyPath: Priority.Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7630172356977399937, guid: 9b61b5841cb872a4f8f5928a5b582e0c, type: 3}
+      propertyPath: Priority.m_Value
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7630172356977399937, guid: 9b61b5841cb872a4f8f5928a5b582e0c, type: 3}
       propertyPath: Target.TrackingTarget
       value: 
       objectReference: {fileID: 1765106666}

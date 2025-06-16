@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: c52c5d7968fa6c9499b0b5752f899bfb, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -17923,6 +17923,7 @@ MonoBehaviour:
   resultUI: {fileID: 447773100}
   ingameUICanvas: {fileID: 126707031}
   ingameUI: {fileID: 2137561443}
+  tutorialControl: {fileID: 0}
 --- !u!4 &8751236362635814099
 Transform:
   m_ObjectHideFlags: 0

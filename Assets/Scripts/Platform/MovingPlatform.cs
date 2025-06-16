@@ -25,7 +25,7 @@ public class MovingPlatform : MonoBehaviour
         SetNextTarget();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (isWaiting)
         {

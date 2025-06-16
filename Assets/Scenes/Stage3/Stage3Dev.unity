@@ -385,7 +385,7 @@ PrefabInstance:
     - target: {fileID: 8541628702088404214, guid: fa8d4d6a254e1174db5c310eb2f29c41, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: -876546973899608171, guid: 04e5f833877e093489922b3f6797372e, type: 3}
+      objectReference: {fileID: 2100000, guid: 955b8bacd472848478467bad72d97df5, type: 2}
     - target: {fileID: 8541628702090330678, guid: fa8d4d6a254e1174db5c310eb2f29c41, type: 3}
       propertyPath: m_Name
       value: EA_Clif_01d (8)
@@ -3988,7 +3988,7 @@ PrefabInstance:
     - target: {fileID: 8541628702088404214, guid: fa8d4d6a254e1174db5c310eb2f29c41, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: -876546973899608171, guid: 04e5f833877e093489922b3f6797372e, type: 3}
+      objectReference: {fileID: 2100000, guid: 955b8bacd472848478467bad72d97df5, type: 2}
     - target: {fileID: 8541628702090330678, guid: fa8d4d6a254e1174db5c310eb2f29c41, type: 3}
       propertyPath: m_Name
       value: EA_Clif_01d (4)
@@ -5281,7 +5281,7 @@ PrefabInstance:
     - target: {fileID: 8541628702088404214, guid: fa8d4d6a254e1174db5c310eb2f29c41, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: -876546973899608171, guid: 04e5f833877e093489922b3f6797372e, type: 3}
+      objectReference: {fileID: 2100000, guid: 955b8bacd472848478467bad72d97df5, type: 2}
     - target: {fileID: 8541628702090330678, guid: fa8d4d6a254e1174db5c310eb2f29c41, type: 3}
       propertyPath: m_Name
       value: EA_Clif_01d
@@ -5828,7 +5828,7 @@ PrefabInstance:
     - target: {fileID: 8541628702088404214, guid: fa8d4d6a254e1174db5c310eb2f29c41, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: -876546973899608171, guid: 04e5f833877e093489922b3f6797372e, type: 3}
+      objectReference: {fileID: 2100000, guid: 955b8bacd472848478467bad72d97df5, type: 2}
     - target: {fileID: 8541628702090330678, guid: fa8d4d6a254e1174db5c310eb2f29c41, type: 3}
       propertyPath: m_Name
       value: EA_Clif_01d (1)
@@ -10964,7 +10964,7 @@ PrefabInstance:
     - target: {fileID: 8541628702088404214, guid: fa8d4d6a254e1174db5c310eb2f29c41, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: -876546973899608171, guid: 04e5f833877e093489922b3f6797372e, type: 3}
+      objectReference: {fileID: 2100000, guid: 955b8bacd472848478467bad72d97df5, type: 2}
     - target: {fileID: 8541628702090330678, guid: fa8d4d6a254e1174db5c310eb2f29c41, type: 3}
       propertyPath: m_Name
       value: EA_Clif_01d (9)
@@ -13419,7 +13419,7 @@ PrefabInstance:
     - target: {fileID: 8541628702088404214, guid: fa8d4d6a254e1174db5c310eb2f29c41, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: -876546973899608171, guid: 04e5f833877e093489922b3f6797372e, type: 3}
+      objectReference: {fileID: 2100000, guid: 955b8bacd472848478467bad72d97df5, type: 2}
     - target: {fileID: 8541628702090330678, guid: fa8d4d6a254e1174db5c310eb2f29c41, type: 3}
       propertyPath: m_Name
       value: EA_Clif_01d (2)
@@ -14014,7 +14014,7 @@ PrefabInstance:
     - target: {fileID: 8541628702088404214, guid: fa8d4d6a254e1174db5c310eb2f29c41, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: -876546973899608171, guid: 04e5f833877e093489922b3f6797372e, type: 3}
+      objectReference: {fileID: 2100000, guid: 955b8bacd472848478467bad72d97df5, type: 2}
     - target: {fileID: 8541628702090330678, guid: fa8d4d6a254e1174db5c310eb2f29c41, type: 3}
       propertyPath: m_Name
       value: EA_Clif_01d (11)
@@ -15002,7 +15002,7 @@ PrefabInstance:
     - target: {fileID: 8541628702088404214, guid: fa8d4d6a254e1174db5c310eb2f29c41, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: -876546973899608171, guid: 04e5f833877e093489922b3f6797372e, type: 3}
+      objectReference: {fileID: 2100000, guid: 955b8bacd472848478467bad72d97df5, type: 2}
     - target: {fileID: 8541628702090330678, guid: fa8d4d6a254e1174db5c310eb2f29c41, type: 3}
       propertyPath: m_Name
       value: EA_Clif_01d (7)
@@ -17431,7 +17431,7 @@ PrefabInstance:
     - target: {fileID: 8541628702088404214, guid: fa8d4d6a254e1174db5c310eb2f29c41, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: -876546973899608171, guid: 04e5f833877e093489922b3f6797372e, type: 3}
+      objectReference: {fileID: 2100000, guid: 955b8bacd472848478467bad72d97df5, type: 2}
     - target: {fileID: 8541628702090330678, guid: fa8d4d6a254e1174db5c310eb2f29c41, type: 3}
       propertyPath: m_Name
       value: EA_Clif_01d (5)
@@ -22404,7 +22404,7 @@ PrefabInstance:
     - target: {fileID: 8541628702088404214, guid: fa8d4d6a254e1174db5c310eb2f29c41, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: -876546973899608171, guid: 04e5f833877e093489922b3f6797372e, type: 3}
+      objectReference: {fileID: 2100000, guid: 955b8bacd472848478467bad72d97df5, type: 2}
     - target: {fileID: 8541628702090330678, guid: fa8d4d6a254e1174db5c310eb2f29c41, type: 3}
       propertyPath: m_Name
       value: EA_Clif_01d (6)
@@ -23958,7 +23958,7 @@ PrefabInstance:
     - target: {fileID: 8541628702088404214, guid: fa8d4d6a254e1174db5c310eb2f29c41, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: -876546973899608171, guid: 04e5f833877e093489922b3f6797372e, type: 3}
+      objectReference: {fileID: 2100000, guid: 955b8bacd472848478467bad72d97df5, type: 2}
     - target: {fileID: 8541628702090330678, guid: fa8d4d6a254e1174db5c310eb2f29c41, type: 3}
       propertyPath: m_Name
       value: EA_Clif_01d (3)
@@ -27829,7 +27829,7 @@ PrefabInstance:
     - target: {fileID: 8541628702088404214, guid: fa8d4d6a254e1174db5c310eb2f29c41, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: -876546973899608171, guid: 04e5f833877e093489922b3f6797372e, type: 3}
+      objectReference: {fileID: 2100000, guid: 955b8bacd472848478467bad72d97df5, type: 2}
     - target: {fileID: 8541628702090330678, guid: fa8d4d6a254e1174db5c310eb2f29c41, type: 3}
       propertyPath: m_Name
       value: EA_Clif_01d (10)
@@ -29013,6 +29013,10 @@ PrefabInstance:
     - target: {fileID: 233122640069827693, guid: de45e08a8ce644b4880409d3e817acfc, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 738823318851933794, guid: de45e08a8ce644b4880409d3e817acfc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1711654818859024742, guid: de45e08a8ce644b4880409d3e817acfc, type: 3}
       propertyPath: respawnPos

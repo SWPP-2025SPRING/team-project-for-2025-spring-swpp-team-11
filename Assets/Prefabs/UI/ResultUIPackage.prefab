@@ -74,6 +74,7 @@ MonoBehaviour:
   timerDuration: 1
   timerAfter: 0
   gradeDuration: 1
+  gradeAudioOffset: 0.2
   gradeInitialScale: 2
   gradeAfter: 0.5
   showRankDuration: 1

@@ -1241,6 +1241,7 @@ MonoBehaviour:
   - {fileID: 656916927}
   - {fileID: 606569909}
   restartButton: {fileID: 277528218}
+  exitButton: {fileID: 0}
   stage: 1
   myName: you
   record: 12.345
@@ -1249,6 +1250,7 @@ MonoBehaviour:
   timerDuration: 1
   timerAfter: 0
   gradeDuration: 1
+  gradeAudioOffset: 0.2
   gradeInitialScale: 2
   gradeAfter: 0.5
   showRankDuration: 1
@@ -1258,6 +1260,7 @@ MonoBehaviour:
   rankingAnimationUnit: 100
   rankingAfter: 0.5
   buttonDuration: 1
+  mapSelectSceneName: 
 --- !u!1 &1590007233
 GameObject:
   m_ObjectHideFlags: 0

@@ -111,8 +111,6 @@ public class PlayerBehavior : MonoBehaviour
         GroundCheck();
         StunCheck();
         
-        if (_currentWirePoint != null)
-            Debug.Log(Vector3.Distance(_currentWirePoint.position, transform.position));
         
         if (!_isWiring)
         {

@@ -21,7 +21,8 @@ public class WireSetupButton : MonoBehaviour
         if(dm.wiremode == WIREMODE.HOLD)
         {
             dm.SetWireMode(WIREMODE.TOGGLE);
-        }else if(dm.wiremode == WIREMODE.TOGGLE)
+        }
+        else if(dm.wiremode == WIREMODE.TOGGLE)
         {
             dm.SetWireMode(WIREMODE.HOLD);
         }

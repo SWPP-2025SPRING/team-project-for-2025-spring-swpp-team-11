@@ -10,8 +10,9 @@ public class InputManager : MonoBehaviour
     public UnityEvent<InputAction.CallbackContext> onMoveEvent;
     public UnityEvent<InputAction.CallbackContext> onJumpEvent;
     public UnityEvent<InputAction.CallbackContext> onShotEvent;
-    
-    
+    public UnityEvent<InputAction.CallbackContext> onRespawnEvent;
+
+
     // UI 관련
     public UnityEvent<InputAction.CallbackContext> onEnterEvent;
     public UnityEvent<InputAction.CallbackContext> onHorizontalEvent;
@@ -43,6 +44,11 @@ public class InputManager : MonoBehaviour
     public void OnEscape(InputAction.CallbackContext context)
     {
         onEscapeEvent.Invoke(context);  
+    }
+
+    public void OnRespawn(InputAction.CallbackContext context)
+    {
+        onRespawnEvent.Invoke(context);
     }
 
     public void OnEnter(InputAction.CallbackContext context)

@@ -77,6 +77,8 @@ public class PlayerBehavior : MonoBehaviour
     private Vector2 _inputOnRelease;
     private bool _isJustReleased;
     private InGameUI _inGameUI;
+
+    private WIREMODE _wiremode;
     
     public Transform respawnPos;
 
@@ -99,8 +101,9 @@ public class PlayerBehavior : MonoBehaviour
         _inGameUI = FindFirstObjectByType<InGameUI>();
 
         _inputProcessor.jumpEvent.AddListener(Jump);
-        _inputProcessor.shotEvent.AddListener(TryConnectWire);
-        _inputProcessor.releaseEvent.AddListener(StopWiring);
+        _inputProcessor.shotEvent.AddListener(OnClick);
+        _inputProcessor.releaseEvent.AddListener(OnRelease);
+        _inputProcessor.respawnEvent.AddListener(Respawn);
 
         _lineRenderer.enabled = false;
         float sensitivity = GameManager.Instance.DataManager.sensitivity;
@@ -115,8 +118,22 @@ public class PlayerBehavior : MonoBehaviour
                 c.Input.Gain = -sensitivity;
             }
         }
+
+        _wiremode = GameManager.Instance.DataManager.wiremode;
+        Debug.Log("wire mode:" + _wiremode);
     }
-    
+
+    private void OnClick()
+    {
+        if (_wiremode == WIREMODE.HOLD) TryConnectWire();
+        else if (_wiremode == WIREMODE.TOGGLE) ToggleWireMode();
+    }
+
+    private void OnRelease()
+    {
+        if (_wiremode == WIREMODE.HOLD) StopWiring();
+    }
+
     private void Update()
     {
         Vector3 xzVelocity = _rigidbody.linearVelocity;
@@ -463,13 +480,18 @@ public class PlayerBehavior : MonoBehaviour
         _animator.SetBool("Wire_b", _isWiring);
     }
     
+    private void Respawn()
+    {
+        if (_isWiring) StopWiring();
+        _rigidbody.linearVelocity = Vector3.zero;
+        transform.position = respawnPos.position;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Respawn"))
         {
-            _rigidbody.linearVelocity = Vector3.zero;
-            transform.position = respawnPos.position;
+            Respawn();
         }
     }
 }

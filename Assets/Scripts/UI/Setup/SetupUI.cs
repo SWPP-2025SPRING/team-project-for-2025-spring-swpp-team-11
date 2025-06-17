@@ -51,6 +51,8 @@ public class SetupUI : UIWindow
             return;
         }
 
+        GameManager.Instance.AudioManager.PlayOneShot(SFX.HOVER_BUTTON);
+
         _rebindName = name;
         _action.Disable();
         _rebindingOperation = _action.PerformInteractiveRebinding()
@@ -69,10 +71,12 @@ public class SetupUI : UIWindow
 
         string newKeyString = _action.GetBindingDisplayString(0);
         _rebindTexts.GetValueOrDefault(_rebindName, null).SetText(newKeyString);
+        GameManager.Instance.AudioManager.PlayOneShot(SFX.CLICK_BUTTON);
     }
 
     private void RebindCancel()
     {
+        GameManager.Instance.AudioManager.PlayOneShot(SFX.HOVER_BUTTON);
         _rebindingOperation.Dispose();
         _action.Enable();
         EventSystem.current.SetSelectedGameObject(null);

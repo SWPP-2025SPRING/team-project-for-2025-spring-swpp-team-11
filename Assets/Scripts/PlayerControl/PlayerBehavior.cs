@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -102,6 +103,18 @@ public class PlayerBehavior : MonoBehaviour
         _inputProcessor.releaseEvent.AddListener(StopWiring);
 
         _lineRenderer.enabled = false;
+        float sensitivity = GameManager.Instance.DataManager.sensitivity;
+        var orbital = cameraObject.GetComponent<CinemachineInputAxisController>();
+        foreach (var c in orbital.Controllers)
+        {
+            if(c.Name == "Look Orbit X")
+            {
+                c.Input.Gain = sensitivity;
+            }else if(c.Name == "Look Orbit Y")
+            {
+                c.Input.Gain = -sensitivity;
+            }
+        }
     }
     
     private void Update()

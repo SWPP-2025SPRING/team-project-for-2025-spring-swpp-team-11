@@ -19,12 +19,27 @@ public class KeyBindPair
     }
 }
 
+[System.Serializable]
+public class SliderPair
+{
+    public string name;
+    public Slider slider;
+
+    public SliderPair(string name, Slider slider)
+    {
+        this.name = name;
+        this.slider = slider;
+    }
+}
+
 public class SetupUI : UIWindow
 {
     public InputActionAsset actionAsset;
     public List<KeyBindPair> rebindTexts;
+    public List<SliderPair> sliders;
 
     private Dictionary<string, TextMeshProUGUI> _rebindTexts = new Dictionary<string, TextMeshProUGUI>();
+    private Dictionary<string, Slider> _sliders = new Dictionary<string, Slider>();
     private RebindingOperation _rebindingOperation;
     private InputAction _action;
     private string _rebindName;
@@ -38,6 +53,13 @@ public class SetupUI : UIWindow
                                          .FindAction(pair.name)
                                          .GetBindingDisplayString(0));
         }
+        foreach(SliderPair pair in sliders)
+        {
+            _sliders.Add(pair.name, pair.slider);
+        }
+        _sliders.GetValueOrDefault("sensitivity", null).value = Mathf.Log10(GameManager.Instance.DataManager.sensitivity);
+        _sliders.GetValueOrDefault("BGM", null).value = GameManager.Instance.AudioManager.GetBGMVolume();
+        _sliders.GetValueOrDefault("SFX", null).value = GameManager.Instance.AudioManager.GetSFXVolume();
     }
 
     public void StartRebind(string name)
@@ -80,6 +102,31 @@ public class SetupUI : UIWindow
         _rebindingOperation.Dispose();
         _action.Enable();
         EventSystem.current.SetSelectedGameObject(null);
+    }
+
+    public void UpdateSensitivity()
+    {
+        float logSensitivity = _sliders.GetValueOrDefault("sensitivity", null).value;
+        Debug.Log(logSensitivity);
+        float sensitivity = Mathf.Pow(10, logSensitivity);
+        GameManager.Instance.DataManager.SetSensitivity(sensitivity);
+    }
+
+    public void UpdateBGMVolume()
+    {
+        float volume = _sliders.GetValueOrDefault("BGM", null).value;
+        GameManager.Instance.AudioManager.SetBGMVolume(volume);
+    }
+
+    public void UpdateSFXVolume()
+    {
+        float volume = _sliders.GetValueOrDefault("SFX", null).value;
+        GameManager.Instance.AudioManager.SetSFXVolume(volume);
+    }
+
+    public void GotoTitle()
+    {
+        GameManager.Instance.SceneLoadManager.FadeLoadScene("0_TitleSceneAppliedOne");
     }
 
     // Update is called once per frame

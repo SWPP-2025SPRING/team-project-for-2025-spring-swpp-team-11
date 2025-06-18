@@ -84,6 +84,12 @@ public class InGameUI : MonoBehaviour
         Cursor.visible = false;
     }
 
+    public void ExitGame()
+    {
+        Time.timeScale = 1f;
+        GameManager.Instance.SceneLoadManager.FadeLoadScene("1_StageSelectSceneAppliedOne");
+    }
+
     public bool GetPaused() { return _paused; }
     public float GetElapsedTime() { return _elapsedTime; }
 }

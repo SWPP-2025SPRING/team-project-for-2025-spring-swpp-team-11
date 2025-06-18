@@ -70,6 +70,16 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public float GetBGMVolume()
+    {
+        return bgmSource.volume / bgmCoef;
+    }
+
+    public float GetSFXVolume()
+    {
+        return sfxSource.volume;
+    }
+
     public void SetBGM(BGM bgm)
     {
         bgmSource.clip = _bgmClips.GetValueOrDefault(bgm);
@@ -98,7 +108,6 @@ public class AudioManager : MonoBehaviour
     public void PlayOneShot(SFX sfx)
     {
         AudioClip clip = _sfxClips.GetValueOrDefault(sfx);
-        Debug.Log(clip);
         sfxSource.PlayOneShot(clip);
     }
 }

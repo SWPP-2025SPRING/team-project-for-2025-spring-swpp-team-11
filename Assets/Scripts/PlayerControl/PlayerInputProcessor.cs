@@ -9,6 +9,7 @@ public class PlayerInputProcessor : MonoBehaviour
     public UnityEvent shotEvent;
     public UnityEvent releaseEvent;
     public UnityEvent escapeEvent;
+    public UnityEvent respawnEvent;
     public Vector2 MoveInput { get; private set; }
 
     private void Start()
@@ -19,6 +20,7 @@ public class PlayerInputProcessor : MonoBehaviour
         inputManager.onJumpEvent.AddListener(OnJump);
         inputManager.onShotEvent.AddListener(OnShot);
         inputManager.onEscapeEvent.AddListener(OnEscape);
+        inputManager.onRespawnEvent.AddListener(OnRespawn);
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -44,5 +46,11 @@ public class PlayerInputProcessor : MonoBehaviour
     {
         if(context.phase == InputActionPhase.Started)
             escapeEvent.Invoke();
+    }
+
+    public void OnRespawn(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+            respawnEvent.Invoke();
     }
 }

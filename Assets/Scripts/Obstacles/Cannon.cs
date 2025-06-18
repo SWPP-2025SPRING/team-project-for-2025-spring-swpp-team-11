@@ -5,15 +5,15 @@ public class Cannon : MonoBehaviour, ICannonSubject
 {
     public float fireInterval = 3f;
 
-    private float timer = 0f;
+    private float _timer = 0f;
     private List<ICannonObserver> observers = new List<ICannonObserver>();
 
     void Update()
     {
-        timer += Time.deltaTime;
-        if (timer >= fireInterval)
+        _timer += Time.deltaTime;
+        if (_timer >= fireInterval)
         {
-            timer = 0f;
+            _timer = 0f;
             NotifyObservers();
         }
     }

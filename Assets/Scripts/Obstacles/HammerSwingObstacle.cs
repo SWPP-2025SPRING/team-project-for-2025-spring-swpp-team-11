@@ -7,11 +7,11 @@ public class HammerSwingObstacle : MonoBehaviour
     public float swingSpeed = 2f;      // 스윙 속도 (진동 주기)
     public float penalty = 10f;        // 충돌 시 패널티
 
-    private Quaternion startRotation;
+    private Quaternion _startRotation;
 
     void Start()
     {
-        startRotation = transform.localRotation;
+        _startRotation = transform.localRotation;
     }
 
     void Update()

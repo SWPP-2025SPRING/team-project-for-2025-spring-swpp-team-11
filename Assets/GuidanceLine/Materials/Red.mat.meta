@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 30451a8fd87f1284faf023640ec23196
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 303873
+  packageName: Guidance Line
+  packageVersion: 1.0.0
+  assetPath: Assets/GuidanceLine/Materials/Red.mat
+  uploadId: 716538

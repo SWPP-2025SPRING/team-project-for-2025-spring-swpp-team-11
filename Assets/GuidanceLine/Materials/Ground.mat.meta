@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d7a2f53584e572b419d585ec5986cb2f
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 303873
+  packageName: Guidance Line
+  packageVersion: 1.0.0
+  assetPath: Assets/GuidanceLine/Materials/Ground.mat
+  uploadId: 716538

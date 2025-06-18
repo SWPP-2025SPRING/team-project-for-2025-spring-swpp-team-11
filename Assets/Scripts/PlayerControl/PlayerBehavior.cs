@@ -417,6 +417,8 @@ public class PlayerBehavior : MonoBehaviour
 
     public void GetHit(Vector3 knockback, float stunTime)
     {
+        if (_isStun) return; 
+        
         _isStun = true;
         _stunTimeElapsed = stunTime;
 

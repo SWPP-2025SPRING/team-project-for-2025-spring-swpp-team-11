@@ -269,6 +269,7 @@ public class PlayerBehavior : MonoBehaviour
     private void Jump()
     {
         if (IsStunNow() || _inGameUI.GetPaused()) return;
+        if (_isWiring) return;
         
         if (_isGrounded || _jumpCount < jumpCount)
         {

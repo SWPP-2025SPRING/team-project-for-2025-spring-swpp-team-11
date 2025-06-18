@@ -32,15 +32,15 @@ public class DragonEndTrigger : MonoBehaviour
     private void OnDragonEnterFinished(PlayableDirector pd)
     {
         // 플레이어 통제권 복원
+        Debug.Log("ASDG");
+        
         GameManager.Instance.InputManager.canControlPlayer = true;
         cameraMoveInputAxisController.enabled = true;
 
-        playerRb.isKinematic = false;
-        
-        // 장애물 기믹 재생
-        throwingMonster.enabled = true;
         
         throwingMonster.gameObject.SetActive(false);
+
+        playerRb.isKinematic = false;
     }
 
     private void OnTriggerEnter(Collider other)

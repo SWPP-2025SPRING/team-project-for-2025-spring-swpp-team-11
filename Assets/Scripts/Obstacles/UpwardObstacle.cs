@@ -65,6 +65,7 @@ public class UpwardObstacle : MonoBehaviour
         hasHitPlayer = false;
 
         rb.isKinematic = false;
+        rb.AddTorque(Vector3.right * 30, ForceMode.Impulse);
         rb.useGravity = true;
         rb.linearVelocity = Vector3.zero; // Reset before force
         rb.AddForce(Vector3.up * launchForce, ForceMode.Impulse);

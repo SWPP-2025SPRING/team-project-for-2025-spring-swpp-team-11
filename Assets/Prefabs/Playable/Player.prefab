@@ -143,9 +143,9 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!120 &1722163773609855465
 LineRenderer:
   serializedVersion: 2
@@ -275,7 +275,7 @@ MonoBehaviour:
   maxSpeed: 15
   airMaxSpeed: 30
   feetTransform: {fileID: 5392358170671522425}
-  groundCheckDistance: 0.3
+  groundCheckDistance: 0.4
   wirePointDetectRadius: 30
   minDistanceConst: 2
   maxDistanceConst: 3
@@ -460,6 +460,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: e38f0c6ba37b53b45a8accfe305d812d, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e38f0c6ba37b53b45a8accfe305d812d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e38f0c6ba37b53b45a8accfe305d812d, type: 3}
       propertyPath: m_StaticEditorFlags

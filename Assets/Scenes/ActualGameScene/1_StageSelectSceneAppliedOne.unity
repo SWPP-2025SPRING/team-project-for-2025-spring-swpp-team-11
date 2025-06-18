@@ -693,7 +693,7 @@ MonoBehaviour:
   playSceneNames:
   - 2_Stage1Scene
   - 3_Stage2Scene
-  - 2_Stage1Scene
+  - 4_Stage3Scene
 --- !u!4 &241854629
 Transform:
   m_ObjectHideFlags: 0

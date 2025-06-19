@@ -43,6 +43,8 @@ public class StageManager : MonoBehaviour
             GameManager.Instance.AudioManager.SetBGM(BGM.STAGE2);
         else if (stageNumber == 3)
             GameManager.Instance.AudioManager.SetBGM(BGM.STAGE3);
+        
+        GameManager.Instance.DataManager.selectedStage = stageNumber;
 
         // Tutorial
         if (tutorialControl != null)

@@ -12,6 +12,10 @@ public class MovingPlatform : MonoBehaviour
     private float timer = 0f;
     private bool isWaiting = false;
 
+    private bool _playerOnThis;
+
+    private Transform _player;
+
     private void Start()
     {
         if (waypoints.Count == 0)
@@ -21,15 +25,16 @@ public class MovingPlatform : MonoBehaviour
             return;
         }
 
+        _player = GameObject.FindGameObjectWithTag("Player").transform;
         transform.position = waypoints[0].position;
         SetNextTarget();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (isWaiting)
         {
-            timer += Time.deltaTime;
+            timer += Time.fixedDeltaTime;
             if (timer >= interval)
             {
                 timer = 0f;
@@ -39,11 +44,18 @@ public class MovingPlatform : MonoBehaviour
             return;
         }
 
-        transform.position = Vector3.MoveTowards(transform.position, currentTargetPoint, speed * Time.deltaTime);
+        var current = transform.position;
+        transform.position = Vector3.MoveTowards(transform.position, currentTargetPoint, speed * Time.fixedDeltaTime);
+        var diff = transform.position - current;
 
         if (Vector3.Distance(transform.position, currentTargetPoint) < 0.1f)
         {
             isWaiting = true;
+        }
+
+        if (_playerOnThis)
+        {
+            _player.Translate(diff, Space.World);
         }
     }
 
@@ -57,7 +69,8 @@ public class MovingPlatform : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.transform.SetParent(transform);
+            _playerOnThis = true;
+            // collision.transform.SetParent(transform);
         }
     }
 
@@ -65,7 +78,8 @@ public class MovingPlatform : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.transform.SetParent(null);
+            _playerOnThis = false;
+            // collision.transform.SetParent(null);
         }
     }
 }

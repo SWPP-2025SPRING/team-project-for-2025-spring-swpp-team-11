@@ -23,6 +23,8 @@ public class DataManager : MonoBehaviour
         this.sensitivity = sensitivity;
     }
 
+    public int selectedStage = 2;
+
     private void Start()
     {
         LeaderBoardManager = GetComponentInChildren<LeaderBoardManager>();

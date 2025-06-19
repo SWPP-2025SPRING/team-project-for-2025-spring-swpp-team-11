@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -30,13 +31,31 @@ public class MapSelectUI : UIWindow
         onHorizontalDown.AddListener(OnHorizontalDown);
         
         ApplyUIUpdate();
+
+        StartCoroutine(UpdateIndex());
     }
+    
 
     private void ApplyUIUpdate()
     {
+        Debug.Log(_currentSelectedStage);
         leaderBoardName.SetText(_leaderBoardManager.GetNameStr(_currentSelectedStage));
         leaderBoardTime.SetText(_leaderBoardManager.GetTimeStr(_currentSelectedStage));
     }
+
+    private IEnumerator UpdateIndex()
+    {
+        yield return new WaitForSeconds(0.1f);
+        int newIndex = GameManager.Instance.DataManager.selectedStage;
+        if (newIndex < 1) newIndex += mapImages.Count;
+        if (newIndex > mapImages.Count) newIndex -= mapImages.Count;
+        while (_currentSelectedStage != newIndex)
+        {
+            Debug.Log("ASDG");
+            UpdateSelectedStage(1);
+            yield return new WaitForSeconds(0.05f);
+        }
+    } 
 
     public void UpdateSelectedStage(int direction)
     {
@@ -51,16 +70,7 @@ public class MapSelectUI : UIWindow
         ApplyUIUpdate();
     }
 
-
-
-
-
-
-
-
-
-
-
+    
     public void StartGame()
     {
         Debug.Log("Stage " + _currentSelectedStage + " start");

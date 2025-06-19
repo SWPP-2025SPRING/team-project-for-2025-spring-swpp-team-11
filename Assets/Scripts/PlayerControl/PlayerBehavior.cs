@@ -299,6 +299,7 @@ public class PlayerBehavior : MonoBehaviour
     private void Jump()
     {
         if (IsStunNow() || _inGameUI.GetPaused()) return;
+        if (_isWiring) return;
         
         if (_isGrounded || _jumpCount < jumpCount)
         {
@@ -447,6 +448,8 @@ public class PlayerBehavior : MonoBehaviour
 
     public void GetHit(Vector3 knockback, float stunTime)
     {
+        if (_isStun) return; 
+        
         _isStun = true;
         _stunTimeElapsed = stunTime;
 

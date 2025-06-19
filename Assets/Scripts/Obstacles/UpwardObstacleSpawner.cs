@@ -46,6 +46,7 @@ public class UpwardObstacleSpawner : MonoBehaviour
     private void SpawnObstacle()
     {
         GameObject obj = Instantiate(upwardObstaclePrefab, spawnPoint.position, Quaternion.identity);
+        
         UpwardObstacle obstacle = obj.GetComponent<UpwardObstacle>();
         if (obstacle != null)
         {

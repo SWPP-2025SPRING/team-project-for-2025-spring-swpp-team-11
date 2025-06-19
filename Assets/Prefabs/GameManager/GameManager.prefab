@@ -53,6 +53,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: d9e376b7830095d4abe0b96edd006de5, type: 3}
   - bgm: 3
     clip: {fileID: 8300000, guid: 1153e76093f3038468c4f574e8818cb3, type: 3}
+  - bgm: 4
+    clip: {fileID: 8300000, guid: 55e638ef0a1e508499c77f0aa342d369, type: 3}
   sfxSource: {fileID: 3197586817078520127}
   sfxClipList:
   - sfx: 0

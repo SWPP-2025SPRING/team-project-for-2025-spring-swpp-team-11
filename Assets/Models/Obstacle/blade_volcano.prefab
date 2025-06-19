@@ -58,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: e24eafc162f03604b97d368ecfb68702, type: 2}
     - target: {fileID: 919132149155446097, guid: 87c0dc2efc9cab8408198b3608e44577, type: 3}
       propertyPath: m_Name
-      value: leafblade_volcano
+      value: blade_volcano
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -98,7 +98,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -7387706064836869012, guid: 87c0dc2efc9cab8408198b3608e44577, type: 3}
 --- !u!114 &-7288600977446613511

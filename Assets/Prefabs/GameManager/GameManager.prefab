@@ -297,6 +297,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7999490991592208539}
   - {fileID: 919136676476942989}
   m_Father: {fileID: 7191681055698095396}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -357,6 +358,90 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df11a4d05b1b408ea5e682612cdeb3c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2006634938087541269
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7999490991592208539}
+  - component: {fileID: 7931235656312948963}
+  m_Layer: 0
+  m_Name: GradeCutManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7999490991592208539
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006634938087541269}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 334.5001, y: 188.16669, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4298043099387072298}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7931235656312948963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006634938087541269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6e94be35b8c18a44a8a08342a592651, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gradeCuts:
+  - stage: 1
+    cutlines:
+    - grade: S
+      maxTime: 60
+    - grade: A
+      maxTime: 120
+    - grade: B
+      maxTime: 180
+    - grade: C
+      maxTime: 240
+    - grade: D
+      maxTime: 300
+    lowestGrade: E
+  - stage: 2
+    cutlines:
+    - grade: S
+      maxTime: 60
+    - grade: A
+      maxTime: 120
+    - grade: B
+      maxTime: 180
+    - grade: C
+      maxTime: 240
+    - grade: D
+      maxTime: 300
+    lowestGrade: E
+  - stage: 3
+    cutlines:
+    - grade: S
+      maxTime: 60
+    - grade: A
+      maxTime: 120
+    - grade: B
+      maxTime: 180
+    - grade: C
+      maxTime: 240
+    - grade: D
+      maxTime: 300
+    lowestGrade: E
 --- !u!1 &2347623323980830124
 GameObject:
   m_ObjectHideFlags: 0

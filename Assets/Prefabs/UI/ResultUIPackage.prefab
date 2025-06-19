@@ -404,6 +404,31 @@ MonoBehaviour:
   timeText: {fileID: 3401691241755407921}
   gradeText: {fileID: 2292720980056069864}
   gradeCG: {fileID: 5853566528436572695}
+  gradeColorPairs:
+  - grade: S
+    color:
+      serializedVersion: 2
+      rgba: 4278242559
+  - grade: A
+    color:
+      serializedVersion: 2
+      rgba: 4280427263
+  - grade: B
+    color:
+      serializedVersion: 2
+      rgba: 4278225151
+  - grade: C
+    color:
+      serializedVersion: 2
+      rgba: 4287168392
+  - grade: D
+    color:
+      serializedVersion: 2
+      rgba: 4294936712
+  - grade: E
+    color:
+      serializedVersion: 2
+      rgba: 4287137928
   rankingRect: {fileID: 5077494244536374382}
   rankingCG: {fileID: 1890673070187385694}
   rankEntries:
@@ -590,7 +615,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4539904403697422383
 RectTransform:
   m_ObjectHideFlags: 0
@@ -638,7 +663,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: A
+  m_text: E
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 57fcbd3a1c1781d41809cad3160ac10c, type: 2}
   m_sharedMaterial: {fileID: 848603658143203545, guid: 57fcbd3a1c1781d41809cad3160ac10c, type: 2}
@@ -647,8 +672,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278255615
-  m_fontColor: {r: 1, g: 1, b: 0, a: 1}
+    rgba: 4287137928
+  m_fontColor: {r: 0.53333336, g: 0.53333336, b: 0.53333336, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

@@ -6,11 +6,19 @@ using DG.Tweening;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+[System.Serializable]
+public class GradeColorPair
+{
+    public string grade;
+    public Color32 color;
+}
+
 public class ResultUI : UIWindow
 {
     public TextMeshProUGUI timeText;
     public TextMeshProUGUI gradeText;
     public CanvasGroup gradeCG;
+    public List<GradeColorPair> gradeColorPairs;
     public RectTransform rankingRect;
     public CanvasGroup rankingCG;
     public List<RankingUIEntry> rankEntries;
@@ -51,6 +59,7 @@ public class ResultUI : UIWindow
     private float _timerTimeElapsed = 0f;
     private LeaderBoardManager _leaderBoardManager;
     private int _myRank = -1;
+    private string _grade = "S";
 
     public string mapSelectSceneName;
 
@@ -106,6 +115,13 @@ public class ResultUI : UIWindow
 
     private void BeginGradeAnimation()
     {
+        _grade = GameManager.Instance.DataManager.GradeCutManager.GetGradeByTime(stage, record);
+        print(_grade);
+        foreach(GradeColorPair pair in gradeColorPairs)
+        {
+            if (pair.grade == _grade) gradeText.color = pair.color;
+        }
+        gradeText.SetText(_grade);
         gradeText.gameObject.SetActive(true);
         gradeText.transform.localScale = new Vector3(gradeInitialScale, gradeInitialScale, gradeInitialScale);
         gradeCG.alpha = 0;

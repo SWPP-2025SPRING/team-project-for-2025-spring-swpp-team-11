@@ -16,6 +16,11 @@ public class ResultUI : UIWindow
     public List<RankingUIEntry> rankEntries;
     public Button restartButton;
     public Button exitButton;
+    public CanvasGroup submitForm;
+    public TMP_InputField nameInput;
+
+    public int minLength = 3;
+    public int maxLength = 15;
 
     public int stage = 1;
     public string myName = "UNKNOWN";
@@ -45,6 +50,7 @@ public class ResultUI : UIWindow
     private bool _timerAnimationFlag = false;
     private float _timerTimeElapsed = 0f;
     private LeaderBoardManager _leaderBoardManager;
+    private int _myRank = -1;
 
     public string mapSelectSceneName;
 
@@ -125,11 +131,14 @@ public class ResultUI : UIWindow
             if (_leaderBoardManager.GetSingleTime(stage, i - 1) <= record) break;
             i--;
         }
+        _myRank = i;
         if (i <= _leaderBoardManager.length)
         {
             rankEntries[0].SetName(i + "  " + myName);
             RectTransform rect = rankEntries[0].GetComponent<RectTransform>();
             rect.DOAnchorPosY(rect.anchoredPosition.y + rankingAnimationUnit * (_leaderBoardManager.length - i + 2), rankingDuration);
+            submitForm.gameObject.SetActive(true);
+            submitForm.DOFade(1, rankingDuration);
         }
         for(int j = i; j <= _leaderBoardManager.length; j++)
         {
@@ -144,6 +153,16 @@ public class ResultUI : UIWindow
                 rect.DOAnchorPosY(rect.anchoredPosition.y - rankingAnimationUnit, rankingDuration);
             }
         }
+    }
+
+    public void Submit()
+    {
+        string name = nameInput.text;
+        if (name.Length < minLength || name.Length > maxLength) return;
+        myName = name;
+        rankEntries[0].SetName(_myRank + "  " + myName);
+        submitForm.gameObject.SetActive(false);
+        GameManager.Instance.DataManager.LeaderBoardManager.AddRecord(stage, myName, record);
     }
 
     private void BeginButtonAnimation()
@@ -178,7 +197,6 @@ public class ResultUI : UIWindow
         yield return new WaitForSeconds(showRankDuration + showRankAfter);
 
         BeginRankAnimation();
-        GameManager.Instance.DataManager.LeaderBoardManager.AddRecord(stage, "TMP(TOBEFIXED)", record);
         yield return new WaitForSeconds(rankingDuration + rankingAfter);
         
 

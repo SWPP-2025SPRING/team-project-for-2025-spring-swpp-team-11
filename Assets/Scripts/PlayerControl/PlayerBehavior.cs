@@ -460,6 +460,8 @@ public class PlayerBehavior : MonoBehaviour
         {
             _rigidbody.linearVelocity = Vector3.zero;
             transform.position = respawnPos.position;
+            _rigidbody.linearVelocity = Vector3.zero;
+            
         }
     }
 }

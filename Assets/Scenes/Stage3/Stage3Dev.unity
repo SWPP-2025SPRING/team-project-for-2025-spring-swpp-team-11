@@ -5602,6 +5602,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collapseTime: 0.5
   respawnInterval: 3
+  shakeIntensity: 0.05
+  shakeFrequency: 20
 --- !u!114 &448263610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5777,6 +5779,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collapseTime: 0.5
   respawnInterval: 3
+  shakeIntensity: 0.05
+  shakeFrequency: 20
 --- !u!114 &449039824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9292,6 +9296,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collapseTime: 0.5
   respawnInterval: 3
+  shakeIntensity: 0.05
+  shakeFrequency: 20
 --- !u!54 &675439959
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11341,6 +11347,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collapseTime: 0.5
   respawnInterval: 3
+  shakeIntensity: 0.05
+  shakeFrequency: 20
 --- !u!54 &887471958
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11516,6 +11524,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collapseTime: 0.5
   respawnInterval: 3
+  shakeIntensity: 0.05
+  shakeFrequency: 20
 --- !u!54 &893288532
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12629,6 +12639,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collapseTime: 0.5
   respawnInterval: 3
+  shakeIntensity: 0.05
+  shakeFrequency: 20
 --- !u!114 &954756199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14825,6 +14837,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collapseTime: 0.5
   respawnInterval: 3
+  shakeIntensity: 0.05
+  shakeFrequency: 20
 --- !u!54 &1128946282
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16228,6 +16242,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collapseTime: 0.5
   respawnInterval: 3
+  shakeIntensity: 0.05
+  shakeFrequency: 20
 --- !u!54 &1228418251
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18853,6 +18869,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collapseTime: 0.5
   respawnInterval: 3
+  shakeIntensity: 1
+  shakeFrequency: 400
 --- !u!54 &1511522164
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -20022,6 +20040,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collapseTime: 0.5
   respawnInterval: 3
+  shakeIntensity: 0.05
+  shakeFrequency: 20
 --- !u!114 &1585490869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22655,6 +22675,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collapseTime: 0.5
   respawnInterval: 3
+  shakeIntensity: 0.05
+  shakeFrequency: 20
 --- !u!54 &1774167260
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -22864,6 +22886,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collapseTime: 0.5
   respawnInterval: 3
+  shakeIntensity: 0.05
+  shakeFrequency: 20
 --- !u!54 &1776177910
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -24214,6 +24238,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collapseTime: 0.5
   respawnInterval: 3
+  shakeIntensity: 0.05
+  shakeFrequency: 20
 --- !u!54 &1857585230
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -28077,6 +28103,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collapseTime: 0.5
   respawnInterval: 3
+  shakeIntensity: 0.05
+  shakeFrequency: 20
 --- !u!114 &2088767972
 MonoBehaviour:
   m_ObjectHideFlags: 0

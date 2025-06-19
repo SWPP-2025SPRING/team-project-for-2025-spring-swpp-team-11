@@ -4,6 +4,8 @@ public class FallingPlatform : MonoBehaviour
 {
     public float collapseTime = 1.5f;
     public float respawnInterval = 3f;
+    public float shakeIntensity = 1f;
+    public float shakeFrequency = 400f;
 
     private Vector3 respawnPoint;
     private Quaternion originalRotation;
@@ -17,6 +19,8 @@ public class FallingPlatform : MonoBehaviour
 
     private Rigidbody rb;
     private Collider col;
+
+    private Vector3 shakeOffset = Vector3.zero;
 
     private void Start()
     {
@@ -36,13 +40,19 @@ public class FallingPlatform : MonoBehaviour
         if (isCollapsing)
         {
             collapseTimer += Time.deltaTime;
+
+            // Apply shaking effect
+            float shake = Mathf.Sin(Time.time * shakeFrequency) * shakeIntensity;
+            Vector3 offset = new Vector3(shake, 0f, shake);
+            transform.position = respawnPoint + offset;
+
             if (collapseTimer >= collapseTime)
             {
+                transform.position = respawnPoint; // reset before falling
                 Fall();
             }
         }
 
-        // Start respawn countdown after falling off screen
         if (!rb.isKinematic && transform.position.y < -10f && !isRespawning)
         {
             isRespawning = true;
@@ -71,7 +81,6 @@ public class FallingPlatform : MonoBehaviour
 
     private void Respawn()
     {
-        // Detach all children (e.g., player riding the platform)
         foreach (Transform child in transform)
         {
             child.SetParent(null);
@@ -91,7 +100,6 @@ public class FallingPlatform : MonoBehaviour
 
         isRespawning = false;
     }
-
 
     private void OnCollisionEnter(Collision collision)
     {

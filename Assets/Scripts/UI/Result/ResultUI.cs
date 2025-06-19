@@ -162,6 +162,7 @@ public class ResultUI : UIWindow
 
     public IEnumerator Animate()
     {
+        GameManager.Instance.AudioManager.PlayOneShot(SFX.RESULT);
         yield return new WaitForSeconds(animationDuration + animationAfter);
 
         BeginTimerAnimation();

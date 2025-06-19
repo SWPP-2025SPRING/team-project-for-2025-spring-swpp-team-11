@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4895333124202129612}
   - component: {fileID: 994435134707021409}
+  - component: {fileID: 2573105210028293716}
   m_Layer: 0
   m_Name: RankEntry
   m_TagString: Untagged
@@ -52,6 +53,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 7286579903637869736}
   timeText: {fileID: 8343752001176981180}
+--- !u!222 &2573105210028293716
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4341643996599806654}
+  m_CullTransparentMesh: 1
 --- !u!1 &4759334488663756293
 GameObject:
   m_ObjectHideFlags: 0
@@ -119,8 +128,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 1  AAAAAA
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8b84ae5ed46085d4286537940f22357d, type: 2}
+  m_sharedMaterial: {fileID: -1584662480495338056, guid: 8b84ae5ed46085d4286537940f22357d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -255,8 +264,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 00:00.000
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8b84ae5ed46085d4286537940f22357d, type: 2}
+  m_sharedMaterial: {fileID: -1584662480495338056, guid: 8b84ae5ed46085d4286537940f22357d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

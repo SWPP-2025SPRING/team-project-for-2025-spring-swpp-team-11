@@ -51,6 +51,9 @@ LineRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -78,13 +81,13 @@ LineRenderer:
   m_Positions: []
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1
+    widthMultiplier: 5
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.00046157837
-        value: 0.04969406
+        time: 0
+        value: 0.34901047
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -151,11 +154,8 @@ MonoBehaviour:
   gizmoSphereRadius: 0.1
   startPoint: {fileID: 0}
   endPoint: {fileID: 0}
-  middlePoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  checkPoints: []
+  lineWidth: 0.05
   pointsPerSegment: 12
-  middlePointNumber: 0
+  checkpointDistanceThreshold: 1
+  checkPointNumber: 0

@@ -63,5 +63,71 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 87c0dc2efc9cab8408198b3608e44577, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5176487635591551923}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 87c0dc2efc9cab8408198b3608e44577, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -7288600977446613511}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 87c0dc2efc9cab8408198b3608e44577, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -7844344866396213465}
   m_SourcePrefab: {fileID: 100100000, guid: 87c0dc2efc9cab8408198b3608e44577, type: 3}
+--- !u!1 &2567542216772040126 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 87c0dc2efc9cab8408198b3608e44577, type: 3}
+  m_PrefabInstance: {fileID: 3413965853489170671}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &5176487635591551923
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2567542216772040126}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7387706064836869012, guid: 87c0dc2efc9cab8408198b3608e44577, type: 3}
+--- !u!114 &-7288600977446613511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2567542216772040126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: febb8738c337843cd988d67889b3af8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 150
+  height: 1
+  penalty: 10
+  player: {fileID: 0}
+--- !u!114 &-7844344866396213465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2567542216772040126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ad0cb46ccdf93c479937c7c07f3a030, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackConst: 10
+  stunTime: 1

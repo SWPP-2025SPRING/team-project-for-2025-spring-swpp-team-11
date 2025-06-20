@@ -18,7 +18,7 @@ public class HammerSwingObstacle : MonoBehaviour
     {
         // Z축을 기준으로 앞뒤로 흔들리게 만듦 (바이킹 느낌)
         float angle = swingAngle * Mathf.Sin(Time.time * swingSpeed);
-        transform.localRotation = startRotation * Quaternion.Euler(angle, 0f, 0f);
+        transform.localRotation = _startRotation * Quaternion.Euler(angle, 0f, 0f);
     }
 
     private void OnCollisionEnter(Collision collision)

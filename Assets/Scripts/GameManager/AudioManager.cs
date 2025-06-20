@@ -31,7 +31,8 @@ public enum SFX
     HIT,
     STONE,
     TIME_INCREASE,
-    GRADE_EXPLODE
+    GRADE_EXPLODE,
+    RESULT,
 }
 
 [System.Serializable]

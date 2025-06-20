@@ -17,6 +17,6 @@ public class CannonProjectileSpawner : MonoBehaviour, ICannonObserver
     {
         GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
         Rigidbody rb = proj.GetComponent<Rigidbody>();
-        rb.velocity = launchDirection.normalized * speed;
+        rb.linearVelocity = launchDirection.normalized * speed;
     }
 }

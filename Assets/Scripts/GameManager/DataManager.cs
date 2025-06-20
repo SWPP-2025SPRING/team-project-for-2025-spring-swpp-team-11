@@ -24,7 +24,7 @@ public class DataManager : MonoBehaviour
         this.sensitivity = sensitivity;
     }
 
-    public int selectedStage = 2;
+    public int selectedStage = 1;
 
     private void Start()
     {

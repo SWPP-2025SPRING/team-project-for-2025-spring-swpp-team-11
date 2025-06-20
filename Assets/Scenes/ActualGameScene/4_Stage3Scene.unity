@@ -1212,10 +1212,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2137561442}
-    - target: {fileID: 6104718884188388985, guid: 5119be67a8f5e4f27b4c37debbf872d4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OpenSetupUI
-      objectReference: {fileID: 0}
     - target: {fileID: 6707355154403064815, guid: 5119be67a8f5e4f27b4c37debbf872d4, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1297,37 +1293,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7445599767418123686, guid: 5119be67a8f5e4f27b4c37debbf872d4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7445599767418123686, guid: 5119be67a8f5e4f27b4c37debbf872d4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7445599767418123686, guid: 5119be67a8f5e4f27b4c37debbf872d4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2137561442}
-    - target: {fileID: 7445599767418123686, guid: 5119be67a8f5e4f27b4c37debbf872d4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7445599767418123686, guid: 5119be67a8f5e4f27b4c37debbf872d4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ResumeGame
-      objectReference: {fileID: 0}
-    - target: {fileID: 7445599767418123686, guid: 5119be67a8f5e4f27b4c37debbf872d4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: InGameUI, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8102271607131530570, guid: 5119be67a8f5e4f27b4c37debbf872d4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2137561442}
     - target: {fileID: 8102271607131530570, guid: 5119be67a8f5e4f27b4c37debbf872d4, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: RestartGame
-      objectReference: {fileID: 0}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2137561442}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

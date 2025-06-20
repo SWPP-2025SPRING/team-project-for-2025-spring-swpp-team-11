@@ -21,6 +21,11 @@ public class MapSelectUI : UIWindow
 
     private LeaderBoardManager _leaderBoardManager;
 
+    private Coroutine _backgroundChangeCoroutine;
+
+    public Image backgroundUI;
+    public Sprite[] backgrounds;
+
     private bool _gameStarted = false;
 
     [SerializeField] private string[] playSceneNames;
@@ -70,7 +75,39 @@ public class MapSelectUI : UIWindow
         mapImages[newStage - 1].BeginMove(direction, 0);
 
         _currentSelectedStage = newStage;
+
+        if (_backgroundChangeCoroutine != null) StopCoroutine(_backgroundChangeCoroutine);
+        _backgroundChangeCoroutine = StartCoroutine(ChangeBackground());
         ApplyUIUpdate();
+    }
+
+    private IEnumerator ChangeBackground()
+    {
+        float progress = 0.4f;
+        Color color = new Color(progress, progress, progress);
+        backgroundUI.color = color;
+
+        while (progress > 0)
+        {
+            progress -= Time.deltaTime;
+            color.r = (progress);
+            color.g = (progress);
+            color.b = (progress);
+            backgroundUI.color = color;
+            yield return null;
+        }
+        
+        backgroundUI.sprite = backgrounds[_currentSelectedStage - 1];
+        
+        while (progress < 0.5f)
+        {
+            progress += Time.deltaTime;
+            color.r = (progress);
+            color.g = (progress);
+            color.b = (progress);
+            backgroundUI.color = color;
+            yield return null;
+        }
     }
 
     

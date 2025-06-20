@@ -125,6 +125,20 @@ public class PlayerUnitTest
         
         Assert.AreEqual(hitPos0.y, hitPos1.y);
         Assert.Greater(hitVel0.magnitude, hitVel1.magnitude);
+
+
+        // 플레이어가 땅에 충돌했을 때 _isGrounded 가 true로 바뀌는지
+        playerBehav.Jump();
+        yield return new WaitForSeconds(1f);
+        Assert.AreEqual(playerBehav._isGrounded, true);
+        
+        // 와이어 중 점프 불가 확인
+        playerBehav.Jump();
+        yield return new WaitForSeconds(0.3f);
+        playerBehav.ToggleWireMode();  // 와이어 시작
+        playerBehav.Jump();  // 와이어 중 점프 시도
+        yield return new WaitForSeconds(0.3f);
+        Assert.AreEqual(playerBehav._isWiring, true);  // 여전히 와이어 상태여야 함
     }
     
 }

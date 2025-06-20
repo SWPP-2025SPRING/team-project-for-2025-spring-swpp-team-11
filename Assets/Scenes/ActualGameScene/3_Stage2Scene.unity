@@ -234,6 +234,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knockbackConst: 10
   stunTime: 1
+--- !u!1 &14120947 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 224569533203580974, guid: 60776c88286687b45a734e31e6ca0ee7, type: 3}
+  m_PrefabInstance: {fileID: 926188905}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &19291323
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8627,6 +8632,10 @@ PrefabInstance:
     - target: {fileID: 224569533203580974, guid: 60776c88286687b45a734e31e6ca0ee7, type: 3}
       propertyPath: m_Name
       value: ClearCutScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 224569533203580974, guid: 60776c88286687b45a734e31e6ca0ee7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1192623844822358423, guid: 60776c88286687b45a734e31e6ca0ee7, type: 3}
       propertyPath: m_LocalRotation.y
@@ -18806,6 +18815,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageNumber: 2
+  clearCutScenePackage: {fileID: 14120947}
   cameraMoveInputAxisController: {fileID: 2418426492623348660}
   inGameUI: {fileID: 2137561442}
   openingCutScene: {fileID: 87147821}

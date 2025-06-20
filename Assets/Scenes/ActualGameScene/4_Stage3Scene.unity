@@ -31255,7 +31255,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6464523805153613541
 Transform:
   m_ObjectHideFlags: 0
@@ -32466,6 +32466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageNumber: 3
+  clearCutScenePackage: {fileID: 6419751751835054432}
   cameraMoveInputAxisController: {fileID: 2418426492623348661}
   inGameUI: {fileID: 2137561442}
   openingCutScene: {fileID: 2867184752693977728}

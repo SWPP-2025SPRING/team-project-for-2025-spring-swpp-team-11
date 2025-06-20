@@ -16,6 +16,8 @@ public class StageManager : MonoBehaviour
 {
     public int stageNumber;
 
+    public GameObject clearCutScenePackage;
+
     [SerializeField] private CinemachineInputAxisController cameraMoveInputAxisController;
 
     [SerializeField] private InGameUI inGameUI;
@@ -96,6 +98,8 @@ public class StageManager : MonoBehaviour
     private IEnumerator FinishCoroutine()
     {
         GameManager.Instance.InputManager.canControlPlayer = false;
+        
+        clearCutScenePackage.SetActive(true);
 
         ingameUI.GetComponent<InGameUI>().RemoveOnEscapeCallBack();
         Cursor.lockState = CursorLockMode.None;
@@ -112,6 +116,7 @@ public class StageManager : MonoBehaviour
 
         yield return StartCoroutine((GameManager.Instance.SceneLoadManager.FadeOut()));
 
+        
         clearCutsceneDirector.Play();
         StartCoroutine(GameManager.Instance.SceneLoadManager.FadeIn());
         result.SetAnimationDuration((float)clearCutsceneDirector.duration);

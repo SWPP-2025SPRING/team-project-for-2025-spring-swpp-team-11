@@ -1128,6 +1128,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: InGameUICanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 4637178022226966169, guid: 5119be67a8f5e4f27b4c37debbf872d4, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4637178022226966169, guid: 5119be67a8f5e4f27b4c37debbf872d4, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4637178022226966169, guid: 5119be67a8f5e4f27b4c37debbf872d4, type: 3}
+      propertyPath: m_Color.r
+      value: 0.10215378
+      objectReference: {fileID: 0}
     - target: {fileID: 6104718884188388985, guid: 5119be67a8f5e4f27b4c37debbf872d4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

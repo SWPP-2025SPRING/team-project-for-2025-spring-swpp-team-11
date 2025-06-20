@@ -8,6 +8,7 @@ public class MapSelectUI : UIWindow
 {
     public List<MapImage> mapImages;
 
+    public GameObject setupUI;
 
     public TextMeshProUGUI mapTitle;
     public TextMeshProUGUI leaderBoardName;
@@ -19,6 +20,8 @@ public class MapSelectUI : UIWindow
     private int _currentSelectedStage = 1;
 
     private LeaderBoardManager _leaderBoardManager;
+
+    private bool _gameStarted = false;
 
     [SerializeField] private string[] playSceneNames;
     
@@ -79,11 +82,19 @@ public class MapSelectUI : UIWindow
         //SceneManager.LoadScene(...)
     }
 
+    private bool InputAllowed()
+    {
+        if (setupUI.activeSelf || _gameStarted) return false;
+        return true;
+    }
+
     private void OnEnterDown()
     {
+        if (!InputAllowed()) return;
         if (mapImages[_currentSelectedStage - 1].canStart)
         {
             StartGame();
+            _gameStarted = true;
         }
         else
         {
@@ -93,6 +104,7 @@ public class MapSelectUI : UIWindow
 
     private void OnHorizontalDown(int v)
     {
+        if (!InputAllowed()) return;
         Debug.Log("ASDGSAG");
         UpdateSelectedStage(v);
     }
@@ -109,5 +121,10 @@ public class MapSelectUI : UIWindow
     {
         _leaderBoardManager.ClearRecords();
         ApplyUIUpdate();
+    }
+
+    public void OpenSetupUI()
+    {
+        setupUI.SetActive(true);
     }
 }

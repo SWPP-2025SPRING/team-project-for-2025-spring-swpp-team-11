@@ -7130,8 +7130,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbdc40f0e5eed440296745580c03b8e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collapseTime: 0.5
-  respawnInterval: 3
+  collapseTime: 1.5
+  respawnInterval: 2
+  shakeIntensity: 0.5
+  shakeFrequency: 50
 --- !u!114 &448263610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7305,8 +7307,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbdc40f0e5eed440296745580c03b8e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collapseTime: 0.5
-  respawnInterval: 3
+  collapseTime: 1.5
+  respawnInterval: 2
+  shakeIntensity: 0.5
+  shakeFrequency: 50
 --- !u!114 &449039824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8681,22 +8685,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5802730469198289278, guid: da098bef94d130a4287895409d7471b1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7556206581556602556, guid: da098bef94d130a4287895409d7471b1, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8043026948660195976, guid: da098bef94d130a4287895409d7471b1, type: 3}
-      propertyPath: stage
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8323358829390775475, guid: da098bef94d130a4287895409d7471b1, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8829675828551077060, guid: da098bef94d130a4287895409d7471b1, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -11018,8 +11006,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbdc40f0e5eed440296745580c03b8e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collapseTime: 0.5
-  respawnInterval: 3
+  collapseTime: 1.5
+  respawnInterval: 2
+  shakeIntensity: 0.5
+  shakeFrequency: 50
 --- !u!54 &675439959
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13394,8 +13384,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbdc40f0e5eed440296745580c03b8e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collapseTime: 0.5
-  respawnInterval: 3
+  collapseTime: 1
+  respawnInterval: 2
+  shakeIntensity: 0.5
+  shakeFrequency: 50
 --- !u!54 &887471958
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13648,8 +13640,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbdc40f0e5eed440296745580c03b8e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collapseTime: 0.5
-  respawnInterval: 3
+  collapseTime: 1.5
+  respawnInterval: 2
+  shakeIntensity: 0.5
+  shakeFrequency: 50
 --- !u!54 &893288532
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15000,6 +14994,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collapseTime: 0.5
   respawnInterval: 3
+  shakeIntensity: 1
+  shakeFrequency: 400
 --- !u!114 &954756199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17466,8 +17462,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbdc40f0e5eed440296745580c03b8e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collapseTime: 0.5
-  respawnInterval: 3
+  collapseTime: 1
+  respawnInterval: 2
+  shakeIntensity: 0.5
+  shakeFrequency: 50
 --- !u!54 &1128946282
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -19138,8 +19136,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbdc40f0e5eed440296745580c03b8e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collapseTime: 0.5
-  respawnInterval: 3
+  collapseTime: 1.5
+  respawnInterval: 2
+  shakeIntensity: 0.5
+  shakeFrequency: 50
 --- !u!54 &1228418251
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -22329,8 +22329,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbdc40f0e5eed440296745580c03b8e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collapseTime: 0.5
-  respawnInterval: 3
+  collapseTime: 1.5
+  respawnInterval: 2
+  shakeIntensity: 0.5
+  shakeFrequency: 50
 --- !u!54 &1511522164
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -23568,6 +23570,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collapseTime: 0.5
   respawnInterval: 3
+  shakeIntensity: 1
+  shakeFrequency: 400
 --- !u!114 &1585490869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26760,8 +26764,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbdc40f0e5eed440296745580c03b8e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collapseTime: 0.5
-  respawnInterval: 3
+  collapseTime: 1.5
+  respawnInterval: 2
+  shakeIntensity: 0.5
+  shakeFrequency: 50
 --- !u!54 &1774167260
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -26979,8 +26985,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbdc40f0e5eed440296745580c03b8e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collapseTime: 0.5
-  respawnInterval: 3
+  collapseTime: 1
+  respawnInterval: 2
+  shakeIntensity: 0.5
+  shakeFrequency: 50
 --- !u!54 &1776177910
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -28469,8 +28477,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbdc40f0e5eed440296745580c03b8e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collapseTime: 0.5
-  respawnInterval: 3
+  collapseTime: 1.5
+  respawnInterval: 2
+  shakeIntensity: 0.5
+  shakeFrequency: 50
 --- !u!54 &1857585230
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -32628,8 +32638,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbdc40f0e5eed440296745580c03b8e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collapseTime: 0.5
-  respawnInterval: 3
+  collapseTime: 1.5
+  respawnInterval: 2
+  shakeIntensity: 0.5
+  shakeFrequency: 50
 --- !u!114 &2088767972
 MonoBehaviour:
   m_ObjectHideFlags: 0

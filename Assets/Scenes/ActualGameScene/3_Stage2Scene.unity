@@ -378,6 +378,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collapseTime: 1
   respawnInterval: 2
+  shakeIntensity: 1
+  shakeFrequency: 400
 --- !u!54 &19291334
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1227,7 +1229,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8075458131120172373, guid: 5119be67a8f5e4f27b4c37debbf872d4, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8102271607131530570, guid: 5119be67a8f5e4f27b4c37debbf872d4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2126,6 +2128,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collapseTime: 1
   respawnInterval: 2
+  shakeIntensity: 1
+  shakeFrequency: 400
 --- !u!54 &210650705
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3064,6 +3068,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collapseTime: 1
   respawnInterval: 2
+  shakeIntensity: 1
+  shakeFrequency: 400
 --- !u!54 &281879424
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4584,6 +4590,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collapseTime: 1
   respawnInterval: 2
+  shakeIntensity: 1
+  shakeFrequency: 400
 --- !u!54 &440343788
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4750,6 +4758,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collapseTime: 1
   respawnInterval: 2
+  shakeIntensity: 1
+  shakeFrequency: 400
 --- !u!4 &442576618 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: dc18285081a0a704ca246462063836a6, type: 3}
@@ -7853,6 +7863,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collapseTime: 1
   respawnInterval: 2
+  shakeIntensity: 1
+  shakeFrequency: 400
 --- !u!4 &863187360 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: dc18285081a0a704ca246462063836a6, type: 3}
@@ -14292,6 +14304,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collapseTime: 1
   respawnInterval: 2
+  shakeIntensity: 1
+  shakeFrequency: 400
 --- !u!54 &1681294621
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15117,6 +15131,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collapseTime: 1
   respawnInterval: 2
+  shakeIntensity: 1
+  shakeFrequency: 400
 --- !u!4 &1767232701 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: dc18285081a0a704ca246462063836a6, type: 3}
@@ -16929,6 +16945,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collapseTime: 1
   respawnInterval: 2
+  shakeIntensity: 1
+  shakeFrequency: 400
 --- !u!4 &2011358294 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: dc18285081a0a704ca246462063836a6, type: 3}

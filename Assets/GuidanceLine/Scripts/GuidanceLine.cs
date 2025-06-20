@@ -36,6 +36,13 @@ namespace GuidanceLine
             lr = GetComponent<LineRenderer>();
             lr.startWidth = lineWidth;
             lr.positionCount = 0;
+
+             if (player == null)
+            {
+                var go = GameObject.FindWithTag("Player");
+                if (go != null)
+                    player = go.transform;
+            }
         }
 
         void OnEnable()
@@ -126,25 +133,4 @@ namespace GuidanceLine
         }
     }
 
-    /// <summary>
-    /// Attach this script to each checkpoint GameObject along with a trigger collider.
-    /// </summary>
-    [RequireComponent(typeof(Collider))]
-    public class CheckpointTrigger : MonoBehaviour
-    {
-        [Tooltip("Drag the GuidanceLine component here")]
-        public GuidanceLine guidanceLine;
-
-        void Reset()
-        {
-            var col = GetComponent<Collider>();
-            col.isTrigger = true;
-        }
-
-        void OnTriggerEnter(Collider other)
-        {
-            if (!other.CompareTag("Player")) return;
-            guidanceLine?.MarkPassed(transform);
-        }
-    }
 }

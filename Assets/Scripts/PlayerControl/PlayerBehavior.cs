@@ -85,6 +85,8 @@ public class PlayerBehavior : MonoBehaviour
 
     public float distanceToPoint;
 
+    private bool _respawn;
+
     public TMP_Text text;
 
     private void OnDrawGizmos()
@@ -105,7 +107,7 @@ public class PlayerBehavior : MonoBehaviour
         _inputProcessor.jumpEvent.AddListener(Jump);
         _inputProcessor.shotEvent.AddListener(OnClick);
         _inputProcessor.releaseEvent.AddListener(OnRelease);
-        _inputProcessor.respawnEvent.AddListener(Respawn);
+        _inputProcessor.respawnEvent.AddListener(RespawnButton);
 
         _lineRenderer.enabled = false;
         float sensitivity = GameManager.Instance.DataManager.sensitivity;
@@ -140,6 +142,8 @@ public class PlayerBehavior : MonoBehaviour
     {
         Vector3 xzVelocity = _rigidbody.linearVelocity;
         xzVelocity.y = 0;
+
+        
         GroundCheck();
         StunCheck();
         
@@ -168,6 +172,7 @@ public class PlayerBehavior : MonoBehaviour
 
     private void FixedUpdate()
     {
+        
         // 와이어 액션 동안 와이어의 길이를 유지해줌
         if (_isWiring)
         {
@@ -177,6 +182,12 @@ public class PlayerBehavior : MonoBehaviour
             var dist = Vector3.Distance(_currentWirePoint.position, transform.position);
             
             _rigidbody.MovePosition(transform.position + vecToPoint.normalized * (dist-distanceToPoint));
+        }
+        
+        if (_respawn)
+        {
+            Respawn();
+            _respawn = false;
         }
     }
 
@@ -520,6 +531,12 @@ public class PlayerBehavior : MonoBehaviour
         if (_isWiring) StopWiring();
         _rigidbody.linearVelocity = Vector3.zero;
         transform.position = respawnPos.position;
+        Debug.Log(respawnPos.position);
+    }
+
+    private void RespawnButton()
+    {
+        _respawn = true;
     }
 
     private void OnTriggerEnter(Collider other)

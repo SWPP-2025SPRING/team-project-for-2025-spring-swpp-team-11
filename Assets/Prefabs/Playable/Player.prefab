@@ -277,7 +277,7 @@ MonoBehaviour:
   airMaxSpeed: 30
   feetTransform: {fileID: 5392358170671522425}
   groundCheckDistance: 0.4
-  wirePointDetectRadius: 30
+  wirePointDetectRadius: 40
   minDistanceConst: 2
   maxDistanceConst: 3
   wireSwingForce: 45

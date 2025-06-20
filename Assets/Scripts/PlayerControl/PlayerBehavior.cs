@@ -57,6 +57,7 @@ public class PlayerBehavior : MonoBehaviour
     private PlayerInputProcessor _inputProcessor;
     private LineRenderer _lineRenderer;
     private Animator _animator;
+    private IngameUIWirePointMark _wirePointMark;
 
     # endregion
     
@@ -99,6 +100,7 @@ public class PlayerBehavior : MonoBehaviour
         _lineRenderer = GetComponent<LineRenderer>();
         _animator = GetComponentInChildren<Animator>();
         _inGameUI = FindFirstObjectByType<InGameUI>();
+        _wirePointMark = GetComponent<IngameUIWirePointMark>();
 
         _inputProcessor.jumpEvent.AddListener(Jump);
         _inputProcessor.shotEvent.AddListener(OnClick);
@@ -141,6 +143,9 @@ public class PlayerBehavior : MonoBehaviour
         GroundCheck();
         StunCheck();
         
+        if (_currentWirePoint != null)
+            RenderWire();
+        
         
         if (!_isWiring)
         {
@@ -153,6 +158,7 @@ public class PlayerBehavior : MonoBehaviour
             RenderWire();
             MoveOnWire();
             OnWiringRotate();
+            _wirePointMark.MakeMarkOff();
             
             if (_isGrounded) StopWiring();
         }
@@ -338,8 +344,8 @@ public class PlayerBehavior : MonoBehaviour
 
         // 와이어 액션 상태로 바꾼다.
         _currentWirePoint = point.transform;
-        _lineRenderer.enabled = true;
         _isWiring = true;
+        MakeActualLineConnection();
 
         // 와이어 포인트에 플레이어를 연결 시켜준다.
         var sprjt = _currentWirePoint.GetComponent<SpringJoint>();
@@ -394,7 +400,10 @@ public class PlayerBehavior : MonoBehaviour
 
 
         var point = GetAvailableWirePoint();
-        if (point != null) point.gameObject.GetComponent<MeshRenderer>().materials[0].color = Color.yellow;
+        
+        var pointAsArg = point == null ? null : point.transform;
+        MakeVirtualLineConnection(pointAsArg);
+        _currentWirePoint = pointAsArg;
     }
     
     // 현재 _availableWirePoints 배열에서 와이어 연결 가능한 포인트가 있는지 체크
@@ -444,6 +453,29 @@ public class PlayerBehavior : MonoBehaviour
             return null;
         
         return point;
+    }
+    
+    private void MakeActualLineConnection()
+    {
+        _lineRenderer.startColor = Color.black;
+        _lineRenderer.endColor = Color.black;
+        _lineRenderer.enabled = true;
+    }
+
+    private void MakeVirtualLineConnection(Transform point)
+    {
+        if (point == null)
+        {
+            _lineRenderer.enabled = false;
+            _wirePointMark.MakeMarkOff();
+            return;
+        }
+        _lineRenderer.startColor = Color.grey;
+        _lineRenderer.endColor = Color.grey;
+        _lineRenderer.enabled = true;
+        
+        _wirePointMark.MakeMarkOn();
+        _wirePointMark.SetWireMarkImage(point.position);
     }
 
     public void GetHit(Vector3 knockback, float stunTime)

@@ -34,9 +34,14 @@ public class MapSelectUI : UIWindow
     {
         base.Start();
         _leaderBoardManager = FindAnyObjectByType<LeaderBoardManager>();
-        GameManager.Instance.AudioManager.SetBGM(BGM.STAGE_SELECT);
-        GameManager.Instance.AudioManager.StartBGM();
-        
+
+        if (GameManager.Instance.AudioManager.bgmSource.clip !=
+            GameManager.Instance.AudioManager._bgmClips.GetValueOrDefault(BGM.STAGE_SELECT))
+        {
+            GameManager.Instance.AudioManager.SetBGM(BGM.STAGE_SELECT);
+            GameManager.Instance.AudioManager.StartBGM();
+        }
+
         onEnterDown.AddListener(OnEnterDown);
         onHorizontalDown.AddListener(OnHorizontalDown);
         

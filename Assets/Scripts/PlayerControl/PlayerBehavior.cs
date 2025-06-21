@@ -163,8 +163,6 @@ public class PlayerBehavior : MonoBehaviour
             MoveOnWire();
             OnWiringRotate();
             _wirePointMark.MakeMarkOff();
-            
-            if (_isGrounded) StopWiring();
         }
 
         AnimationUpdate();

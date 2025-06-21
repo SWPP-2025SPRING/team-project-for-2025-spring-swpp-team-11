@@ -1212,6 +1212,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2137561442}
+    - target: {fileID: 6457779208488398606, guid: 5119be67a8f5e4f27b4c37debbf872d4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2137561442}
+    - target: {fileID: 6457779208488398606, guid: 5119be67a8f5e4f27b4c37debbf872d4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ExitGame
+      objectReference: {fileID: 0}
     - target: {fileID: 6707355154403064815, guid: 5119be67a8f5e4f27b4c37debbf872d4, type: 3}
       propertyPath: m_Pivot.x
       value: 0

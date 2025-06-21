@@ -26,6 +26,9 @@ namespace GuidanceLine
         [Tooltip("Radius of gizmo spheres")]
         public float gizmoSphereRadius = 0.1f;
 
+        // Respawn 대비
+        private int nextCheckpointIndex = 0;
+
         // Tracks which checkpoints have been passed
         private HashSet<Transform> passed = new HashSet<Transform>();
 
@@ -130,6 +133,20 @@ namespace GuidanceLine
             Gizmos.color = Color.red;
             for (int i = 0; i < lr.positionCount; i++)
                 Gizmos.DrawWireSphere(lr.GetPosition(i), gizmoSphereRadius);
+        }
+
+        public void ResetGuidance()
+        {
+            passed.Clear();
+            nextCheckpointIndex = 0;
+            DrawLine();
+        }
+
+        public void ResetGuidance(int startIndex)
+        {
+            passed.Clear();
+            nextCheckpointIndex = Mathf.Clamp(startIndex, 0, checkPoints.Length);
+            DrawLine();
         }
     }
 

@@ -2631,6 +2631,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DesertBridgeExtra01 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1040594715707402, guid: fd08503763d4b8c448e8f1b3bffdff5d, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4524469272891044, guid: fd08503763d4b8c448e8f1b3bffdff5d, type: 3}
       propertyPath: m_LocalScale.x
       value: 12
@@ -6977,6 +6981,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DesertBridgeEndW (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1834400485850880, guid: d7d9a4600a1d69e44ada70c3f0c97316, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4844272212878840, guid: d7d9a4600a1d69e44ada70c3f0c97316, type: 3}
       propertyPath: m_LocalScale.x
       value: 12
@@ -7051,6 +7059,10 @@ PrefabInstance:
     - target: {fileID: 1681031922862904, guid: 4a6f1bcc96a69fb4ab984a67496aff32, type: 3}
       propertyPath: m_Name
       value: DesertBridgeExtra02 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1681031922862904, guid: 4a6f1bcc96a69fb4ab984a67496aff32, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4770205653744976, guid: 4a6f1bcc96a69fb4ab984a67496aff32, type: 3}
       propertyPath: m_LocalScale.x
@@ -7154,7 +7166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcc290e73aa47958288499af340937a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  friction: 5
+  friction: 10
 --- !u!1 &705570149 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1040594715707402, guid: fd08503763d4b8c448e8f1b3bffdff5d, type: 3}
@@ -10318,6 +10330,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DesertBridgeEnd
       objectReference: {fileID: 0}
+    - target: {fileID: 1883472905944784, guid: 82332fc56fee5f348ae0fda5965208b1, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4428128068915654, guid: 82332fc56fee5f348ae0fda5965208b1, type: 3}
       propertyPath: m_LocalScale.x
       value: 12
@@ -10989,6 +11005,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DesertBridgeEndW
       objectReference: {fileID: 0}
+    - target: {fileID: 1834400485850880, guid: d7d9a4600a1d69e44ada70c3f0c97316, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4844272212878840, guid: d7d9a4600a1d69e44ada70c3f0c97316, type: 3}
       propertyPath: m_LocalScale.x
       value: 12
@@ -11342,6 +11362,10 @@ PrefabInstance:
     - target: {fileID: 1040594715707402, guid: fd08503763d4b8c448e8f1b3bffdff5d, type: 3}
       propertyPath: m_Name
       value: DesertBridgeExtra01 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1040594715707402, guid: fd08503763d4b8c448e8f1b3bffdff5d, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4524469272891044, guid: fd08503763d4b8c448e8f1b3bffdff5d, type: 3}
       propertyPath: m_LocalScale.x
@@ -15088,6 +15112,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DesertBridgeExtra02
       objectReference: {fileID: 0}
+    - target: {fileID: 1681031922862904, guid: 4a6f1bcc96a69fb4ab984a67496aff32, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4770205653744976, guid: 4a6f1bcc96a69fb4ab984a67496aff32, type: 3}
       propertyPath: m_LocalScale.x
       value: 100
@@ -15190,7 +15218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcc290e73aa47958288499af340937a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  friction: 5
+  friction: 10
 --- !u!1001 &1574359539
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15425,6 +15453,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DesertBridgeEnd (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1883472905944784, guid: 82332fc56fee5f348ae0fda5965208b1, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4428128068915654, guid: 82332fc56fee5f348ae0fda5965208b1, type: 3}
       propertyPath: m_LocalScale.x
       value: 12
@@ -15499,6 +15531,10 @@ PrefabInstance:
     - target: {fileID: 1040594715707402, guid: fd08503763d4b8c448e8f1b3bffdff5d, type: 3}
       propertyPath: m_Name
       value: DesertBridgeExtra01 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1040594715707402, guid: fd08503763d4b8c448e8f1b3bffdff5d, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4524469272891044, guid: fd08503763d4b8c448e8f1b3bffdff5d, type: 3}
       propertyPath: m_LocalScale.x
@@ -16135,6 +16171,10 @@ PrefabInstance:
     - target: {fileID: 1040594715707402, guid: fd08503763d4b8c448e8f1b3bffdff5d, type: 3}
       propertyPath: m_Name
       value: DesertBridgeExtra01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1040594715707402, guid: fd08503763d4b8c448e8f1b3bffdff5d, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4524469272891044, guid: fd08503763d4b8c448e8f1b3bffdff5d, type: 3}
       propertyPath: m_LocalScale.x
@@ -17069,6 +17109,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DesertBridgeExtra02 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1681031922862904, guid: 4a6f1bcc96a69fb4ab984a67496aff32, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4770205653744976, guid: 4a6f1bcc96a69fb4ab984a67496aff32, type: 3}
       propertyPath: m_LocalScale.x
       value: 100
@@ -17171,7 +17215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcc290e73aa47958288499af340937a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  friction: 5
+  friction: 10
 --- !u!1001 &1756315293
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20043,6 +20087,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DesertBridgeExtra02 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1681031922862904, guid: 4a6f1bcc96a69fb4ab984a67496aff32, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4770205653744976, guid: 4a6f1bcc96a69fb4ab984a67496aff32, type: 3}
       propertyPath: m_LocalScale.x
       value: 100
@@ -20145,7 +20193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcc290e73aa47958288499af340937a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  friction: 5
+  friction: 10
 --- !u!1001 &2048057705
 PrefabInstance:
   m_ObjectHideFlags: 0

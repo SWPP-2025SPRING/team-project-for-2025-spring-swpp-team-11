@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: d882f4afdee0c0943820f0151b0d5e35
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 303873
+  packageName: Guidance Line
+  packageVersion: 1.0.0
+  assetPath: Assets/GuidanceLine/Scripts/GuidanceLine.cs
+  uploadId: 716538

@@ -6,33 +6,38 @@ public class GuideBirdController : MonoBehaviour
     [Tooltip("플레이어 Transform (태그가 'Player'인 오브젝트를 자동 할당)")]
     public Transform player;
 
-    [Tooltip("플레이어로부터 최대 허용 반경")]
-    public float maxDistanceFromPlayer = 10f;
-
     [Tooltip("이동할 목적지들 (빈 GameObject)")]
     public Transform[] waypoints;
-    private int currentIndex = 0;
 
     [Tooltip("이동 속도")]
     public float flySpeed = 5f;
 
-    [Tooltip("회전 속도")]
+    [Tooltip("회전 속도 (degree/sec)")]
     public float turnSpeed = 360f;
 
+    [Tooltip("높이 오프셋 (플레이어보다 위로)")]
+    public float heightOffset = 7f;
+
+    private int currentIndex = 0;
     private Transform targetPoint;
     private bool isFlying = false;
 
+    // Flag to skip movement on the frame of reset
+    private bool skipNextUpdate = false;
+
     void Start()
     {
-        // 플레이어를 할당하지 않았다면 태그로 찾아 자동 세팅
+        // 자동으로 플레이어 참조
         if (player == null)
         {
             var go = GameObject.FindWithTag("Player");
             if (go != null) player = go.transform;
         }
 
-        if (waypoints.Length > 0)
+        // 초기 웨이포인트 설정
+        if (waypoints != null && waypoints.Length > 0)
         {
+            currentIndex = 0;
             targetPoint = waypoints[0];
             FaceTargetInstant();
             isFlying = true;
@@ -41,55 +46,87 @@ public class GuideBirdController : MonoBehaviour
 
     void Update()
     {
-        if (!isFlying || targetPoint == null || player == null) return;
-
-        // 1) 부드럽게 회전
-        Vector3 dir = (targetPoint.position - transform.position).normalized;
-        dir.y = 0;
-        if (dir.sqrMagnitude > 0.001f)
+        if (skipNextUpdate)
         {
-            Quaternion look = Quaternion.LookRotation(dir);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, look, turnSpeed * Time.deltaTime);
+            // First update after reset: skip movement
+            skipNextUpdate = false;
+            return;
         }
 
-        // 2) 이동
+        if (!isFlying || targetPoint == null || player == null)
+            return;
+
+        // 회전
+        Vector3 dir = (targetPoint.position - transform.position);
+        dir.y = 0;
+        float maxRad = turnSpeed * Mathf.Deg2Rad * Time.deltaTime;
+        Vector3 newDir = Vector3.RotateTowards(transform.forward, dir.normalized, maxRad, 0f);
+        transform.rotation = Quaternion.LookRotation(newDir);
+
+        // 이동
         transform.position += transform.forward * flySpeed * Time.deltaTime;
 
-        // 3) 플레이어 반경 안에 머무르도록 위치 보정
-        Vector3 toBird = transform.position - player.position;
-        float dist = toBird.magnitude;
-        if (dist > maxDistanceFromPlayer)
-        {
-            // 반경 바깥으로 나갔으면 플레이어 주변 경계점으로 되돌리기
-            Vector3 clamped = player.position + toBird.normalized * maxDistanceFromPlayer;
-            transform.position = clamped;
-        }
-
-        // player보다 7만큼 더 높게 고정
+        // 높이 고정
         Vector3 pos = transform.position;
-        pos.y = player.position.y + 7f;
+        pos.y = player.position.y + heightOffset;
         transform.position = pos;
     }
 
-    // Trigger에서 호출할 메서드
+    /// <summary>
+    /// 다음 웨이포인트로 전환을 호출
+    /// </summary>
     public void GoToNextPoint()
     {
         currentIndex++;
-        if (currentIndex >= waypoints.Length)
+        if (waypoints == null || currentIndex >= waypoints.Length)
         {
-            // 마지막 도착
             isFlying = false;
             return;
         }
+
         targetPoint = waypoints[currentIndex];
-        // 즉시 회전 방향만 바꾸고 싶다면:
         FaceTargetInstant();
         isFlying = true;
     }
 
-    // 즉시 바라보기
+    /// <summary>
+    /// Reset bird path to beginning (index 0)
+    /// </summary>
+    public void ResetGuidance()
+    {
+        ResetGuidance(0);
+    }
+
+    /// <summary>
+    /// Reset bird and teleport to given waypoint index
+    /// </summary>
+    public void ResetGuidance(int startIndex)
+    {
+        if (waypoints == null || waypoints.Length == 0)
+        {
+            isFlying = false;
+            return;
+        }
+        currentIndex = Mathf.Clamp(startIndex, 0, waypoints.Length - 1);
+        targetPoint = waypoints[currentIndex];
+
+        // Teleport to waypoint position
+        transform.position = targetPoint.position;
+        FaceTargetInstant();
+        isFlying = true;
+
+        // Skip movement this frame to prevent immediate drift
+        skipNextUpdate = true;
+    }
+
+    /// <summary>
+    /// 즉시 타겟을 바라보기
+    /// </summary>
     private void FaceTargetInstant()
     {
+        if (targetPoint == null)
+            return;
+
         Vector3 dir = (targetPoint.position - transform.position);
         dir.y = 0;
         if (dir.sqrMagnitude > 0.001f)

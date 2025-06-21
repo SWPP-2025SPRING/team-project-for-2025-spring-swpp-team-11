@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 1711654818859024742}
   - component: {fileID: 1565130003138848429}
   - component: {fileID: 1701425731938433172}
+  - component: {fileID: 4118446827463908751}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -143,9 +144,9 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!120 &1722163773609855465
 LineRenderer:
   serializedVersion: 2
@@ -202,7 +203,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.2544384
+        value: 0.17111015
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -275,8 +276,8 @@ MonoBehaviour:
   maxSpeed: 15
   airMaxSpeed: 30
   feetTransform: {fileID: 5392358170671522425}
-  groundCheckDistance: 0.3
-  wirePointDetectRadius: 30
+  groundCheckDistance: 0.4
+  wirePointDetectRadius: 40
   minDistanceConst: 2
   maxDistanceConst: 3
   wireSwingForce: 45
@@ -327,6 +328,23 @@ MonoBehaviour:
   escapeEvent:
     m_PersistentCalls:
       m_Calls: []
+  respawnEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &4118446827463908751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 233122640069827693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e212503ee7f8dca49a37f223eb497684, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wireMarkImage: {fileID: 0}
+  ingameUiRectTransform: {fileID: 0}
 --- !u!1 &2135769997532093096
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,6 +478,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: e38f0c6ba37b53b45a8accfe305d812d, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e38f0c6ba37b53b45a8accfe305d812d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e38f0c6ba37b53b45a8accfe305d812d, type: 3}
       propertyPath: m_StaticEditorFlags

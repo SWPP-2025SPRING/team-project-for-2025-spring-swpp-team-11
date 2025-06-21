@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class TitleManager : UIWindow
 {
     public List<ThemeButton> menuButtons;
+    public GameObject setupUI;
     private int _currentIndex = 0;
 
     /* ---------- Unity lifecycle ---------- */
@@ -75,6 +76,9 @@ public class TitleManager : UIWindow
 
     /* ---------- 버튼 클릭 콜백 ---------- */
     public void StartGame() => GameManager.Instance.SceneLoadManager.FadeLoadScene("1_StageSelectSceneAppliedOne");
-    public void Option() => Debug.Log("Option 버튼 눌림");
+    public void Option() {
+        if (setupUI.activeSelf) setupUI.SetActive(false);
+        else setupUI.SetActive(true);
+    }
     public void ExitGame() => Application.Quit();
 }

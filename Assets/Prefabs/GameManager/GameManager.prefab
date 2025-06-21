@@ -53,6 +53,10 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: d9e376b7830095d4abe0b96edd006de5, type: 3}
   - bgm: 3
     clip: {fileID: 8300000, guid: 1153e76093f3038468c4f574e8818cb3, type: 3}
+  - bgm: 4
+    clip: {fileID: 8300000, guid: 55e638ef0a1e508499c77f0aa342d369, type: 3}
+  - bgm: 1
+    clip: {fileID: 8300000, guid: 91905532d31ea424baa23713fe42781a, type: 3}
   sfxSource: {fileID: 3197586817078520127}
   sfxClipList:
   - sfx: 0
@@ -69,6 +73,12 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 6832f4a094d006347a68295848a6d093, type: 3}
   - sfx: 7
     clip: {fileID: 8300000, guid: 8fdbcf77ed5df6d49b24320f619a3fb0, type: 3}
+  - sfx: 8
+    clip: {fileID: 8300000, guid: 15e69411b21486548bb1628cc792536a, type: 3}
+  - sfx: 9
+    clip: {fileID: 8300000, guid: a2e6047a5591fc44d982e5f4c1b923a7, type: 3}
+  - sfx: 5
+    clip: {fileID: 8300000, guid: 6392897e81300de47a3f95b340834225, type: 3}
 --- !u!82 &2095553350080962998
 AudioSource:
   m_ObjectHideFlags: 0
@@ -79,8 +89,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 91905532d31ea424baa23713fe42781a, type: 3}
+  m_Resource: {fileID: 8300000, guid: 91905532d31ea424baa23713fe42781a, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.2
   m_Pitch: 1
@@ -293,6 +303,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7999490991592208539}
   - {fileID: 919136676476942989}
   m_Father: {fileID: 7191681055698095396}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -308,6 +319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78fb56f240114efe8660baddfbe39d20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedStage: 1
 --- !u!1 &900431157620893275
 GameObject:
   m_ObjectHideFlags: 0
@@ -352,6 +364,90 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df11a4d05b1b408ea5e682612cdeb3c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2006634938087541269
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7999490991592208539}
+  - component: {fileID: 7931235656312948963}
+  m_Layer: 0
+  m_Name: GradeCutManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7999490991592208539
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006634938087541269}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 334.5001, y: 188.16669, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4298043099387072298}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7931235656312948963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006634938087541269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6e94be35b8c18a44a8a08342a592651, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gradeCuts:
+  - stage: 1
+    cutlines:
+    - grade: S
+      maxTime: 60
+    - grade: A
+      maxTime: 120
+    - grade: B
+      maxTime: 180
+    - grade: C
+      maxTime: 240
+    - grade: D
+      maxTime: 300
+    lowestGrade: E
+  - stage: 2
+    cutlines:
+    - grade: S
+      maxTime: 60
+    - grade: A
+      maxTime: 120
+    - grade: B
+      maxTime: 180
+    - grade: C
+      maxTime: 240
+    - grade: D
+      maxTime: 300
+    lowestGrade: E
+  - stage: 3
+    cutlines:
+    - grade: S
+      maxTime: 60
+    - grade: A
+      maxTime: 120
+    - grade: B
+      maxTime: 180
+    - grade: C
+      maxTime: 240
+    - grade: D
+      maxTime: 300
+    lowestGrade: E
 --- !u!1 &2347623323980830124
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,7 +482,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00012207031, y: 0}
+  m_AnchoredPosition: {x: 0.00024414062, y: 0}
   m_SizeDelta: {x: 23.8656, y: 32.8153}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3157401342545250025
@@ -829,7 +925,19 @@ MonoBehaviour:
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 9189155566913363255}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: OnVertical
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 97b810ac-8344-464f-ad0f-354f2cb79ddb
     m_ActionName: 'Player/Vertical[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
   - m_PersistentCalls:

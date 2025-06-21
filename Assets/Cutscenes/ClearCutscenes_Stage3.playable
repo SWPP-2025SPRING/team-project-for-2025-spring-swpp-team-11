@@ -731,7 +731,7 @@ MonoBehaviour:
     m_Start: 0
     m_ClipIn: 0
     m_Asset: {fileID: 641453024217388505}
-    m_Duration: 5
+    m_Duration: 6.9
     m_TimeScale: 1
     m_ParentTrack: {fileID: -4770701530624426025}
     m_EaseInDuration: 0
@@ -2678,7 +2678,7 @@ MonoBehaviour:
   m_EulerAngles: {x: 0, y: 0, z: 0}
   m_AvatarMask: {fileID: 0}
   m_ApplyAvatarMask: 1
-  m_TrackOffset: 0
+  m_TrackOffset: 2
   m_InfiniteClip: {fileID: -8246975601552520733}
   m_OpenClipOffsetRotation: {x: 0, y: 0, z: 0, w: 1}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}

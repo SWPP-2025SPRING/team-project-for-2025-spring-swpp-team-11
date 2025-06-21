@@ -6,16 +6,29 @@ using DG.Tweening;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+[System.Serializable]
+public class GradeColorPair
+{
+    public string grade;
+    public Color32 color;
+}
+
 public class ResultUI : UIWindow
 {
     public TextMeshProUGUI timeText;
     public TextMeshProUGUI gradeText;
     public CanvasGroup gradeCG;
+    public List<GradeColorPair> gradeColorPairs;
     public RectTransform rankingRect;
     public CanvasGroup rankingCG;
     public List<RankingUIEntry> rankEntries;
     public Button restartButton;
     public Button exitButton;
+    public CanvasGroup submitForm;
+    public TMP_InputField nameInput;
+
+    public int minLength = 3;
+    public int maxLength = 15;
 
     public int stage = 1;
     public string myName = "UNKNOWN";
@@ -45,6 +58,8 @@ public class ResultUI : UIWindow
     private bool _timerAnimationFlag = false;
     private float _timerTimeElapsed = 0f;
     private LeaderBoardManager _leaderBoardManager;
+    private int _myRank = -1;
+    private string _grade = "S";
 
     public string mapSelectSceneName;
 
@@ -100,6 +115,13 @@ public class ResultUI : UIWindow
 
     private void BeginGradeAnimation()
     {
+        _grade = GameManager.Instance.DataManager.GradeCutManager.GetGradeByTime(stage, record);
+        print(_grade);
+        foreach(GradeColorPair pair in gradeColorPairs)
+        {
+            if (pair.grade == _grade) gradeText.color = pair.color;
+        }
+        gradeText.SetText(_grade);
         gradeText.gameObject.SetActive(true);
         gradeText.transform.localScale = new Vector3(gradeInitialScale, gradeInitialScale, gradeInitialScale);
         gradeCG.alpha = 0;
@@ -125,11 +147,14 @@ public class ResultUI : UIWindow
             if (_leaderBoardManager.GetSingleTime(stage, i - 1) <= record) break;
             i--;
         }
+        _myRank = i;
         if (i <= _leaderBoardManager.length)
         {
             rankEntries[0].SetName(i + "  " + myName);
             RectTransform rect = rankEntries[0].GetComponent<RectTransform>();
             rect.DOAnchorPosY(rect.anchoredPosition.y + rankingAnimationUnit * (_leaderBoardManager.length - i + 2), rankingDuration);
+            submitForm.gameObject.SetActive(true);
+            submitForm.DOFade(1, rankingDuration);
         }
         for(int j = i; j <= _leaderBoardManager.length; j++)
         {
@@ -144,6 +169,16 @@ public class ResultUI : UIWindow
                 rect.DOAnchorPosY(rect.anchoredPosition.y - rankingAnimationUnit, rankingDuration);
             }
         }
+    }
+
+    public void Submit()
+    {
+        string name = nameInput.text;
+        if (name.Length < minLength || name.Length > maxLength) return;
+        myName = name;
+        rankEntries[0].SetName(_myRank + "  " + myName);
+        submitForm.gameObject.SetActive(false);
+        GameManager.Instance.DataManager.LeaderBoardManager.AddRecord(stage, myName, record);
     }
 
     private void BeginButtonAnimation()
@@ -162,6 +197,7 @@ public class ResultUI : UIWindow
 
     public IEnumerator Animate()
     {
+        GameManager.Instance.AudioManager.PlayOneShot(SFX.RESULT);
         yield return new WaitForSeconds(animationDuration + animationAfter);
 
         BeginTimerAnimation();
@@ -177,7 +213,6 @@ public class ResultUI : UIWindow
         yield return new WaitForSeconds(showRankDuration + showRankAfter);
 
         BeginRankAnimation();
-        GameManager.Instance.DataManager.LeaderBoardManager.AddRecord(stage, "TMP(TOBEFIXED)", record);
         yield return new WaitForSeconds(rankingDuration + rankingAfter);
         
 

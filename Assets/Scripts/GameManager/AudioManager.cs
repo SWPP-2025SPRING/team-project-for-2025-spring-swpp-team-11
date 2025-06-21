@@ -33,6 +33,7 @@ public enum SFX
     TIME_INCREASE,
     GRADE_EXPLODE,
     RESULT,
+    JUMP
 }
 
 [System.Serializable]

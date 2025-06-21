@@ -6307,9 +6307,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 282237145293851550, guid: abf564cef97a35d4db1e61db3f379774, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1279374020186937088, guid: abf564cef97a35d4db1e61db3f379774, type: 3}
       propertyPath: m_Name
       value: Start_Cutscene
+      objectReference: {fileID: 0}
+    - target: {fileID: 1279374020186937088, guid: abf564cef97a35d4db1e61db3f379774, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1632314584180727094, guid: abf564cef97a35d4db1e61db3f379774, type: 3}
       propertyPath: m_LocalPosition.x

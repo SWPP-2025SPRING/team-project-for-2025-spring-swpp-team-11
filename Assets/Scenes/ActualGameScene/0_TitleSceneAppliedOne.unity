@@ -741,17 +741,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
---- !u!114 &910408766 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9189155566913363255, guid: 724378c69a77c864fb6c40df333fcfba, type: 3}
-  m_PrefabInstance: {fileID: 1933438456}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 350752a9b6e4482191e36a58b5ccabe6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -2187,62 +2176,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 549673971793876984, guid: 724378c69a77c864fb6c40df333fcfba, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1502263517249603459, guid: 724378c69a77c864fb6c40df333fcfba, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.00024414062
-      objectReference: {fileID: 0}
-    - target: {fileID: 1755787664646627398, guid: 724378c69a77c864fb6c40df333fcfba, type: 3}
-      propertyPath: m_ActionEvents.Array.size
-      value: 24
-      objectReference: {fileID: 0}
-    - target: {fileID: 1755787664646627398, guid: 724378c69a77c864fb6c40df333fcfba, type: 3}
-      propertyPath: m_ActionEvents.Array.data[23].m_ActionId
-      value: 97b810ac-8344-464f-ad0f-354f2cb79ddb
-      objectReference: {fileID: 0}
-    - target: {fileID: 1755787664646627398, guid: 724378c69a77c864fb6c40df333fcfba, type: 3}
-      propertyPath: m_ActionEvents.Array.data[23].m_ActionName
-      value: 'Player/Vertical[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1755787664646627398, guid: 724378c69a77c864fb6c40df333fcfba, type: 3}
-      propertyPath: m_ActionEvents.Array.data[23].m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1755787664646627398, guid: 724378c69a77c864fb6c40df333fcfba, type: 3}
-      propertyPath: m_ActionEvents.Array.data[23].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1755787664646627398, guid: 724378c69a77c864fb6c40df333fcfba, type: 3}
-      propertyPath: m_ActionEvents.Array.data[23].m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 910408766}
-    - target: {fileID: 1755787664646627398, guid: 724378c69a77c864fb6c40df333fcfba, type: 3}
-      propertyPath: m_ActionEvents.Array.data[23].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1755787664646627398, guid: 724378c69a77c864fb6c40df333fcfba, type: 3}
-      propertyPath: m_ActionEvents.Array.data[23].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnVertical
-      objectReference: {fileID: 0}
-    - target: {fileID: 1755787664646627398, guid: 724378c69a77c864fb6c40df333fcfba, type: 3}
-      propertyPath: m_ActionEvents.Array.data[23].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: InputManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1755787664646627398, guid: 724378c69a77c864fb6c40df333fcfba, type: 3}
-      propertyPath: m_ActionEvents.Array.data[23].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 2095553350080962998, guid: 724378c69a77c864fb6c40df333fcfba, type: 3}
-      propertyPath: m_Resource
-      value: 
-      objectReference: {fileID: 8300000, guid: 91905532d31ea424baa23713fe42781a, type: 3}
-    - target: {fileID: 2095553350080962998, guid: 724378c69a77c864fb6c40df333fcfba, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 91905532d31ea424baa23713fe42781a, type: 3}
     - target: {fileID: 4281263796422592020, guid: 724378c69a77c864fb6c40df333fcfba, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -2286,10 +2219,6 @@ PrefabInstance:
     - target: {fileID: 7191681055698095396, guid: 724378c69a77c864fb6c40df333fcfba, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7528931730939139581, guid: 724378c69a77c864fb6c40df333fcfba, type: 3}
-      propertyPath: selectedStage
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

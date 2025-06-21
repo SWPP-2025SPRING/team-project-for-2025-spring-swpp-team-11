@@ -107,8 +107,8 @@ public class GuideBirdController : MonoBehaviour
             isFlying = false;
             return;
         }
-        currentIndex = Mathf.Clamp(startIndex, 0, waypoints.Length - 1);
-        targetPoint = waypoints[currentIndex];
+        
+        targetPoint = waypoints[startIndex];
 
         // Teleport to waypoint position
         transform.position = targetPoint.position;

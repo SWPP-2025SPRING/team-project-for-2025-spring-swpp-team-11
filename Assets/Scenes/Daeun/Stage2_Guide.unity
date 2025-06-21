@@ -2112,6 +2112,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 726978386}
     - target: {fileID: 5774281973071365031, guid: e7e2d9f0623e3f54fa04dae6f1feaa9a, type: 3}
+      propertyPath: birdController
+      value: 
+      objectReference: {fileID: 191693092}
+    - target: {fileID: 5774281973071365031, guid: e7e2d9f0623e3f54fa04dae6f1feaa9a, type: 3}
+      propertyPath: birdCheckpointIndex
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5774281973071365031, guid: e7e2d9f0623e3f54fa04dae6f1feaa9a, type: 3}
       propertyPath: startCheckpointIndex
       value: 15
       objectReference: {fileID: 0}
@@ -2263,6 +2271,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 9083926432225906834, guid: b5678604609594612a13ddfbc1ec8353, type: 3}
   m_PrefabInstance: {fileID: 191693089}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &191693092 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1420260243644010147, guid: b5678604609594612a13ddfbc1ec8353, type: 3}
+  m_PrefabInstance: {fileID: 191693089}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 191693091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c2e16b1efd3246678163b5a4014c7b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &199149206 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8312587016755491823, guid: caac0be52ccaeed4b9e997eda0a79fad, type: 3}
@@ -3512,6 +3531,14 @@ PrefabInstance:
       propertyPath: guide
       value: 
       objectReference: {fileID: 726978386}
+    - target: {fileID: 5774281973071365031, guid: e7e2d9f0623e3f54fa04dae6f1feaa9a, type: 3}
+      propertyPath: birdController
+      value: 
+      objectReference: {fileID: 191693092}
+    - target: {fileID: 5774281973071365031, guid: e7e2d9f0623e3f54fa04dae6f1feaa9a, type: 3}
+      propertyPath: birdCheckpointIndex
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5774281973071365031, guid: e7e2d9f0623e3f54fa04dae6f1feaa9a, type: 3}
       propertyPath: startCheckpointIndex
       value: 23
@@ -5901,6 +5928,14 @@ PrefabInstance:
       propertyPath: guide
       value: 
       objectReference: {fileID: 726978386}
+    - target: {fileID: 5774281973071365031, guid: e7e2d9f0623e3f54fa04dae6f1feaa9a, type: 3}
+      propertyPath: birdController
+      value: 
+      objectReference: {fileID: 191693092}
+    - target: {fileID: 5774281973071365031, guid: e7e2d9f0623e3f54fa04dae6f1feaa9a, type: 3}
+      propertyPath: birdCheckpointIndex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5774281973071365031, guid: e7e2d9f0623e3f54fa04dae6f1feaa9a, type: 3}
       propertyPath: startCheckpointIndex
       value: 5
@@ -14076,6 +14111,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 726978386}
     - target: {fileID: 5774281973071365031, guid: e7e2d9f0623e3f54fa04dae6f1feaa9a, type: 3}
+      propertyPath: birdController
+      value: 
+      objectReference: {fileID: 191693092}
+    - target: {fileID: 5774281973071365031, guid: e7e2d9f0623e3f54fa04dae6f1feaa9a, type: 3}
+      propertyPath: birdCheckpointIndex
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5774281973071365031, guid: e7e2d9f0623e3f54fa04dae6f1feaa9a, type: 3}
       propertyPath: startCheckpointIndex
       value: 12
       objectReference: {fileID: 0}
@@ -16212,8 +16255,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 726978386}
     - target: {fileID: 5774281973071365031, guid: e7e2d9f0623e3f54fa04dae6f1feaa9a, type: 3}
+      propertyPath: birdController
+      value: 
+      objectReference: {fileID: 191693092}
+    - target: {fileID: 5774281973071365031, guid: e7e2d9f0623e3f54fa04dae6f1feaa9a, type: 3}
       propertyPath: startCheckpointIndex
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5869549227782347835, guid: e7e2d9f0623e3f54fa04dae6f1feaa9a, type: 3}
       propertyPath: m_Name
@@ -16281,6 +16328,14 @@ PrefabInstance:
       propertyPath: guide
       value: 
       objectReference: {fileID: 726978386}
+    - target: {fileID: 5774281973071365031, guid: e7e2d9f0623e3f54fa04dae6f1feaa9a, type: 3}
+      propertyPath: birdController
+      value: 
+      objectReference: {fileID: 191693092}
+    - target: {fileID: 5774281973071365031, guid: e7e2d9f0623e3f54fa04dae6f1feaa9a, type: 3}
+      propertyPath: birdCheckpointIndex
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5774281973071365031, guid: e7e2d9f0623e3f54fa04dae6f1feaa9a, type: 3}
       propertyPath: startCheckpointIndex
       value: 20
@@ -17382,6 +17437,14 @@ PrefabInstance:
       propertyPath: guide
       value: 
       objectReference: {fileID: 726978386}
+    - target: {fileID: 5774281973071365031, guid: e7e2d9f0623e3f54fa04dae6f1feaa9a, type: 3}
+      propertyPath: birdController
+      value: 
+      objectReference: {fileID: 191693092}
+    - target: {fileID: 5774281973071365031, guid: e7e2d9f0623e3f54fa04dae6f1feaa9a, type: 3}
+      propertyPath: birdCheckpointIndex
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5774281973071365031, guid: e7e2d9f0623e3f54fa04dae6f1feaa9a, type: 3}
       propertyPath: startCheckpointIndex
       value: 27

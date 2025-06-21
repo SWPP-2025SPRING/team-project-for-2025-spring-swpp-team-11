@@ -26,13 +26,10 @@ namespace GuidanceLine
         [Tooltip("Radius of gizmo spheres")]
         public float gizmoSphereRadius = 0.1f;
 
-        // Respawn 대비
-        private int nextCheckpointIndex = 0;
-
         // Tracks which checkpoints have been passed
         private HashSet<Transform> passed = new HashSet<Transform>();
-
         private LineRenderer lr;
+        private int nextCheckpointIndex = 0;
 
         void Awake()
         {
@@ -40,7 +37,7 @@ namespace GuidanceLine
             lr.startWidth = lineWidth;
             lr.positionCount = 0;
 
-             if (player == null)
+            if (player == null)
             {
                 var go = GameObject.FindWithTag("Player");
                 if (go != null)
@@ -51,6 +48,7 @@ namespace GuidanceLine
         void OnEnable()
         {
             passed.Clear();
+            nextCheckpointIndex = 0;
         }
 
         /// <summary>
@@ -67,6 +65,35 @@ namespace GuidanceLine
             if (player == null || lr == null || checkPoints == null || checkPoints.Length == 0)
                 return;
 
+            DrawLine();
+        }
+
+        /// <summary>
+        /// Resets the guidance so that all checkpoints are redrawn from the start.
+        /// </summary>
+        public void ResetGuidance()
+        {
+            // Clear all passed checkpoints and start from index 0
+            passed.Clear();
+            nextCheckpointIndex = 0;
+            DrawLine();
+        }
+
+        /// <summary>
+        /// Resets the guidance, marking all checkpoints up to startIndex as passed,
+        /// and begins drawing from that point onward.
+        /// </summary>
+        public void ResetGuidance(int startIndex)
+        {
+            passed.Clear();
+            // Clamp to valid range
+            nextCheckpointIndex = Mathf.Clamp(startIndex, 0, checkPoints.Length);
+            // Mark earlier checkpoints as passed
+            for (int i = 0; i < nextCheckpointIndex+1; i++)
+            {
+                if (checkPoints[i] != null)
+                    passed.Add(checkPoints[i]);
+            }
             DrawLine();
         }
 
@@ -87,13 +114,12 @@ namespace GuidanceLine
                 return;
             }
 
-            // Total points: segments * pointsPerSegment + 1
             int segments = n - 1;
             int totalPts = segments * pointsPerSegment + 1;
             Vector3[] positions = new Vector3[totalPts];
             int idx = 0;
 
-            // Generate Catmull-Rom spline across each segment
+            // Catmull-Rom interpolation across each segment
             for (int s = 0; s < segments; s++)
             {
                 Vector3 p0 = (s == 0) ? pts[0] : pts[s - 1];
@@ -134,20 +160,5 @@ namespace GuidanceLine
             for (int i = 0; i < lr.positionCount; i++)
                 Gizmos.DrawWireSphere(lr.GetPosition(i), gizmoSphereRadius);
         }
-
-        public void ResetGuidance()
-        {
-            passed.Clear();
-            nextCheckpointIndex = 0;
-            DrawLine();
-        }
-
-        public void ResetGuidance(int startIndex)
-        {
-            passed.Clear();
-            nextCheckpointIndex = Mathf.Clamp(startIndex, 0, checkPoints.Length);
-            DrawLine();
-        }
     }
-
 }

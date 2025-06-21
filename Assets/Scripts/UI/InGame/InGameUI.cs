@@ -8,6 +8,7 @@ public class InGameUI : MonoBehaviour
 {
     public TextMeshProUGUI timeText;
     public GameObject pauseUI;
+    public GameObject setupUI;
 
     private PlayerInputProcessor _inputProcessor;
 
@@ -64,9 +65,15 @@ public class InGameUI : MonoBehaviour
         }
         _paused = true;
         pauseUI.SetActive(true);
+        setupUI.SetActive(false);
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+    }
+
+    public void OpenSetupUI()
+    {
+        setupUI.SetActive(true);
     }
 
     public void RestartGame()
@@ -79,6 +86,7 @@ public class InGameUI : MonoBehaviour
     {
         _paused = false;
         pauseUI.SetActive(false);
+        setupUI.SetActive(false);
         Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -86,9 +94,11 @@ public class InGameUI : MonoBehaviour
 
     public void ExitGame()
     {
+        GameManager.Instance.AudioManager.StopBGM();
         Time.timeScale = 1f;
         GameManager.Instance.SceneLoadManager.FadeLoadScene("1_StageSelectSceneAppliedOne");
     }
+    
 
     public bool GetPaused() { return _paused; }
     public float GetElapsedTime() { return _elapsedTime; }

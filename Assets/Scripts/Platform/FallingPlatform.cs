@@ -39,6 +39,7 @@ public class FallingPlatform : MonoBehaviour
     {
         if (isCollapsing)
         {
+            
             collapseTimer += Time.deltaTime;
 
             // Apply shaking effect
@@ -105,6 +106,7 @@ public class FallingPlatform : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && !isCollapsing && rb.isKinematic)
         {
+            GameManager.Instance.AudioManager.PlayOneShot(SFX.STONE);
             isCollapsing = true;
             collapseTimer = 0f;
         }

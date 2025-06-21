@@ -33,6 +33,7 @@ public enum SFX
     TIME_INCREASE,
     GRADE_EXPLODE,
     RESULT,
+    JUMP
 }
 
 [System.Serializable]
@@ -53,7 +54,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource bgmSource;
     public float bgmCoef = 0.2f;
     public List<BGMPair> bgmClipList;
-    private Dictionary<BGM, AudioClip> _bgmClips = new Dictionary<BGM, AudioClip>();
+    public Dictionary<BGM, AudioClip> _bgmClips = new Dictionary<BGM, AudioClip>();
 
     public AudioSource sfxSource;
     public List<SFXPair> sfxClipList;
@@ -83,7 +84,8 @@ public class AudioManager : MonoBehaviour
 
     public void SetBGM(BGM bgm)
     {
-        bgmSource.clip = _bgmClips.GetValueOrDefault(bgm);
+        if (bgmSource.clip != _bgmClips.GetValueOrDefault(bgm))
+            bgmSource.clip = _bgmClips.GetValueOrDefault(bgm);
     }
 
     public void SetBGMVolume(float volume)

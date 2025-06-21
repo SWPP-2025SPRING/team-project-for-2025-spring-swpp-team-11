@@ -129,6 +129,11 @@ public class SetupUI : UIWindow
         GameManager.Instance.SceneLoadManager.FadeLoadScene("0_TitleSceneAppliedOne");
     }
 
+    public void CloseThis()
+    {
+        gameObject.SetActive(false);
+    }
+
     // Update is called once per frame
     void Update()
     {

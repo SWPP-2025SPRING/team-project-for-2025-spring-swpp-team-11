@@ -57,6 +57,7 @@ public class PlayerBehavior : MonoBehaviour
     private PlayerInputProcessor _inputProcessor;
     private LineRenderer _lineRenderer;
     private Animator _animator;
+    private IngameUIWirePointMark _wirePointMark;
 
     # endregion
     
@@ -84,6 +85,8 @@ public class PlayerBehavior : MonoBehaviour
 
     public float distanceToPoint;
 
+    private bool _respawn;
+
     public TMP_Text text;
 
     private void OnDrawGizmos()
@@ -99,11 +102,12 @@ public class PlayerBehavior : MonoBehaviour
         _lineRenderer = GetComponent<LineRenderer>();
         _animator = GetComponentInChildren<Animator>();
         _inGameUI = FindFirstObjectByType<InGameUI>();
+        _wirePointMark = GetComponent<IngameUIWirePointMark>();
 
         _inputProcessor.jumpEvent.AddListener(Jump);
         _inputProcessor.shotEvent.AddListener(OnClick);
         _inputProcessor.releaseEvent.AddListener(OnRelease);
-        _inputProcessor.respawnEvent.AddListener(Respawn);
+        _inputProcessor.respawnEvent.AddListener(RespawnButton);
 
         _lineRenderer.enabled = false;
         float sensitivity = GameManager.Instance.DataManager.sensitivity;
@@ -138,8 +142,13 @@ public class PlayerBehavior : MonoBehaviour
     {
         Vector3 xzVelocity = _rigidbody.linearVelocity;
         xzVelocity.y = 0;
+
+        
         GroundCheck();
         StunCheck();
+        
+        if (_currentWirePoint != null)
+            RenderWire();
         
         
         if (!_isWiring)
@@ -153,8 +162,7 @@ public class PlayerBehavior : MonoBehaviour
             RenderWire();
             MoveOnWire();
             OnWiringRotate();
-            
-            if (_isGrounded) StopWiring();
+            _wirePointMark.MakeMarkOff();
         }
 
         AnimationUpdate();
@@ -162,6 +170,7 @@ public class PlayerBehavior : MonoBehaviour
 
     private void FixedUpdate()
     {
+        
         // 와이어 액션 동안 와이어의 길이를 유지해줌
         if (_isWiring)
         {
@@ -171,6 +180,12 @@ public class PlayerBehavior : MonoBehaviour
             var dist = Vector3.Distance(_currentWirePoint.position, transform.position);
             
             _rigidbody.MovePosition(transform.position + vecToPoint.normalized * (dist-distanceToPoint));
+        }
+        
+        if (_respawn)
+        {
+            Respawn();
+            _respawn = false;
         }
     }
 
@@ -308,6 +323,8 @@ public class PlayerBehavior : MonoBehaviour
             
             _jumpCount++;
             
+            GameManager.Instance.AudioManager.PlayOneShot(SFX.JUMP);
+            
             _rigidbody.linearVelocity -= _rigidbody.linearVelocity.y * Vector3.up;
             _rigidbody.AddForce(Vector3.up * (_jumpCount == 0 ? jumpForce : doubleJumpForce), ForceMode.Impulse);
         }
@@ -338,8 +355,8 @@ public class PlayerBehavior : MonoBehaviour
 
         // 와이어 액션 상태로 바꾼다.
         _currentWirePoint = point.transform;
-        _lineRenderer.enabled = true;
         _isWiring = true;
+        MakeActualLineConnection();
 
         // 와이어 포인트에 플레이어를 연결 시켜준다.
         var sprjt = _currentWirePoint.GetComponent<SpringJoint>();
@@ -394,7 +411,10 @@ public class PlayerBehavior : MonoBehaviour
 
 
         var point = GetAvailableWirePoint();
-        if (point != null) point.gameObject.GetComponent<MeshRenderer>().materials[0].color = Color.yellow;
+        
+        var pointAsArg = point == null ? null : point.transform;
+        MakeVirtualLineConnection(pointAsArg);
+        _currentWirePoint = pointAsArg;
     }
     
     // 현재 _availableWirePoints 배열에서 와이어 연결 가능한 포인트가 있는지 체크
@@ -445,6 +465,29 @@ public class PlayerBehavior : MonoBehaviour
         
         return point;
     }
+    
+    private void MakeActualLineConnection()
+    {
+        _lineRenderer.startColor = Color.black;
+        _lineRenderer.endColor = Color.black;
+        _lineRenderer.enabled = true;
+    }
+
+    private void MakeVirtualLineConnection(Transform point)
+    {
+        if (point == null)
+        {
+            _lineRenderer.enabled = false;
+            _wirePointMark.MakeMarkOff();
+            return;
+        }
+        _lineRenderer.startColor = Color.grey;
+        _lineRenderer.endColor = Color.grey;
+        _lineRenderer.enabled = true;
+        
+        _wirePointMark.MakeMarkOn();
+        _wirePointMark.SetWireMarkImage(point.position);
+    }
 
     public void GetHit(Vector3 knockback, float stunTime)
     {
@@ -488,6 +531,12 @@ public class PlayerBehavior : MonoBehaviour
         if (_isWiring) StopWiring();
         _rigidbody.linearVelocity = Vector3.zero;
         transform.position = respawnPos.position;
+        Debug.Log(respawnPos.position);
+    }
+
+    private void RespawnButton()
+    {
+        _respawn = true;
     }
 
     private void OnTriggerEnter(Collider other)

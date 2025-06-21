@@ -8,6 +8,7 @@ public class MapSelectUI : UIWindow
 {
     public List<MapImage> mapImages;
 
+    public GameObject setupUI;
 
     public TextMeshProUGUI mapTitle;
     public TextMeshProUGUI leaderBoardName;
@@ -20,13 +21,27 @@ public class MapSelectUI : UIWindow
 
     private LeaderBoardManager _leaderBoardManager;
 
+    private Coroutine _backgroundChangeCoroutine;
+
+    public Image backgroundUI;
+    public Sprite[] backgrounds;
+
+    private bool _gameStarted = false;
+
     [SerializeField] private string[] playSceneNames;
     
     protected override void Start()
     {
         base.Start();
         _leaderBoardManager = FindAnyObjectByType<LeaderBoardManager>();
-        
+
+        if (GameManager.Instance.AudioManager.bgmSource.clip !=
+            GameManager.Instance.AudioManager._bgmClips.GetValueOrDefault(BGM.STAGE_SELECT))
+        {
+            GameManager.Instance.AudioManager.SetBGM(BGM.STAGE_SELECT);
+            GameManager.Instance.AudioManager.StartBGM();
+        }
+
         onEnterDown.AddListener(OnEnterDown);
         onHorizontalDown.AddListener(OnHorizontalDown);
         
@@ -67,7 +82,39 @@ public class MapSelectUI : UIWindow
         mapImages[newStage - 1].BeginMove(direction, 0);
 
         _currentSelectedStage = newStage;
+
+        if (_backgroundChangeCoroutine != null) StopCoroutine(_backgroundChangeCoroutine);
+        _backgroundChangeCoroutine = StartCoroutine(ChangeBackground());
         ApplyUIUpdate();
+    }
+
+    private IEnumerator ChangeBackground()
+    {
+        float progress = 0.4f;
+        Color color = new Color(progress, progress, progress);
+        backgroundUI.color = color;
+
+        while (progress > 0)
+        {
+            progress -= Time.deltaTime;
+            color.r = (progress);
+            color.g = (progress);
+            color.b = (progress);
+            backgroundUI.color = color;
+            yield return null;
+        }
+        
+        backgroundUI.sprite = backgrounds[_currentSelectedStage - 1];
+        
+        while (progress < 0.5f)
+        {
+            progress += Time.deltaTime;
+            color.r = (progress);
+            color.g = (progress);
+            color.b = (progress);
+            backgroundUI.color = color;
+            yield return null;
+        }
     }
 
     
@@ -79,11 +126,19 @@ public class MapSelectUI : UIWindow
         //SceneManager.LoadScene(...)
     }
 
+    private bool InputAllowed()
+    {
+        if (setupUI.activeSelf || _gameStarted) return false;
+        return true;
+    }
+
     private void OnEnterDown()
     {
+        if (!InputAllowed()) return;
         if (mapImages[_currentSelectedStage - 1].canStart)
         {
             StartGame();
+            _gameStarted = true;
         }
         else
         {
@@ -93,6 +148,7 @@ public class MapSelectUI : UIWindow
 
     private void OnHorizontalDown(int v)
     {
+        if (!InputAllowed()) return;
         Debug.Log("ASDGSAG");
         UpdateSelectedStage(v);
     }
@@ -109,5 +165,10 @@ public class MapSelectUI : UIWindow
     {
         _leaderBoardManager.ClearRecords();
         ApplyUIUpdate();
+    }
+
+    public void OpenSetupUI()
+    {
+        setupUI.SetActive(true);
     }
 }

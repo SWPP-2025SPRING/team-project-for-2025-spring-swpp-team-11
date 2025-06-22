@@ -956,7 +956,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5951675930584252862, guid: 96ed0507f8818364fbbf9a45d923b5dc, type: 3}
       propertyPath: waypoints.Array.size
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5951675930584252862, guid: 96ed0507f8818364fbbf9a45d923b5dc, type: 3}
       propertyPath: 'waypoints.Array.data[0]'
@@ -989,11 +989,11 @@ PrefabInstance:
     - target: {fileID: 5951675930584252862, guid: 96ed0507f8818364fbbf9a45d923b5dc, type: 3}
       propertyPath: 'waypoints.Array.data[7]'
       value: 
-      objectReference: {fileID: 735200454}
+      objectReference: {fileID: 2066535900}
     - target: {fileID: 5951675930584252862, guid: 96ed0507f8818364fbbf9a45d923b5dc, type: 3}
       propertyPath: 'waypoints.Array.data[8]'
       value: 
-      objectReference: {fileID: 268758659}
+      objectReference: {fileID: 2066535900}
     - target: {fileID: 5951675930584252862, guid: 96ed0507f8818364fbbf9a45d923b5dc, type: 3}
       propertyPath: 'waypoints.Array.data[9]'
       value: 
@@ -5390,11 +5390,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!4 &268758659 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3891817797375272582, guid: 3c1d1955b1c55924ebe2255684f71ba8, type: 3}
-  m_PrefabInstance: {fileID: 1734400317}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &280566175
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10416,11 +10411,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 955466281007670142, guid: c5e385f8976f2f54eb139f75aec508a3, type: 3}
   m_PrefabInstance: {fileID: 727826391}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &735200454 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4438025436876484419, guid: 3c1d1955b1c55924ebe2255684f71ba8, type: 3}
-  m_PrefabInstance: {fileID: 1734400317}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &735230846
 PrefabInstance:
@@ -23171,6 +23161,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 334774656334231162, guid: 3c1d1955b1c55924ebe2255684f71ba8, type: 3}
+      propertyPath: stageManager
+      value: 
+      objectReference: {fileID: 8793840797598095235}
     - target: {fileID: 760953055061686714, guid: 3c1d1955b1c55924ebe2255684f71ba8, type: 3}
       propertyPath: guide
       value: 
@@ -23351,7 +23345,8 @@ PrefabInstance:
       propertyPath: birdController
       value: 
       objectReference: {fileID: 1513189551}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2857644904347883073, guid: 3c1d1955b1c55924ebe2255684f71ba8, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

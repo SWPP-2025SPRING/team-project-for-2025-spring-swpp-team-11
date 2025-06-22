@@ -8447,6 +8447,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WirePoint_Stage2 (39)
       objectReference: {fileID: 0}
+    - target: {fileID: 3958719072300551200, guid: 4051b88e4f625d942a5f8639b2e2583f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8312587016755491823, guid: 4051b88e4f625d942a5f8639b2e2583f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.4
@@ -9745,6 +9749,10 @@ PrefabInstance:
     - target: {fileID: 3958719072300551200, guid: 4051b88e4f625d942a5f8639b2e2583f, type: 3}
       propertyPath: m_Name
       value: WirePoint_Stage2 (38)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3958719072300551200, guid: 4051b88e4f625d942a5f8639b2e2583f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8312587016755491823, guid: 4051b88e4f625d942a5f8639b2e2583f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -21297,12 +21305,6 @@ MonoBehaviour:
   - {fileID: 7648112266040981969}
   - {fileID: 7666123040639480211}
   - {fileID: 6207730731873049096}
-  - {fileID: 2729350938051527270}
-  - {fileID: 5437082490662262394}
-  - {fileID: 5375954496700150845}
-  - {fileID: 3369394035496051033}
-  - {fileID: 2700562418379565554}
-  - {fileID: 3237425917725743115}
   - {fileID: 9065060480722609341}
   flySpeed: 30
   turnSpeed: 180

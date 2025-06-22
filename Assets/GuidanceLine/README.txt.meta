@@ -5,6 +5,7 @@ TextScriptImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+
 AssetOrigin:
   serializedVersion: 1
   productId: 303873
@@ -12,3 +13,4 @@ AssetOrigin:
   packageVersion: 1.0.0
   assetPath: Assets/GuidanceLine/README.txt
   uploadId: 716538
+

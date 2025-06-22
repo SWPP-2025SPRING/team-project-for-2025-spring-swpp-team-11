@@ -69,7 +69,7 @@ public class TutorialDirector
     {
         var builder = new WireTutorialUIBuilder(parentCanvas, _tutorialUIPrefab);
         builder.PrepareTutorialUI(parentCanvas);
-        builder.BuildExplanation("Click to initiate wire.");
+        builder.BuildExplanation("Click to initiate wire.\n Use WASD to swing while attached to the wire.");
         builder.BuildExampleVideo(exampleClip);
         builder.BuildKeyUI(keySprites);
         builder.BuildNextButton(onNextCallback);
@@ -79,7 +79,7 @@ public class TutorialDirector
         var decorator = decoratorGO.AddComponent<WireTutorialUIDecorator>();
         decoratorGO.transform.SetParent(parentCanvas, false);
         decorator.SetInnerUI(uiBase);
-        decorator.Initialize(exampleClip, keySprites, "Click to initiate wire.");
+        decorator.Initialize(exampleClip, keySprites, "Click to initiate wire.\n Use WASD to swing while attached to the wire.");
         return decorator;
     }
 }

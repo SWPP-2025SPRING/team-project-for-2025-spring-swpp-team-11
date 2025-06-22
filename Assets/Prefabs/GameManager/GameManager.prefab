@@ -412,7 +412,7 @@ MonoBehaviour:
   - stage: 1
     cutlines:
     - grade: S
-      maxTime: 60
+      maxTime: 110
     - grade: A
       maxTime: 120
     - grade: B
@@ -420,33 +420,33 @@ MonoBehaviour:
     - grade: C
       maxTime: 240
     - grade: D
-      maxTime: 300
+      maxTime: 480
     lowestGrade: E
   - stage: 2
     cutlines:
     - grade: S
-      maxTime: 60
+      maxTime: 210
     - grade: A
-      maxTime: 120
-    - grade: B
-      maxTime: 180
-    - grade: C
       maxTime: 240
-    - grade: D
+    - grade: B
       maxTime: 300
+    - grade: C
+      maxTime: 360
+    - grade: D
+      maxTime: 540
     lowestGrade: E
   - stage: 3
     cutlines:
     - grade: S
-      maxTime: 60
-    - grade: A
-      maxTime: 120
-    - grade: B
-      maxTime: 180
-    - grade: C
       maxTime: 240
-    - grade: D
+    - grade: A
       maxTime: 300
+    - grade: B
+      maxTime: 360
+    - grade: C
+      maxTime: 480
+    - grade: D
+      maxTime: 540
     lowestGrade: E
 --- !u!1 &2347623323980830124
 GameObject:

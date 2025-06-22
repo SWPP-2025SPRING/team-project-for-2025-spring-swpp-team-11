@@ -2220,6 +2220,54 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7931235656312948963, guid: 724378c69a77c864fb6c40df333fcfba, type: 3}
+      propertyPath: gradeCuts.Array.data[0].cutlines.Array.data[0].maxTime
+      value: 110
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931235656312948963, guid: 724378c69a77c864fb6c40df333fcfba, type: 3}
+      propertyPath: gradeCuts.Array.data[0].cutlines.Array.data[4].maxTime
+      value: 480
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931235656312948963, guid: 724378c69a77c864fb6c40df333fcfba, type: 3}
+      propertyPath: gradeCuts.Array.data[1].cutlines.Array.data[0].maxTime
+      value: 210
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931235656312948963, guid: 724378c69a77c864fb6c40df333fcfba, type: 3}
+      propertyPath: gradeCuts.Array.data[1].cutlines.Array.data[1].maxTime
+      value: 240
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931235656312948963, guid: 724378c69a77c864fb6c40df333fcfba, type: 3}
+      propertyPath: gradeCuts.Array.data[1].cutlines.Array.data[2].maxTime
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931235656312948963, guid: 724378c69a77c864fb6c40df333fcfba, type: 3}
+      propertyPath: gradeCuts.Array.data[1].cutlines.Array.data[3].maxTime
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931235656312948963, guid: 724378c69a77c864fb6c40df333fcfba, type: 3}
+      propertyPath: gradeCuts.Array.data[1].cutlines.Array.data[4].maxTime
+      value: 540
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931235656312948963, guid: 724378c69a77c864fb6c40df333fcfba, type: 3}
+      propertyPath: gradeCuts.Array.data[2].cutlines.Array.data[0].maxTime
+      value: 240
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931235656312948963, guid: 724378c69a77c864fb6c40df333fcfba, type: 3}
+      propertyPath: gradeCuts.Array.data[2].cutlines.Array.data[1].maxTime
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931235656312948963, guid: 724378c69a77c864fb6c40df333fcfba, type: 3}
+      propertyPath: gradeCuts.Array.data[2].cutlines.Array.data[2].maxTime
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931235656312948963, guid: 724378c69a77c864fb6c40df333fcfba, type: 3}
+      propertyPath: gradeCuts.Array.data[2].cutlines.Array.data[3].maxTime
+      value: 480
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931235656312948963, guid: 724378c69a77c864fb6c40df333fcfba, type: 3}
+      propertyPath: gradeCuts.Array.data[2].cutlines.Array.data[4].maxTime
+      value: 540
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

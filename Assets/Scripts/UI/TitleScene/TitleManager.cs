@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +12,12 @@ public class TitleManager : UIWindow
     private int _currentIndex = 0;
 
     /* ---------- Unity lifecycle ---------- */
+
+    private void Awake()
+    {
+        Screen.SetResolution(1920, 1080, true);
+    }
+
     protected override void Start()
     {
         base.Start();

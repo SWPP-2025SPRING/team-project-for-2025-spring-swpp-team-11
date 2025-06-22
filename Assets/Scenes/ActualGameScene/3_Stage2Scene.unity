@@ -18808,8 +18808,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 40
-  m_Height: 80
+  m_Radius: 48
+  m_Height: 203.67
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &1967510272394582303
@@ -18909,8 +18909,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 40
-  m_Height: 80
+  m_Radius: 48
+  m_Height: 203.67
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2019270599210355694
@@ -19207,6 +19207,14 @@ PrefabInstance:
     - target: {fileID: 5796113485733832644, guid: 9b61b5841cb872a4f8f5928a5b582e0c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7630172356977399937, guid: 9b61b5841cb872a4f8f5928a5b582e0c, type: 3}
+      propertyPath: Priority.Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7630172356977399937, guid: 9b61b5841cb872a4f8f5928a5b582e0c, type: 3}
+      propertyPath: Priority.m_Value
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 7630172356977399937, guid: 9b61b5841cb872a4f8f5928a5b582e0c, type: 3}
       propertyPath: Target.TrackingTarget
@@ -19742,8 +19750,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 40
-  m_Height: 80
+  m_Radius: 48
+  m_Height: 203.67
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &3074305176407953134
@@ -21133,8 +21141,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 40
-  m_Height: 80
+  m_Radius: 48
+  m_Height: 203.67
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &5375954496700150845
@@ -21331,8 +21339,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 40
-  m_Height: 80
+  m_Radius: 48
+  m_Height: 203.67
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!137 &5628323068515360001
@@ -21956,8 +21964,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 40
-  m_Height: 80
+  m_Radius: 48
+  m_Height: 203.67
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6733247531840750725
@@ -23672,8 +23680,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 80
-  m_Height: 80
+  m_Radius: 48
+  m_Height: 203.67
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8928830802311266714

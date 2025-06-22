@@ -249,8 +249,7 @@ public class WireConnector : MonoBehaviour
     
     private void MakeActualLineConnection()
     {
-        _lineRenderer.startColor = Color.black;
-        _lineRenderer.endColor = Color.black;
+        SetLineRendererColor(Color.black);
         _lineRenderer.enabled = true;
     }
 
@@ -262,11 +261,17 @@ public class WireConnector : MonoBehaviour
             _wirePointMark.MakeMarkOff();
             return;
         }
-        _lineRenderer.startColor = Color.grey;
-        _lineRenderer.endColor = Color.grey;
+
+        SetLineRendererColor(Color.grey);
         _lineRenderer.enabled = true;
         
         _wirePointMark.MakeMarkOn();
         _wirePointMark.SetWireMarkImage(point.position);
+    }
+
+    private void SetLineRendererColor(Color color)
+    {
+        _lineRenderer.startColor = color;
+        _lineRenderer.endColor = color;
     }
 }

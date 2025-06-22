@@ -231,7 +231,8 @@ public class PlayerBehavior : MonoBehaviour
             _rigidbody.AddForce(-velWithoutY * (airCof * dynamicDeaccel * Time.deltaTime));
         }
     }
-    
+
+
 
     private void StunCheck()
     {

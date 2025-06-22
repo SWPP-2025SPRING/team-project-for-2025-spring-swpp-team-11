@@ -88,8 +88,7 @@ public class WireConnector : MonoBehaviour
         var finalDir = Vector3.Cross(vecToPoint, right);
         if (Vector3.Dot(direction, finalDir) < 0)
             finalDir = -finalDir;
-
-        Debug.Log("으아아!! : " + finalDir.normalized * (wireAccel * Time.deltaTime));
+        
         _rigidbody.linearVelocity += finalDir.normalized * (wireAccel * Time.deltaTime);
     }
 

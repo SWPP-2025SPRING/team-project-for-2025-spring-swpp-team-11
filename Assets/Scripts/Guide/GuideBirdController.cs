@@ -18,9 +18,9 @@ public class GuideBirdController : MonoBehaviour
     [Tooltip("높이 오프셋 (플레이어보다 위로)")]
     public float heightOffset = 7f;
 
-    private int currentIndex = 0;
-    private Transform targetPoint;
-    private bool isFlying = false;
+    public int currentIndex = 0;
+    public Transform targetPoint;
+    public bool isFlying = false;
 
     // Flag to skip movement on the frame of reset
     private bool skipNextUpdate = false;

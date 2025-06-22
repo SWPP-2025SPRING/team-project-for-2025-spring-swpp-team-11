@@ -163,8 +163,6 @@ public class PlayerBehavior : MonoBehaviour
             MoveOnWire();
             OnWiringRotate();
             _wirePointMark.MakeMarkOff();
-            
-            if (_isGrounded) StopWiring();
         }
 
         AnimationUpdate();
@@ -324,6 +322,8 @@ public class PlayerBehavior : MonoBehaviour
                 _animator.SetTrigger("DoubleJump");
             
             _jumpCount++;
+            
+            GameManager.Instance.AudioManager.PlayOneShot(SFX.JUMP);
             
             _rigidbody.linearVelocity -= _rigidbody.linearVelocity.y * Vector3.up;
             _rigidbody.AddForce(Vector3.up * (_jumpCount == 0 ? jumpForce : doubleJumpForce), ForceMode.Impulse);

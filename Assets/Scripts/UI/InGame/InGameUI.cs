@@ -94,6 +94,7 @@ public class InGameUI : MonoBehaviour
 
     public void ExitGame()
     {
+        GameManager.Instance.AudioManager.StopBGM();
         Time.timeScale = 1f;
         GameManager.Instance.SceneLoadManager.FadeLoadScene("1_StageSelectSceneAppliedOne");
     }

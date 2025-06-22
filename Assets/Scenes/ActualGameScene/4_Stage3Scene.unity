@@ -599,6 +599,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1765106666}
     - target: {fileID: 4506415071622784385, guid: 96ed0507f8818364fbbf9a45d923b5dc, type: 3}
+      propertyPath: pointsPerSegment
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4506415071622784385, guid: 96ed0507f8818364fbbf9a45d923b5dc, type: 3}
       propertyPath: checkPoints.Array.size
       value: 63
       objectReference: {fileID: 0}
@@ -32685,6 +32689,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1711654818859024742, guid: de45e08a8ce644b4880409d3e817acfc, type: 3}
+      propertyPath: guideLine
+      value: 
+      objectReference: {fileID: 1078329258}
     - target: {fileID: 1711654818859024742, guid: de45e08a8ce644b4880409d3e817acfc, type: 3}
       propertyPath: respawnPos
       value: 

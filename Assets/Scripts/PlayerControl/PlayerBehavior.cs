@@ -110,6 +110,7 @@ public class PlayerBehavior : MonoBehaviour
         /*_inputProcessor.shotEvent.AddListener(OnClick);
         _inputProcessor.releaseEvent.AddListener(OnRelease);*/
         _inputProcessor.respawnEvent.AddListener(RespawnButton);
+        _inputProcessor.guideLineEvent.AddListener(OnGuideLine);
 
         _lineRenderer.enabled = false;
         float sensitivity = GameManager.Instance.DataManager.sensitivity;
@@ -232,6 +233,23 @@ public class PlayerBehavior : MonoBehaviour
         }
     }
 
+    private bool isGuideLineOn;
+    
+    public GuidanceLine.GuidanceLine guideLine;
+
+    private void OnGuideLine()
+    {
+        isGuideLineOn = !isGuideLineOn;
+
+        if (isGuideLineOn)
+        {
+            guideLine.pointsPerSegment = 12;
+        }
+        else
+        {
+            guideLine.pointsPerSegment = 0;
+        }
+    }
 
 
     private void StunCheck()

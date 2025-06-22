@@ -22406,7 +22406,7 @@ MonoBehaviour:
   - {fileID: 7641254902551182663}
   - {fileID: 7641254902551182663}
   lineWidth: 0.7
-  pointsPerSegment: 12
+  pointsPerSegment: 0
   ToggleGizmos: 1
   gizmoSphereRadius: 0.1
 --- !u!1 &7556153764836179880
@@ -22593,6 +22593,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1711654818859024742, guid: de45e08a8ce644b4880409d3e817acfc, type: 3}
+      propertyPath: guideLine
+      value: 
+      objectReference: {fileID: 7534137969259398918}
     - target: {fileID: 1711654818859024742, guid: de45e08a8ce644b4880409d3e817acfc, type: 3}
       propertyPath: respawnPos
       value: 

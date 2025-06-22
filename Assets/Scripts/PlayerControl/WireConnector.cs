@@ -203,9 +203,9 @@ public class WireConnector : MonoBehaviour
     private Collider GetAvailableWirePoint()
     {
         if (_avilableWirePoints[0] == null) return null;
-        
-        var point = _avilableWirePoints[0];
-        float minDistance = Vector3.Distance(_avilableWirePoints[0].transform.position, transform.position);
+
+        Collider point = null;
+        float minDistance = Mathf.Infinity;
         float tmpDistance = 0;
         
         // 일단 화면 z 좌표가 앞에 있는 것 중 가장 가까운 것을 골라보자
@@ -215,12 +215,14 @@ public class WireConnector : MonoBehaviour
         {
             if (_avilableWirePoints[i] == null) continue;
 
-            if (Camera.main.WorldToScreenPoint(point.transform.position).z < 0)
-            {
-                minDistance = Vector3.Distance(_avilableWirePoints[i].transform.position, transform.position);
-                point = _avilableWirePoints[i];
-                continue;
-            }
+            var viewportPoint = Camera.main.WorldToScreenPoint(_avilableWirePoints[i].transform.position);
+            if (viewportPoint.z < 0 ||
+                viewportPoint.x < 0 ||
+                viewportPoint.y < 0 ||
+                viewportPoint.x > Screen.width ||
+                viewportPoint.y > Screen.height
+               ) continue;
+            
             if ((tmpDistance = Vector3.Distance(_avilableWirePoints[i].transform.position, transform.position)) < minDistance)
             {
                 minDistance = tmpDistance;
@@ -228,6 +230,8 @@ public class WireConnector : MonoBehaviour
             }
         }
 
+        if (point == null) return null;
+        
         var vecToPoint = point.transform.position - transform.position;
         var dotValue = Vector3.Dot(vecToPoint, transform.forward);
 

@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 1565130003138848429}
   - component: {fileID: 1701425731938433172}
   - component: {fileID: 4118446827463908751}
+  - component: {fileID: 3060576885734422645}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -289,6 +290,8 @@ MonoBehaviour:
   wirePointLayer:
     serializedVersion: 2
     m_Bits: 64
+  _inputOnRelease: {x: 0, y: 0}
+  _isJustReleased: 0
   respawnPos: {fileID: 0}
   distanceToPoint: 0
   text: {fileID: 0}
@@ -345,6 +348,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wireMarkImage: {fileID: 0}
   ingameUiRectTransform: {fileID: 0}
+--- !u!114 &3060576885734422645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 233122640069827693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 759439816f594bf5aad51ede2e666942, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wirePointDetectRadius: 40
+  minDistanceConst: 2
+  maxDistanceConst: 3
+  wireSwingForce: 45
+  wireAccel: 50
+  _isWiring: 0
+  distanceToPoint: 0
 --- !u!1 &2135769997532093096
 GameObject:
   m_ObjectHideFlags: 0

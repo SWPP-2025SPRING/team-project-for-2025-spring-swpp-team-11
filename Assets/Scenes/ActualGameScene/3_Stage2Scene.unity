@@ -22394,6 +22394,10 @@ PrefabInstance:
       propertyPath: cameraObject
       value: 
       objectReference: {fileID: 463406707}
+    - target: {fileID: 3060576885734422645, guid: de45e08a8ce644b4880409d3e817acfc, type: 3}
+      propertyPath: wireAccel
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 4118446827463908751, guid: de45e08a8ce644b4880409d3e817acfc, type: 3}
       propertyPath: wireMarkImage
       value: 

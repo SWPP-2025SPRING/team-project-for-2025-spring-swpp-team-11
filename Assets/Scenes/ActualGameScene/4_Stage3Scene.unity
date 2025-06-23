@@ -23262,6 +23262,14 @@ PrefabInstance:
       propertyPath: birdController
       value: 
       objectReference: {fileID: 1513189551}
+    - target: {fileID: 3889668868592446334, guid: 3c1d1955b1c55924ebe2255684f71ba8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -648.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3889668868592446334, guid: 3c1d1955b1c55924ebe2255684f71ba8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -37.6
+      objectReference: {fileID: 0}
     - target: {fileID: 4214355268284535881, guid: 3c1d1955b1c55924ebe2255684f71ba8, type: 3}
       propertyPath: guide
       value: 

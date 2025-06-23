@@ -18,9 +18,9 @@ public class GuideBirdController : MonoBehaviour
     [Tooltip("높이 오프셋 (플레이어보다 위로)")]
     public float heightOffset = 7f;
 
-    private int currentIndex = 0;
-    private Transform targetPoint;
-    private bool isFlying = false;
+    public int currentIndex = 0;
+    public Transform targetPoint;
+    public bool isFlying = false;
 
     // Flag to skip movement on the frame of reset
     private bool skipNextUpdate = false;
@@ -58,18 +58,12 @@ public class GuideBirdController : MonoBehaviour
 
         // 회전
         Vector3 dir = (targetPoint.position - transform.position);
-        dir.y = 0;
         float maxRad = turnSpeed * Mathf.Deg2Rad * Time.deltaTime;
         Vector3 newDir = Vector3.RotateTowards(transform.forward, dir.normalized, maxRad, 0f);
         transform.rotation = Quaternion.LookRotation(newDir);
 
         // 이동
         transform.position += transform.forward * flySpeed * Time.deltaTime;
-
-        // 높이 고정
-        Vector3 pos = transform.position;
-        pos.y = player.position.y + heightOffset;
-        transform.position = pos;
     }
 
     /// <summary>

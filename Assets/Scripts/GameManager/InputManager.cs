@@ -11,6 +11,7 @@ public class InputManager : MonoBehaviour
     public UnityEvent<InputAction.CallbackContext> onJumpEvent;
     public UnityEvent<InputAction.CallbackContext> onShotEvent;
     public UnityEvent<InputAction.CallbackContext> onRespawnEvent;
+    public UnityEvent<InputAction.CallbackContext> onGuideLineEvent;
 
 
     // UI 관련
@@ -50,6 +51,12 @@ public class InputManager : MonoBehaviour
     {
         onRespawnEvent.Invoke(context);
     }
+    
+    public void OnGuideLine(InputAction.CallbackContext context)
+    {
+        onGuideLineEvent.Invoke(context);
+    }
+
 
     public void OnEnter(InputAction.CallbackContext context)
     {

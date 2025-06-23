@@ -1,5 +1,73 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &718439342524928160
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4476490107660730110}
+  - component: {fileID: 6439613195662743950}
+  - component: {fileID: 8735075846640924132}
+  m_Layer: 0
+  m_Name: WireTutorialTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4476490107660730110
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 718439342524928160}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 31.3, y: -45.2, z: 846.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7112370826401584979}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &6439613195662743950
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 718439342524928160}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 20
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8735075846640924132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 718439342524928160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d00eddd787714429b9186ab36b82fdc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tutorialControl: {fileID: 8662115217815002149}
+  _type: 2
 --- !u!1 &3784266935503788340
 GameObject:
   m_ObjectHideFlags: 0
@@ -17,7 +85,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6436169584699469719
 Transform:
   m_ObjectHideFlags: 0
@@ -99,6 +167,7 @@ Transform:
   - {fileID: 7026435949381994280}
   - {fileID: 1615417739079828547}
   - {fileID: 7819672384690564826}
+  - {fileID: 4476490107660730110}
   - {fileID: 6436169584699469719}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -129,7 +198,7 @@ Transform:
   m_GameObject: {fileID: 7455802093430510784}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.674318, y: -62.86251, z: -275.02316}
+  m_LocalPosition: {x: 10.96, y: -62.86251, z: -274.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -217,13 +286,13 @@ MonoBehaviour:
   _enabled: 0
   _targetStageIndex: 1
   _playerTransform: {fileID: 0}
-  _moveExampleClip: {fileID: 32900000, guid: fbbc31f5f1f5a44c482defb84d9cf14a, type: 3}
+  _moveExampleClip: {fileID: 32900000, guid: 1e220177aba664ab4adede900b7551d2, type: 3}
   _moveKeySprites:
   - {fileID: 21300000, guid: 38ccf82e12d8c4a25812413efe7a2081, type: 3}
-  _jumpExampleClip: {fileID: 32900000, guid: a8b5c97a31563457885052ed8c9fc4ca, type: 3}
+  _jumpExampleClip: {fileID: 32900000, guid: 9a0dc9fcd674d4558890f8d0c6195b69, type: 3}
   _jumpKeySprites:
   - {fileID: 21300000, guid: dda6a310792be4e19ad84fdc68fa5ce7, type: 3}
-  _wireExampleClip: {fileID: 32900000, guid: a8b5c97a31563457885052ed8c9fc4ca, type: 3}
+  _wireExampleClip: {fileID: 32900000, guid: ce36aca120ab14c8d87d5e1b3ad95212, type: 3}
   _wireKeySprites:
   - {fileID: 21300000, guid: 80b86a1651ee64863848224b08bc4687, type: 3}
   _targetCanvas: {fileID: 0}

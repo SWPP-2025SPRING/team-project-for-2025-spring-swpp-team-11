@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 
+#if UNITY_EDITOR
 public class TerrainDuplicator : MonoBehaviour
 {
     [MenuItem("Tools/Duplicate Selected Terrain With New Data")]
@@ -31,3 +32,6 @@ public class TerrainDuplicator : MonoBehaviour
         Debug.Log("Terrain 복제 완료 (TerrainData도 분리됨)");
     }
 }
+
+
+#endif

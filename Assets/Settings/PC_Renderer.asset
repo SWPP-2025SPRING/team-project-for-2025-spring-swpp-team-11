@@ -16,22 +16,6 @@ MonoBehaviour:
   settings:
     speedBlurMaterial: {fileID: 2100000, guid: 19123c3f3dcbf42648358cd7e3f32ad8, type: 2}
     renderPassEvent: 300
---- !u!114 &-790654075379254191
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f1328879475846d08cfc449172c9f0a, type: 3}
-  m_Name: SandstormSilhouetteFeature
-  m_EditorClassIdentifier: 
-  m_Active: 1
-  settings:
-    sandstormMaterial: {fileID: 2100000, guid: 6495925dfff57474584ab3621e4bfe51, type: 2}
-    renderPassEvent: 550
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,9 +42,7 @@ MonoBehaviour:
     probeVolumeBlendStatesCS: {fileID: 7200000, guid: b9a23f869c4fd45f19c5ada54dd82176, type: 3}
   m_RendererFeatures:
   - {fileID: 7833122117494664109}
-  - {fileID: -790654075379254191}
-  - {fileID: -9092671668413037712}
-  m_RendererFeatureMap: ad6b866f10d7b46c51fccdb84e0807f57083fbe84a57d081
+  m_RendererFeatureMap: ad6b866f10d7b46c
   m_UseNativeRenderPass: 0
   xrSystemData: {fileID: 0}
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}

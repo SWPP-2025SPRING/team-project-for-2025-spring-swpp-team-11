@@ -10,6 +10,7 @@ public class PlayerInputProcessor : MonoBehaviour
     public UnityEvent releaseEvent;
     public UnityEvent escapeEvent;
     public UnityEvent respawnEvent;
+    public UnityEvent guideLineEvent;
     public Vector2 MoveInput { get; private set; }
 
     private void Start()
@@ -21,6 +22,7 @@ public class PlayerInputProcessor : MonoBehaviour
         inputManager.onShotEvent.AddListener(OnShot);
         inputManager.onEscapeEvent.AddListener(OnEscape);
         inputManager.onRespawnEvent.AddListener(OnRespawn);
+        inputManager.onGuideLineEvent.AddListener(OnGuideLine);
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -52,5 +54,11 @@ public class PlayerInputProcessor : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Started)
             respawnEvent.Invoke();
+    }
+
+    public void OnGuideLine(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started || context.phase == InputActionPhase.Canceled)
+            guideLineEvent.Invoke();
     }
 }

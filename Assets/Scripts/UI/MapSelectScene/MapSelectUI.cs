@@ -88,6 +88,11 @@ public class MapSelectUI : UIWindow
         ApplyUIUpdate();
     }
 
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
     private IEnumerator ChangeBackground()
     {
         float progress = 0.4f;

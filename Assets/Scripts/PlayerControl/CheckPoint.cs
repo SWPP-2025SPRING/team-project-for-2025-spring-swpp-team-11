@@ -32,7 +32,7 @@ public class CheckPoint : MonoBehaviour
 
             // 3) 가이드 버드 리셋
             if (birdController != null)
-                birdController.ResetGuidance(birdCheckpointIndex);
+                birdController.GoToNextPoint();
                 
             _check = true;
         }

@@ -144,7 +144,7 @@ public class PlayerBehavior : MonoBehaviour
         
         if (!_isWiring)
         {
-            DetectInputChange();
+            //DetectInputChange();
             Move();
         }
         AnimationUpdate();
@@ -196,11 +196,21 @@ public class PlayerBehavior : MonoBehaviour
         // 인풋의 카메라 시점 방향 결정
         Vector3 direction = new Vector3(input.x, 0, input.y);
         direction = Quaternion.AngleAxis(cameraObject.transform.rotation.eulerAngles.y, Vector3.up) * direction;
+
+        //원하는 방향의 속도가 그리 빠르지 않으면 일반 조작으로 복귀
+        if (Vector3.Project(_rigidbody.linearVelocity, direction).magnitude < maxSpeed) _isJustReleased = false;
     
         // 인풋을 이용하여 가속
         // 방금 릴리즈 했다면 가속 X -> 인풋이 바뀌기 전까지는 조작 X
         if (!_isJustReleased)
             _rigidbody.linearVelocity += direction * (acceleration * Time.deltaTime);
+        else
+        {
+            Debug.Log("New JustReleased logic");
+            Vector3 rightDirection = Vector3.Cross(direction, Vector3.up);
+            Vector3 rightVelocity = Vector3.Project(_rigidbody.linearVelocity, rightDirection);
+            _rigidbody.AddForce(-rightVelocity * (dynamicDeaccel * Time.deltaTime));
+        }
         
         Vector3 velWithoutY = _rigidbody.linearVelocity;
         velWithoutY.y = 0;
@@ -222,10 +232,9 @@ public class PlayerBehavior : MonoBehaviour
         if (IsStunNow())
             airCof = airDeaccel / 2f;
 
-        if (input.magnitude < 0.1f)
+        if (input.magnitude < 0.1f && _isGrounded)
         {
-            if (_isGrounded) 
-                _rigidbody.AddForce(-velWithoutY * (airCof * groundFriction * deaccel * Time.deltaTime));
+            _rigidbody.AddForce(-velWithoutY * (airCof * groundFriction * deaccel * Time.deltaTime));
         }
         else
         {

@@ -162,7 +162,7 @@ public class WireConnector : MonoBehaviour
         _lineRenderer.enabled = false;
         _isWiring = false;
 
-        _playerBehavior._isJustReleased = false;
+        _playerBehavior._isJustReleased = true;
         _playerBehavior._inputOnRelease = _inputProcessor.MoveInput.normalized;
     }
 
